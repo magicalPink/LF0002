@@ -1,0 +1,1 @@
+import{_ as t,r as o,o as n,c,a,w as r,b as s}from"./index-dc745064.js";const _={};function l(m,u){const e=o("el-button");return n(),c("div",null,[a(e,null,{default:r(()=>[s("home")]),_:1})])}const f=t(_,[["render",l]]);export{f as default};
