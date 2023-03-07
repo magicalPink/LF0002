@@ -4,11 +4,13 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/home/Home.vue')
+    // eslint-disable-next-line import/no-unresolved
+    component: () => import('@/views/home/home.vue')
   },
   {
     path: '/login',
     name: 'Login',
+    // eslint-disable-next-line import/no-unresolved
     component: () => import('@/views/logIn/login.vue')
   }
 ]
