@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <el-button>home1232233322345</el-button>
+  <div class="">
+1111
   </div>
 </template>
 
