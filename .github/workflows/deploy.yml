@@ -33,6 +33,6 @@ jobs:
           # SSH User name   用户名
           username: ${{ secrets.USER_NAME }}
           # SSH User password  用户密码
-          #  password: ${{ secrets.PASSWORD }}
+          password: ${{ secrets.PASSWORD }}
           # key  密匙
-          key: ${{ secrets.MYSERVER }}
+#          key: ${{ secrets.MYSERVER }}
