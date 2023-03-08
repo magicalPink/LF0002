@@ -1,0 +1,99 @@
+// TODO: flex
+.flex {
+  display: flex;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.items-center {
+  align-items: center;
+}
+
+//TODO: Position
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.absolute-t50 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+each(range(10), {
+    .top5-@{value} {
+        top: (@value * 2%);
+    }
+    .right5-@{value} {
+        right: (@value * 2%);
+    }
+    .left5-@{value} {
+        left: (@value * 2%);
+    }
+    .bottom5-@{value} {
+        bottom: (@value * 2%);
+    }
+});
+
+//TODO: 布局
+.w100 {
+  width: 100%;
+}
+.h100 {
+  height: 100%;
+}
+
+//TODO: background
+.bgc-white {
+  background-color: white;
+}
+
+//TODO: color
+.white {
+  color: white;
+}
+
+//TODO: radius
+each(range(20), {
+  .radius@{value} {
+    border-radius: (@value * 2px);
+  }
+});
+
+//TODO: padding and margin
+each(range(10), {
+  .pr@{value} {
+    padding-right: (@value * 2px);
+  }
+  .pl@{value} {
+    padding-left: (@value * 2px);
+  }
+  .pt@{value} {
+    padding-top: (@value * 2px);
+  }
+  .pb@{value} {
+    padding-bottom: (@value * 2px);
+  }
+  .p@{value} {
+    padding: (@value * 2px);
+  }
+  .mt@{value} {
+    margin-top: (@value * 2px);
+  }
+  .mb@{value} {
+    margin-bottom: (@value * 2px);
+  }
+  .mr@{value} {
+    margin-right: (@value * 2px);
+  }
+  .ml@{value} {
+    margin-left: (@value * 2px);
+  }
+  .m@{value} {
+    margin: (@value * 2px);
+  }
+});
