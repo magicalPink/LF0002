@@ -111,7 +111,7 @@ const submitForm = async (formEl) => {
           //储存token
           localStorage.setItem('token', data.token)
           //跳转到首页
-          router.push('/')
+          router.replace('/')
         }
       } else {
         let { data } = await register(ruleForm)
