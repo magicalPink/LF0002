@@ -1,7 +1,7 @@
 <template>
   <div class="w100 h100">
     <css-doodle>
-      --color: #fff, #fffde1, #ff9d76, #FB3569; @grid: 20x1 / 100vw 100vh / #270f34; :container {
+      --color: #ff0000, #b7b7b7, #000000, #919191; @grid: 20x1 / 100vw 100vh / #bbcaac; :container {
       perspective: 30vmin; --deg: @p(-180deg, 180deg); } :after, :before { content: ''; background:
       @p(--color); @place: @r(100%) @r(100%); @size: @r(6px); @shape: heart; } @place: center;
       @size: 18vmin; box-shadow: @m2(0 0 50px @p(--color)); background: @m100(
@@ -12,7 +12,7 @@
       rotateZ(var(--deg)); } }
     </css-doodle>
     <!--  left  -->
-    <main class="loginMain absolute-t50 right5-1 radius5">
+    <main class="loginMain absolute-t50 right5-1 radius5 bgc-white">
       <LoginForm />
     </main>
   </div>
@@ -27,9 +27,9 @@ import LoginForm from './components/loginForm.vue'
 .loginMain {
   width: 350px;
   height: 450px;
-  box-shadow: 0 0.3px 0.7px rgba(213, 82, 82, 0.13), 0 0.9px 1.7px rgba(146, 39, 39, 0.18),
-    0 1.8px 3.5px rgba(130, 39, 39, 0.22), 0 3.7px 7.3px rgba(165, 78, 78, 0.27),
-    0 10px 20px rgba(167, 95, 95, 0.4);
+  box-shadow: 0 0.3px 0.7px rgba(245, 237, 237, 0.13), 0 0.9px 1.7px rgba(239, 234, 234, 0.18),
+    0 1.8px 3.5px rgba(238, 231, 231, 0.22), 0 3.7px 7.3px rgba(229, 117, 117, 0.27),
+    0 10px 20px rgba(238, 233, 233, 0.4);
   backdrop-filter: blur(20px);
   transition: 0.5s ease;
   overflow: hidden;
