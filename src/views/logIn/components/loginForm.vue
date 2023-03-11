@@ -1,6 +1,6 @@
 <template>
   <transition name="el-zoom-in-top">
-    <main v-if="login === false" class="loginForm p10 white">
+    <main v-if="loginFlag === false" class="loginForm p10">
       <h1>注册你的即时账户</h1>
       <p>
         <span>已有账户？</span>
@@ -14,11 +14,11 @@
         label-width="0"
         class="demo-ruleForm"
       >
-        <el-form-item prop="userName">
-          <el-input placeholder="请输入用户名" v-model="ruleForm.userName" autocomplete="off" />
+        <el-form-item prop="nickname">
+          <el-input placeholder="请输入用户名" v-model="ruleForm.nickname" autocomplete="off" />
         </el-form-item>
-        <el-form-item prop="accountNumber">
-          <el-input placeholder="请输入账号" v-model="ruleForm.accountNumber" autocomplete="off" />
+        <el-form-item prop="username">
+          <el-input placeholder="请输入账号" v-model="ruleForm.username" autocomplete="off" />
         </el-form-item>
         <el-form-item prop="password">
           <el-input placeholder="请输入密码" type="password" v-model.number="ruleForm.password" />
@@ -31,7 +31,7 @@
     </main>
   </transition>
   <transition name="el-zoom-in-bottom">
-    <main v-if="login === true" class="loginForm p10 white">
+    <main v-if="loginFlag === true" class="loginForm p10">
       <h1>登录你的即时账户</h1>
       <p>
         <span>没有账户？</span>
@@ -45,8 +45,8 @@
         label-width="0"
         class="demo-ruleForm"
       >
-        <el-form-item prop="accountNumber">
-          <el-input placeholder="请输入账号" v-model="loginForm.accountNumber" autocomplete="off" />
+        <el-form-item prop="username">
+          <el-input placeholder="请输入账号" v-model="loginForm.username" autocomplete="off" />
         </el-form-item>
         <el-form-item prop="password">
           <el-input placeholder="请输入密码" type="password" v-model="loginForm.password" />
@@ -61,47 +61,65 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-const login = ref(true)
+import { register, login } from '@/api/user'
+import { ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const loginFlag = ref(true)
 const ruleFormRef = ref()
 const loginFormRef = ref()
 const ruleForm = reactive({
-  userName: '',
-  accountNumber: '',
+  nickname: '',
+  username: '',
   password: ''
 })
 const loginForm = reactive({
-  accountNumber: '',
+  username: '',
   password: ''
 })
 
 const rules = reactive({
-  userName: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 5, message: '用户名长度 3-5', trigger: 'blur' }
+  nickname: [
+    { required: true, message: '请输入用户名', trigger: 'change' },
+    { min: 2, max: 6, message: '用户名长度 2-6', trigger: 'change' }
   ],
-  accountNumber: [
-    { required: true, message: '请输入账号', trigger: 'blur' },
-    { min: 6, max: 10, message: '账号长度 6-10', trigger: 'blur' }
+  username: [
+    { required: true, message: '请输入账号', trigger: 'change' },
+    { min: 6, max: 15, message: '账号长度 6-15', trigger: 'change' }
   ],
   password: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
-    { min: 6, max: 18, message: '密码长度 6-18', trigger: 'blur' }
+    { required: true, message: '请输入密码', trigger: 'change' },
+    { min: 6, max: 18, message: '密码长度 6-18', trigger: 'change' }
   ]
 })
 
 const goAndLogIn = (flag) => {
-  login.value = null
+  loginFlag.value = null
   setTimeout(() => {
-    login.value = flag
+    loginFlag.value = flag
   }, 200)
 }
 
 const submitForm = async (formEl) => {
-  console.log(formEl)
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate(async (valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      if (loginFlag.value) {
+        let { data } = await login(loginForm)
+        if (data.status == 0) {
+          ElMessage.success('登录成功')
+          //储存token
+          localStorage.setItem('token', data.token)
+          //跳转到首页
+          router.push('/')
+        }
+      } else {
+        let { data } = await register(ruleForm)
+        if (data.status == 0) {
+          ElMessage.success('注册成功')
+          loginFlag.value = true
+        }
+      }
     } else {
       console.log('error submit!', fields)
     }
@@ -117,8 +135,5 @@ const resetForm = (formEl) => {
 <style scoped>
 :deep(.el-input__wrapper) {
   /*opacity: 0.8;*/
-}
-.loginForm {
-  color: #ffe0e0;
 }
 </style>
