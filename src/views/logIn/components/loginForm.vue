@@ -15,17 +15,22 @@
         class="demo-ruleForm"
       >
         <el-form-item prop="nickname">
-          <el-input placeholder="请输入用户名" v-model="ruleForm.nickname" autocomplete="off" />
+          <el-input clearable placeholder="请输入用户名" v-model="ruleForm.nickname" autocomplete="off" />
         </el-form-item>
         <el-form-item prop="username">
-          <el-input placeholder="请输入账号" v-model="ruleForm.username" autocomplete="off" />
+          <el-input clearable placeholder="请输入账号" v-model="ruleForm.username" autocomplete="off" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input placeholder="请输入密码" type="password" v-model.number="ruleForm.password" />
+          <el-input clearable placeholder="请输入密码" show-password type="password" v-model.number="ruleForm.password" />
         </el-form-item>
-        <el-form-item style="margin-top: 40px">
-          <el-button type="primary" @click="submitForm(ruleFormRef)">注册</el-button>
-          <el-button @click="resetForm(ruleFormRef)">重置</el-button>
+        <el-form-item prop="secondaryConfirmation">
+          <el-input clearable placeholder="请再次输入密码" show-password type="password" v-model.number="ruleForm.secondaryConfirmation" />
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" class="w100" @click="submitForm(ruleFormRef)">注册</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button class="w100" @click="resetForm(ruleFormRef)">重置</el-button>
         </el-form-item>
       </el-form>
     </main>
@@ -46,13 +51,13 @@
         class="demo-ruleForm"
       >
         <el-form-item prop="username">
-          <el-input placeholder="请输入账号" v-model="loginForm.username" autocomplete="off" />
+          <el-input clearable placeholder="请输入账号" v-model="loginForm.username" autocomplete="off" />
         </el-form-item>
         <el-form-item prop="password">
-          <el-input placeholder="请输入密码" type="password" v-model="loginForm.password" />
+          <el-input clearable placeholder="请输入密码" type="password" v-model="loginForm.password" />
         </el-form-item>
         <el-form-item style="margin-top: 40px">
-          <el-button type="primary" @click="submitForm(loginFormRef)">登录</el-button>
+          <el-button type="primary" class="w100" @click="submitForm(loginFormRef)">登录</el-button>
         </el-form-item>
       </el-form>
     </main>
@@ -71,7 +76,8 @@ const loginFormRef = ref()
 const ruleForm = reactive({
   nickname: '',
   username: '',
-  password: ''
+  password: '',
+  secondaryConfirmation: ''
 })
 const loginForm = reactive({
   username: '',
@@ -90,7 +96,20 @@ const rules = reactive({
   password: [
     { required: true, message: '请输入密码', trigger: 'change' },
     { min: 6, max: 18, message: '密码长度 6-18', trigger: 'change' }
-  ]
+  ],
+  secondaryConfirmation: [
+    { required: true, message: '请再次输入密码', trigger: 'change' },
+    {
+      validator: (rule, value, callback) => {
+        if (value !== ruleForm.password) {
+          callback(new Error('两次输入密码不一致'))
+        } else {
+          callback()
+        }
+      },
+      trigger: 'change'
+    }
+  ],
 })
 
 const goAndLogIn = (flag) => {
@@ -114,7 +133,9 @@ const submitForm = async (formEl) => {
           router.replace('/')
         }
       } else {
-        let { data } = await register(ruleForm)
+        const { nickname, username, password } = ruleForm
+
+        let { data } = await register({ nickname, username, password })
         if (data.status == 0) {
           ElMessage.success('注册成功')
           loginFlag.value = true
