@@ -1,17 +1,20 @@
 import { createStore } from 'vuex'
+import { getBasicInfo } from '@/api/home'
 
-const defaultState = {
-  count: 0
+const userState = {
+  userInfo: null
 }
 
 // Create a new store instance.
 export default createStore({
   state() {
-    return defaultState
+    return { ...userState }
   },
   mutations: {
-    increment(state) {
-      state.count++
+    getUserInfo(state) {
+      getBasicInfo().then((res) => {
+        state.userInfo = res.data.data
+      })
     }
   },
   actions: {

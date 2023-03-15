@@ -1,15 +1,30 @@
 <template>
-  <div class="">{{ userInfo.username }}</div>
+  <div class="common-layout h100">
+    <el-container class="h100">
+      <el-header>
+        <Header />
+      </el-header>
+      <el-container class="h100">
+        <el-aside width="200px">
+          <Aside />
+        </el-aside>
+        <el-main style="background-color: pink">
+          <router-view />
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <script setup>
 import { onBeforeMount, reactive, ref } from 'vue'
-import { getBasicInfo } from '@/api/home'
-let userInfo = ref({})
+import Header from './com/header.vue'
+import Aside from './com/aside.vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
 const getInfo = async () => {
-  let { data } = await getBasicInfo()
-  userInfo.value = data.data
-  console.log(data.data)
+  store.commit('getUserInfo')
 }
 onBeforeMount(() => {
   getInfo()
