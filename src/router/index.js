@@ -7,13 +7,13 @@ const routeChildren = asideMenu.map((item) => {
     return {
       path: item.path,
       name: item.name,
-      component: item.fileAddress && import(`/src/views/${item.fileAddress}`),
+      component: item.fileAddress && (() => import(`/src/views/${item.fileAddress}`)),
       children: item.children
         ? item.children.map((list) => {
             return {
               path: list.path,
               name: list.name,
-              component: list.fileAddress && import(`/src/views/${list.fileAddress}`)
+              component: list.fileAddress && (() =>import(`/src/views/${list.fileAddress}`))
             }
           })
         : []
