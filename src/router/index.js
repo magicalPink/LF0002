@@ -1,25 +1,30 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import asideMenu from '@/router/asideMenu.js'
+const modules = import.meta.glob('../views/**/*.vue')
+console.log(modules);
+const obtainFile = (path) => {
+  return modules[`../views/${path}`]
+}
 
 const routeChildren = asideMenu.map((item) => {
-  console.log(item)
   if (item.path) {
     return {
       path: item.path,
       name: item.name,
-      component: item.fileAddress && (() => import(`/src/views/${item.fileAddress}`)),
+      component: item.fileAddress && obtainFile(item.fileAddress),
       children: item.children
         ? item.children.map((list) => {
             return {
               path: list.path,
               name: list.name,
-              component: list.fileAddress && (() =>import(`/src/views/${list.fileAddress}`))
+              component: list.fileAddress && obtainFile(list.fileAddress)
             }
           })
         : []
     }
   }
 })
+console.log(routeChildren);
 const routes = [
   {
     path: '/',
@@ -31,9 +36,13 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: () => import('@/views/logIn/login.vue')
+  },
+  {
+    path:'/:pathMatch(.*)',
+    component:()=>import('../views/404.vue')
   }
 ]
-
+console.log(routes);
 const router = createRouter({
   history: createWebHashHistory(),
   routes
