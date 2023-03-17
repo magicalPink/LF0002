@@ -9,7 +9,12 @@
           <Aside />
         </el-aside>
         <el-main style="background-color: pink">
-          <router-view />
+          <!--          添加路由缓存-->
+          <router-view v-slot="{ Component }">
+            <keep-alive :include="store.state.cachedViews">
+              <component :is="Component"></component>
+            </keep-alive>
+          </router-view>
         </el-main>
       </el-container>
     </el-container>

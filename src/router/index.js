@@ -1,19 +1,27 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import store from '@/store/index.js'
 import asideMenu from '@/router/asideMenu.js'
 const modules = import.meta.glob('../views/**/*.vue')
-console.log(modules);
 const obtainFile = (path) => {
   return modules[`../views/${path}`]
 }
 
 const routeChildren = asideMenu.map((item) => {
   if (item.path) {
+    //TODO: 保存缓存路由
+    if (item.keepAlive) {
+      store.commit('addCachedView', item.path)
+    }
     return {
       path: item.path,
       name: item.name,
       component: item.fileAddress && obtainFile(item.fileAddress),
       children: item.children
         ? item.children.map((list) => {
+            //TODO: 保存缓存路由
+            if (list.keepAlive) {
+              store.commit('addCachedView', list.path)
+            }
             return {
               path: list.path,
               name: list.name,
@@ -24,7 +32,7 @@ const routeChildren = asideMenu.map((item) => {
     }
   }
 })
-console.log(routeChildren);
+
 const routes = [
   {
     path: '/',
@@ -38,11 +46,11 @@ const routes = [
     component: () => import('@/views/logIn/login.vue')
   },
   {
-    path:'/:pathMatch(.*)',
-    component:()=>import('../views/404.vue')
+    path: '/:pathMatch(.*)',
+    component: () => import('../views/404.vue')
   }
 ]
-console.log(routes);
+console.log(routes)
 const router = createRouter({
   history: createWebHashHistory(),
   routes
