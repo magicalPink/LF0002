@@ -31,9 +31,7 @@ const active = ref(asideMenu[0].path)
 
 const isCollapse = ref(false)
 const handleClick = (key, keyPath) => {
-  console.log(key, keyPath)
   active.value = key
-  console.log(keyPath.join('/'))
   router.push('/' + keyPath.join('/'))
 }
 </script>
