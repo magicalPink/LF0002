@@ -32,7 +32,7 @@ const asideMenu = [
         path: 'role',
         fileAddress: 'system/role/role.vue',
         keepAlive: true
-      },
+      }
     ]
   }
 ]
