@@ -4,6 +4,7 @@ import { getBasicInfo } from '@/api/home'
 const userState = {
   userInfo: null
 }
+
 const routerState = {
   cachedViews: []
 }

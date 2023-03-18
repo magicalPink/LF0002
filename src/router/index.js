@@ -6,39 +6,30 @@ const obtainFile = (path) => {
   return modules[`../views/${path}`]
 }
 
-const routeChildren = asideMenu.map((item) => {
-  if (item.path) {
-    //TODO: 保存缓存路由
-    if (item.keepAlive) {
-      store.commit('addCachedView', item.path)
-    }
-    return {
-      path: item.path,
-      name: item.name,
-      component: item.fileAddress && obtainFile(item.fileAddress),
-      children: item.children
-        ? item.children.map((list) => {
-            //TODO: 保存缓存路由
-            if (list.keepAlive) {
-              store.commit('addCachedView', list.path)
-            }
-            return {
-              path: list.path,
-              name: list.name,
-              component: list.fileAddress && obtainFile(list.fileAddress)
-            }
-          })
-        : []
-    }
+// 判断路由是否需要缓存
+const shouldKeepAlive = (route) => route.keepAlive
+
+// 构建路由配置项
+const buildRoute = (item) => {
+  const children = item.children || []
+  const route = {
+    path: item.path || '',
+    name: item.name || '',
+    component: item.fileAddress ? obtainFile(item.fileAddress) : null,
+    children: children.map(buildRoute)
   }
-})
+  if (shouldKeepAlive(item)) {
+    store.commit('addCachedView', item.path)
+  }
+  return route
+}
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: () => import('@/views/home/home.vue'),
-    children: [...routeChildren]
+    children: asideMenu.map(buildRoute)
   },
   {
     path: '/login',
