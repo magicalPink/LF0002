@@ -16,17 +16,23 @@ const asideMenu = [
     keepAlive: false
   },
   {
-    name: '测试',
-    icon: 'test',
-    path: 'test',
-    jurisdiction: 'test',
+    name: '系统管理',
+    icon: 'system',
+    path: 'system',
+    jurisdiction: 'system',
     children: [
       {
-        name: '测试1',
-        path: 'test1',
-        fileAddress: 'test/test1/test1.vue',
+        name: '菜单管理',
+        path: 'menu',
+        fileAddress: 'system/menu/menu.vue',
         keepAlive: true
-      }
+      },
+      {
+        name: '角色管理',
+        path: 'role',
+        fileAddress: 'system/role/role.vue',
+        keepAlive: true
+      },
     ]
   }
 ]
