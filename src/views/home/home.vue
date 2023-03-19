@@ -8,7 +8,7 @@
         <el-aside width="200px">
           <Aside />
         </el-aside>
-        <el-main style="background-color: pink">
+        <el-main class="bgc-ccc">
           <!--          添加路由缓存-->
           <router-view v-slot="{ Component }">
             <keep-alive :include="store.state.cachedViews">
