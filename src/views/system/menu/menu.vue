@@ -97,9 +97,15 @@
           <el-switch v-model="form.jurisdiction" />
         </el-form-item>
       </el-form-item>
-      <el-form-item label="请选择目录" v-show="form.isCatalogue==2">
-        <el-select v-model="form.parentId" placeholder="请选择目录" >
-          <el-option v-for="item in asideMenu2" :key="item.id" :label="item.name" :value="item.id" v-show="item.isCatalogue==1">
+      <el-form-item label="请选择目录" v-show="form.isCatalogue == 2">
+        <el-select v-model="form.parentId" placeholder="请选择目录">
+          <el-option
+            v-for="item in asideMenu2"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+            v-show="item.isCatalogue == 1"
+          >
           </el-option>
         </el-select>
       </el-form-item>
@@ -108,21 +114,19 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="confirm" >确定  </el-button>
+        <el-button type="primary" @click="confirm">确定 </el-button>
       </span>
     </template>
   </el-dialog>
 </template>
 
 <script setup>
-// import asideMenu from '@/router/asideMenu.js'
 import { getRouteList } from '@/api/system.js'
 import { addRouter } from '@/api/system.js'
 import { ElMessage } from 'element-plus'
 import { Search, Plus, EditPen, Delete } from '@element-plus/icons-vue'
 import { onBeforeMount, ref } from 'vue'
 import { reactive } from 'vue'
-import { login } from '@/api/user.js'
 const form = reactive({
   name: '',
   showOrNot: true,

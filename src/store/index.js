@@ -1,12 +1,12 @@
 import { createStore } from 'vuex'
 import { getBasicInfo } from '@/api/home'
-
 const userState = {
   userInfo: null
 }
 
 const routerState = {
-  cachedViews: []
+  cachedViews: [],
+  asideMenu: []
 }
 
 // Create a new store instance.
@@ -23,6 +23,9 @@ export default createStore({
     addCachedView(state, name) {
       if (state.cachedViews.includes(name)) return
       state.cachedViews.push(name)
+    },
+    setAsideMenu(state, asideMenu) {
+      state.asideMenu = asideMenu
     }
   },
   actions: {
