@@ -4,7 +4,7 @@
       <el-input v-model="input" placeholder="请输入菜单名称" style="width: 200px" clearable />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" :icon="Search" @click="search" style="margin-left: -20px"
+      <el-button type="primary" :icon="Search" @click="getList" style="margin-left: -20px"
         >搜索</el-button
       >
     </el-form-item>
@@ -32,12 +32,7 @@
 
     <el-table-column prop="jurisdiction" label="权限" sortable
       ><template #default="{ row }">
-        <el-switch
-          v-model="row.jurisdiction"
-          active-color="#1890FF"
-          inactive-color="#A9A8A8"
-          @change="turn(row)"
-        />
+        <el-switch v-model="row.jurisdiction" active-color="#1890FF" inactive-color="#A9A8A8" />
       </template>
     </el-table-column>
     <el-table-column label="Operations">
@@ -67,7 +62,25 @@
       <el-form-item label=" 名称" prop="name">
         <el-input v-model="form.name" clearable />
       </el-form-item>
-      <el-form-item label="是否显示 " prop="region" class="mb-2 flex items-center text-sm">
+      <el-form-item label="菜单类型 " prop="isCatalogue">
+        <el-radio-group v-model="form.isCatalogue" class="ml-4" @input="input">
+          <el-radio label="1" size="large">目录 </el-radio>
+          <el-radio label="2" size="large">菜单 </el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item label="选择目录" prop="parentId" v-if="form.isCatalogue == 2">
+        <el-select v-model="form.parentId" placeholder="请选择目录">
+          <el-option label="无" value="0" />
+          <el-option
+            v-for="item in catalogueList"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+            v-show="item.isCatalogue == 1"
+          />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="是否显示 ">
         <el-switch v-model="form.showOrNot" />
       </el-form-item>
 
@@ -78,36 +91,18 @@
         <el-input v-model="form.fileAddress" clearable />
       </el-form-item>
 
-      <el-form-item label="是否缓存 " prop="region" class="mb-2 flex items-center text-sm">
+      <el-form-item label="是否缓存 " prop="region">
         <el-radio-group v-model="form.keepAlive" class="ml-4">
           <el-radio label="1" size="large">缓存 </el-radio>
           <el-radio label="2" size="large">不缓存 </el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item label="排序 ">
+      <el-form-item label="排序">
         <el-input-number v-model="form.level" :min="1" :max="10" />
       </el-form-item>
-      <el-form-item label="显示状态 " prop="region" class="mb-2 flex items-center text-sm">
-        <el-radio-group v-model="form.isCatalogue" class="ml-4" @input="input">
-          <el-radio label="1" size="large">目录 </el-radio>
-          <el-radio label="2" size="large">菜单 </el-radio>
-        </el-radio-group>
 
-        <el-form-item label="权限标志 " prop="region" class="mb-2 flex items-center text-sm">
-          <el-switch v-model="form.jurisdiction" />
-        </el-form-item>
-      </el-form-item>
-      <el-form-item label="请选择目录" v-show="form.isCatalogue == 2">
-        <el-select v-model="form.parentId" placeholder="请选择目录">
-          <el-option
-            v-for="item in asideMenu2"
-            :key="item.id"
-            :label="item.name"
-            :value="item.id"
-            v-show="item.isCatalogue == 1"
-          >
-          </el-option>
-        </el-select>
+      <el-form-item label="权限标志 " prop="region">
+        <el-switch v-model="form.jurisdiction" />
       </el-form-item>
     </el-form>
 
@@ -138,32 +133,22 @@ const form = reactive({
   jurisdiction: true,
   parentId: ''
 })
-// const jurisdiction=ref(1)
 let asideMenu = ref([])
-let asideMenu2 = ref([])
+let catalogueList = ref([])
 const input = ref('')
 
 const dialogVisible = ref(false)
 
-const getRouteList1 = async () => {
-  let { data } = await getRouteList()
-  console.log(data.data)
+const getList = async (initial = false) => {
+  let { data } = await getRouteList({ name: input.value })
   if (data.status == 0) {
     asideMenu.value = data.data
-    asideMenu2.value = data.data
-    console.log(asideMenu2)
+    if (initial) {
+      catalogueList.value = data.data
+    }
   }
 }
 
-const search = async () => {
-  console.log(input.value)
-  console.log(input)
-  let { data } = await getRouteList({ name: input.value })
-  console.log(data.data)
-  if (data.status == 0) {
-    asideMenu.value = data.data
-  }
-}
 const handleEdit = (index, row) => {
   console.log(index, row)
 }
@@ -172,35 +157,21 @@ const handleDelete = (index, row) => {
 }
 
 onBeforeMount(() => {
-  getRouteList1()
+  getList(true)
 })
 
 const rules = reactive({
   name: [{ required: true, message: '请输入值', trigger: 'blur' }]
 })
-const turn = (row) => {
-  let list = asideMenu
-  for (let i = 0; i < list.length; i++) {
-    if (list[i].id == row.id) {
-      list[i].enable = row.enable
-    }
-  }
-  asideMenu = list
-}
-// const input=()=>{
-//   console.log(111)
-// }
+
 const confirm = async () => {
-  let { data } = await addRouter(form)
-  console.log(data)
-  if (data.status == 0) {
-    ElMessage({
-      message: '添加成功',
-      type: 'success'
-    })
-    dialogVisible.value = false
-    getRouteList1()
-  }
+  await addRouter(form)
+  ElMessage({
+    message: '添加成功',
+    type: 'success'
+  })
+  dialogVisible.value = false
+  await getList()
 }
 </script>
 

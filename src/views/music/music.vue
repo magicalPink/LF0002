@@ -1,7 +1,7 @@
 <template>
   <div>
+    音乐
     <el-input v-model="input" placeholder="请输入内容"></el-input>
-    <audio ref="audio" src="http://f5.htqyy.com/play9/55/mp3/7" controls autoplay />
   </div>
 </template>
 

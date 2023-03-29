@@ -50,20 +50,21 @@ router.beforeEach(async (to, from, next) => {
   if (to.path === '/login') {
     next()
   } else {
-    if (!store.state.asideMenu.length) {
-      console.log(to.path)
+    if (!store.state.asideMenu.length && token) {
       let { data } = await getMenuList()
-      data.data.map(buildRoute).forEach((item) => {
-        router.addRoute('Home', item)
-      })
+      data &&
+        data.data.map(buildRoute).forEach((item) => {
+          router.addRoute('Home', item)
+        })
       router.addRoute({
         path: '/:pathMatch(.*)',
         component: () => import('../views/404.vue')
       })
       store.commit('setAsideMenu', data.data)
-      console.log(to)
+      next({ ...to, replace: true })
+    } else {
+      token ? next() : next('/login')
     }
-    token ? next() : next('/login')
   }
 })
 

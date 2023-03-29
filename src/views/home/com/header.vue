@@ -11,7 +11,7 @@
       <div style="flex-grow: 1" />
       <el-menu-item index="1">HELLO LF0002</el-menu-item>
       <el-sub-menu index="2">
-        <template #title>{{ state.userInfo?.nickname }}</template>
+        <template #title>{{ store.state.userInfo?.nickname }}</template>
         <el-menu-item index="edit">编辑</el-menu-item>
         <el-menu-item index="changePassword">修改密码</el-menu-item>
         <el-menu-item index="quit">退出</el-menu-item>
@@ -23,10 +23,10 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-const { state } = useStore()
-import { useRouter } from 'vue-router'
-const router = useRouter()
+const store = useStore()
+
 const activeIndex = ref('1')
+
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key)
   switch (key) {
@@ -35,8 +35,8 @@ const handleSelect = (key: string, keyPath: string[]) => {
     case 'changePassword':
       break
     case 'quit':
-      localStorage.removeItem('token')
-      router.replace('login')
+      //退出登录
+      store.commit('logout')
       break
   }
 }
