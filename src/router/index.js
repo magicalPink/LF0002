@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { getMenuList } from '@/api/system.js'
+
 import store from '@/store/index.js'
-import asideMenu from '@/router/asideMenu.js'
 const modules = import.meta.glob('../views/**/*.vue')
 const obtainFile = (path) => {
   return modules[`../views/${path}`]
@@ -29,30 +30,41 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('@/views/home/home.vue'),
-    children: asideMenu.map(buildRoute)
+    children: store.state.asideMenu.map(buildRoute)
   },
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/logIn/login.vue')
-  },
-  {
-    path: '/:pathMatch(.*)',
-    component: () => import('../views/404.vue')
   }
 ]
-console.log(routes)
+
 const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
 //路由前置守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  // 获取菜单列表
   const token = localStorage.getItem('token')
   if (to.path === '/login') {
     next()
   } else {
-    token ? next() : next('/login')
+    if (!store.state.asideMenu.length && token) {
+      let { data } = await getMenuList()
+      data &&
+        data.data.map(buildRoute).forEach((item) => {
+          router.addRoute('Home', item)
+        })
+      router.addRoute({
+        path: '/:pathMatch(.*)',
+        component: () => import('../views/404.vue')
+      })
+      store.commit('setAsideMenu', data.data)
+      next({ ...to, replace: true })
+    } else {
+      token ? next() : next('/login')
+    }
   }
 })
 
