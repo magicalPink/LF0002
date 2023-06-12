@@ -16,4 +16,12 @@ export function addRouter(data) {
         data
     })
 }
+//删除列表
+export function deleteRouter(params) {
+    return axios({
+        url: 'router/deleteRouter',
+        method: 'get',
+        params
+    })
+}
 

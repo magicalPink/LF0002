@@ -97,9 +97,15 @@
           <el-switch v-model="form.jurisdiction" />
         </el-form-item>
       </el-form-item>
-      <el-form-item label="请选择目录" v-show="form.isCatalogue==2">
-        <el-select v-model="form.parentId" placeholder="请选择目录" >
-          <el-option v-for="item in asideMenu2" :key="item.id" :label="item.name" :value="item.id" v-show="item.isCatalogue==1">
+      <el-form-item label="请选择目录" v-show="form.isCatalogue == 2">
+        <el-select v-model="form.parentId" placeholder="请选择目录">
+          <el-option
+            v-for="item in asideMenu2"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id"
+            v-show="item.isCatalogue == 1"
+          >
           </el-option>
         </el-select>
       </el-form-item>
@@ -108,7 +114,7 @@
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="confirm" >确定  </el-button>
+        <el-button type="primary" @click="confirm">确定 </el-button>
       </span>
     </template>
   </el-dialog>
@@ -116,8 +122,8 @@
 
 <script setup>
 // import asideMenu from '@/router/asideMenu.js'
-import { getRouteList } from '@/api/system.js'
-import { addRouter } from '@/api/system.js'
+import { getRouteList, addRouter, deleteRouter } from '@/api/system.js'
+
 import { ElMessage } from 'element-plus'
 import { Search, Plus, EditPen, Delete } from '@element-plus/icons-vue'
 import { onBeforeMount, ref } from 'vue'
@@ -163,8 +169,10 @@ const search = async () => {
 const handleEdit = (index, row) => {
   console.log(index, row)
 }
-const handleDelete = (index, row) => {
-  console.log(index, row)
+const handleDelete = async (index, row) => {
+  console.log(row.id)
+  let { data } = await deleteRouter({ id: row.id })
+  console.log(data)
 }
 
 onBeforeMount(() => {
@@ -183,9 +191,7 @@ const turn = (row) => {
   }
   asideMenu = list
 }
-// const input=()=>{
-//   console.log(111)
-// }
+
 const confirm = async () => {
   let { data } = await addRouter(form)
   console.log(data)
@@ -193,9 +199,8 @@ const confirm = async () => {
     ElMessage({
       message: '添加成功',
       type: 'success'
-    })
+    }).then(getRouteList1())
     dialogVisible.value = false
-    getRouteList1()
   }
 }
 </script>

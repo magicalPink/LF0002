@@ -24,18 +24,28 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.auto {
+  overflow: auto;
+}
+.pointer {
+  cursor: pointer;
+}
+.selectnone {
+  user-select: none;
+}
 each(range(10), {
-    .top5-@{value} {
-        top: (@value * 2%);
+    .top@{value} {
+        top: (@value * 1px);
     }
-    .right5-@{value} {
-        right: (@value * 2%);
+    .right@{value} {
+        right: (@value * 1px);
     }
-    .left5-@{value} {
-        left: (@value * 2%);
+    .left@{value} {
+        left: (@value * 1px);
     }
-    .bottom5-@{value} {
-        bottom: (@value * 2%);
+    .bottom@{value} {
+        bottom: (@value * 1px);
     }
 });
 

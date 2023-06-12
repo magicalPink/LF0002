@@ -15,6 +15,7 @@ export default createStore({
     return { ...userState, ...routerState }
   },
   mutations: {
+
     getUserInfo(state) {
       getBasicInfo().then((res) => {
         state.userInfo = res.data.data

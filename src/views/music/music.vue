@@ -1,13 +1,34 @@
+<script setup>
+import Lyric from "@/views/music/lyric.vue";
+import Controller from "@/views/music/controller.vue";
+import MusicList from "@/views/music/musicList.vue";
+import musicList from "./musicInfo.js"
+import {provide, reactive, ref} from 'vue'
+//当前播放的音乐ID
+const current = ref(0)
+const currentTime = ref(0)
+const isPlay = ref(false)
+
+provide('musicList',musicList)
+provide('current',current)
+provide('currentTime',currentTime)
+provide('isPlay',isPlay)
+
+</script>
+
 <template>
-  <div>
-    <el-input v-model="input" placeholder="请输入内容"></el-input>
-    <audio ref="audio" src="http://f5.htqyy.com/play9/55/mp3/7" controls autoplay />
+  <div class="container radius20 flex justify-between p10">
+    <MusicList />
+    <Controller />
+    <Lyric />
   </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-const input = ref('')
-</script>
-
-<style scoped></style>
+<style scoped>
+ .container {
+   width: 80%;
+   height: 80%;
+   margin: 20px auto;
+   background-color: #ffffff;
+ }
+</style>
