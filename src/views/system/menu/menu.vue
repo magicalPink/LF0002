@@ -104,6 +104,12 @@
       <el-form-item label="权限标志 " prop="region">
         <el-switch v-model="form.authority" :active-value="1" :inactive-value="0" />
       </el-form-item>
+      <el-form-item label="请选择目录" v-show="form.isCatalogue==2">
+        <el-select v-model="form.parentId" placeholder="请选择目录" >
+          <el-option v-for="item in asideMenu2" :key="item.id" :label="item.name" :value="item.id" v-show="item.isCatalogue==1">
+          </el-option>
+        </el-select>
+      </el-form-item>
     </el-form>
 
     <template #footer>
@@ -156,7 +162,6 @@ const handleAdd = () => {
   dialogVisible.value = true
   resetForm()
 }
-//修改
 const handleEdit = (row) => {
   console.log(row);
   dialogVisible.value = true

@@ -12,7 +12,7 @@
       translateZ(25vmin) rotateZ(var(--deg)); } }
     </css-doodle>
     <!--  left  -->
-    <main class="loginMain absolute-t50 right5-1 radius5 bgc-white">
+    <main class="loginMain absolute-t50 radius5 bgc-white">
       <LoginForm />
     </main>
   </div>
@@ -29,5 +29,6 @@ import LoginForm from './com/loginForm.vue'
   height: 500px;
   overflow: hidden;
   color: rgba(219, 126, 229, 0.99);
+  right: 5%;
 }
 </style>

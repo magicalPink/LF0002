@@ -23,6 +23,7 @@ export function addRouter(data) {
     data
   })
 }
+
 //新增路由
 export function deleteRouter(id) {
   return axios({
