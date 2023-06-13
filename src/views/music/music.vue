@@ -84,7 +84,7 @@ function scrollLyric() {
     <MusicList />
     <Controller />
     <Lyric />
-    <audio :src="'./public/music/music' + current + '.mp3'" ref="audio" controls></audio>
+    <audio :src="'/music/music' + current + '.mp3'" ref="audio" controls></audio>
   </div>
 </template>
 
