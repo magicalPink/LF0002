@@ -1,16 +1,53 @@
 <script setup>
-import {inject} from "vue";
-let musicList = inject('musicList')
-let current = inject('current')
+import { inject, provide, ref } from "vue";
+
+let musicList = inject("musicList");
+let current = inject("current");
+let audio = inject('audio')
+let play = inject('play')
+let rolling = inject('rolling')
+
+let currentTime = inject("currentTime");
+let playIndex = inject('playIndex')
+function getClass(data,index) {
+  let cls = 'p5'
+  if(playIndex.value - 1 === index) {
+    cls += ' currentLyric'
+  }
+  if(data.time <= currentTime.value) {
+    cls += ' sign'
+  }
+  return cls
+}
+function setCurrentTime(time) {
+  audio.value.currentTime = time * 1
+  play(true)
+}
+
+function scrollList() {
+  console.log(11111);
+  if(rolling.value) return
+  rolling.value = true
+  setTimeout(() => {
+    rolling.value = false
+  }, 2000);
+}
+
 </script>
 
 <template>
-  <div class="mr10">
-    <h1 class="p5">{{musicList[current].musicInfo.name}}</h1>
-    <div class="lrc_content auto">
-      <div class="p5" v-for="item in musicList[current].lrcList" :key="item.time">
-        <el-icon class="relative top3 mr5" :size="20" ><CaretRight /></el-icon>
-        <span>{{item.lineLyric}}</span>
+  <div class="lrc_content mr10">
+    <h1 class="p5">{{ musicList[current].musicInfo.name }}</h1>
+    {{playIndex}}
+    {{ currentTime }}
+    <div class="lrc_list auto pr10">
+      <div v-if="!musicList[current].lrcList.length">暂无歌词</div>
+      <div :class="getClass(item,index)" v-for="(item,index) in musicList[current].lrcList" :key="item.time">
+        <el-icon @click="setCurrentTime(item.time)" class="relative top3 mr5 pointer" :size="20">
+          <CaretRight />
+        </el-icon>
+        <span>{{ item.time }} </span>
+        <span>{{ item.lineLyric }}</span>
       </div>
     </div>
   </div>
@@ -18,10 +55,21 @@ let current = inject('current')
 
 
 <style lang="less" scoped>
-  .lrc_content {
-    height: 70%;
-    >div {
-      border-bottom: 2px solid #f3f3f3;
+.lrc_content {
+  width: 400px;
+  .lrc_list {
+    height: 400px;
+    > div {
+      border-bottom: 1px solid #ffeeee;
+      transition: all 0.3s;
     }
+
+    .currentLyric {
+      color: deeppink;
+    }
+
   }
+}
+
+
 </style>

@@ -5,38 +5,20 @@ let musicList = inject('musicList')
 let currentTime = inject('currentTime')
 let current = inject('current')
 let isPlay = inject('isPlay')
-let timer = ref(null)
-const audio = ref(null)
+let playIndex = inject('playIndex')
+let duration = inject('duration')
+let play = inject('play')
+let timer = inject('timer')
+let audio = inject('audio')
 const isChange = ref(false)
-const duration = ref(0)
 
 //获取音乐时长
 function getDuration(playBack) {
   audio.value.oncanplay = () => {
     duration.value = audio.value.duration;
+    playIndex.value = 0;
     playBack && play(true)
   };
-}
-
-//播放按钮
-function play(flag = isPlay.value) {
-  clearInterval(timer.value);
-  if (duration.value === 0) return;
-  if (flag) {
-    audio.value.play();
-    isPlay.value = true;
-    timer.value = setInterval(() => {
-      console.log(transTime(audio.value.currentTime));
-      if (audio.value.ended || audio.value.paused) { //暂停或者结束清除定时器
-        isPlay.value = false;
-        clearInterval(timer.value);
-      }
-      currentTime.value = audio.value.currentTime;
-    }, 500);
-  } else {
-    audio.value.pause();
-    isPlay.value = false;
-  }
 }
 
 function previousSong() {
@@ -52,8 +34,8 @@ function nextSong() {
   if(current.value > musicList.length - 1) {
     current.value = 0
   }
-
 }
+
 //正在被拖动时改变当前播放值
 function sliderStop() {
   if (isChange.value) {
@@ -93,7 +75,7 @@ onMounted(() => getDuration())
 <template>
   <div style="text-align: center">
     <div>
-      <el-image style="width: 300px; height: 300px" :src="musicList[current].musicInfo.pic"/>
+      <el-image class="radius5" style="width: 300px; height: 300px" :src="musicList[current].musicInfo.pic"/>
     </div>
     <div>
       <div class="time">
@@ -125,16 +107,13 @@ onMounted(() => getDuration())
         <CaretRight/>
       </el-icon>
     </div>
-    <audio :src="musicList[current].url" ref="audio" controls></audio>
   </div>
 
 </template>
 
 
 <style scoped>
-audio {
-  display: none;
-}
+
 .controls {
   width: 200px;
   height: 50px;

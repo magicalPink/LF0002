@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { getMenuList } from '@/api/system.js'
+import { arrayExistence } from '@/utils/tool'
 
 import store from '@/store/index.js'
 const modules = import.meta.glob('../views/**/*.vue')
@@ -50,7 +51,7 @@ router.beforeEach(async (to, from, next) => {
   if (to.path === '/login') {
     next()
   } else {
-    if (!store.state.asideMenu.length && token) {
+    if (!arrayExistence(store.state.asideMenu) && token) {
       let { data } = await getMenuList()
       data &&
         data.data.map(buildRoute).forEach((item) => {

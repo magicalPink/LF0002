@@ -26,14 +26,9 @@ import { onBeforeMount, reactive, ref } from 'vue'
 import Header from './com/header.vue'
 import Aside from './com/aside.vue'
 import { useStore } from 'vuex'
-
 const store = useStore()
-const getInfo = async () => {
-  store.commit('getUserInfo')
-}
-onBeforeMount(() => {
-  getInfo()
-})
+
+onBeforeMount(() => store.commit('getUserInfo'))
 </script>
 
 <style scoped></style>

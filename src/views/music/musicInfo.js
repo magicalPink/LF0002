@@ -253,7 +253,7 @@ const musicList = [
                 "time": "269.21"
             }
         ],
-        url:"https://rs01-sycdn.kuwo.cn/ac8bce28f8678d99e353a20b8b3aa5cc/648748f2/resource/n3/89/48/27502251.mp3"
+        url:""
     },
     {
         musicInfo: {
@@ -472,7 +472,7 @@ const musicList = [
                 "time": "201.9"
             }
         ],
-        url: "https://lv-sycdn.kuwo.cn/3e389da255df7152cef990638cad78f9/648749d7/resource/30106/trackmedia/M500004bfQ2t3H8Cn0.mp3"
+        url: ""
     },
     {
         musicInfo: {
@@ -775,7 +775,628 @@ const musicList = [
                     "time": "221.01"
                 }
             ],
-        url: "https://sr-sycdn.kuwo.cn/d8b0c1a00e5a3d447e05cbe79f1c390f/64874973/resource/n3/10/22/3433390952.mp3"
+        url: ""
+    },
+    {
+        musicInfo: {
+            name: "夜曲",
+            artist: "周杰伦",
+            pic: 'https://img3.kuwo.cn/star/albumcover/500/32/88/1567952196.jpg'
+        },
+        lrcList: [
+            {
+                "lineLyric": "夜曲 - 周杰伦",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词：方文山",
+                "time": "2.66"
+            },
+            {
+                "lineLyric": "曲：周杰伦",
+                "time": "4.3"
+            },
+            {
+                "lineLyric": "编曲：林迈可",
+                "time": "5.92"
+            },
+            {
+                "lineLyric": "制作人：周杰伦",
+                "time": "7.84"
+            },
+            {
+                "lineLyric": "一群嗜血的蚂蚁被腐肉所吸引",
+                "time": "25.08"
+            },
+            {
+                "lineLyric": "我面无表情看孤独的风景",
+                "time": "27.96"
+            },
+            {
+                "lineLyric": "失去你爱恨开始分明",
+                "time": "30.87"
+            },
+            {
+                "lineLyric": "失去你还有什么事好关心",
+                "time": "33.51"
+            },
+            {
+                "lineLyric": "当鸽子不再象征和平",
+                "time": "36.52"
+            },
+            {
+                "lineLyric": "我终于被提醒",
+                "time": "38.25"
+            },
+            {
+                "lineLyric": "广场上喂食的是秃鹰",
+                "time": "39.67"
+            },
+            {
+                "lineLyric": "我用漂亮的押韵",
+                "time": "42.0"
+            },
+            {
+                "lineLyric": "形容被掠夺一空的爱情",
+                "time": "42.98"
+            },
+            {
+                "lineLyric": "啊乌云开始遮蔽夜色不干净",
+                "time": "47.12"
+            },
+            {
+                "lineLyric": "公园里葬礼的回音在漫天飞行",
+                "time": "49.74"
+            },
+            {
+                "lineLyric": "送你的白色玫瑰",
+                "time": "52.89"
+            },
+            {
+                "lineLyric": "在纯黑的环境凋零",
+                "time": "54.07"
+            },
+            {
+                "lineLyric": "乌鸦在树枝上诡异的很安静",
+                "time": "55.6"
+            },
+            {
+                "lineLyric": "静静听我黑色的大衣",
+                "time": "58.15"
+            },
+            {
+                "lineLyric": "想温暖你日渐冰冷的回忆",
+                "time": "60.36"
+            },
+            {
+                "lineLyric": "走过的走过的生命",
+                "time": "62.62"
+            },
+            {
+                "lineLyric": "啊四周弥漫雾气",
+                "time": "63.83"
+            },
+            {
+                "lineLyric": "啊我在空旷的墓地",
+                "time": "65.22"
+            },
+            {
+                "lineLyric": "老去后还爱你",
+                "time": "66.63"
+            },
+            {
+                "lineLyric": "为你弹奏肖邦的夜曲",
+                "time": "69.18"
+            },
+            {
+                "lineLyric": "纪念我死去的爱情",
+                "time": "71.9"
+            },
+            {
+                "lineLyric": "跟夜风一样的声音",
+                "time": "74.75"
+            },
+            {
+                "lineLyric": "心碎的很好听",
+                "time": "77.58"
+            },
+            {
+                "lineLyric": "手在键盘敲很轻",
+                "time": "80.29"
+            },
+            {
+                "lineLyric": "我给的思念很小心",
+                "time": "83.020004"
+            },
+            {
+                "lineLyric": "你埋葬的地方叫幽冥",
+                "time": "85.89"
+            },
+            {
+                "lineLyric": "为你弹奏肖邦的夜曲",
+                "time": "90.33"
+            },
+            {
+                "lineLyric": "纪念我死去的爱情",
+                "time": "94.07"
+            },
+            {
+                "lineLyric": "而我为你隐姓埋名",
+                "time": "96.9"
+            },
+            {
+                "lineLyric": "在月光下弹琴",
+                "time": "99.740005"
+            },
+            {
+                "lineLyric": "对你心跳的感应",
+                "time": "102.36"
+            },
+            {
+                "lineLyric": "还是如此温热亲近",
+                "time": "105.16"
+            },
+            {
+                "lineLyric": "怀念你那鲜红的唇印",
+                "time": "107.68"
+            },
+            {
+                "lineLyric": "那些断翅的蜻蜓散落在这森林",
+                "time": "135.42"
+            },
+            {
+                "lineLyric": "而我的眼睛没有丝毫同情",
+                "time": "138.45"
+            },
+            {
+                "lineLyric": "失去你泪水混浊不清",
+                "time": "141.4"
+            },
+            {
+                "lineLyric": "失去你我连笑容都有阴影",
+                "time": "143.85"
+            },
+            {
+                "lineLyric": "风在长满青苔的屋顶",
+                "time": "146.95"
+            },
+            {
+                "lineLyric": "嘲笑我的伤心",
+                "time": "148.93"
+            },
+            {
+                "lineLyric": "像一口没有水的枯井",
+                "time": "150.05"
+            },
+            {
+                "lineLyric": "我用凄美的字型",
+                "time": "152.39"
+            },
+            {
+                "lineLyric": "描绘后悔莫及的那爱情",
+                "time": "153.43"
+            },
+            {
+                "lineLyric": "为你弹奏肖邦的夜曲",
+                "time": "157.4"
+            },
+            {
+                "lineLyric": "纪念我死去的爱情",
+                "time": "160.2"
+            },
+            {
+                "lineLyric": "跟夜风一样的声音",
+                "time": "163.06"
+            },
+            {
+                "lineLyric": "心碎的很好听",
+                "time": "165.86"
+            },
+            {
+                "lineLyric": "手在键盘敲很轻",
+                "time": "168.55"
+            },
+            {
+                "lineLyric": "我给的思念很小心",
+                "time": "171.32"
+            },
+            {
+                "lineLyric": "你埋葬的地方叫幽冥",
+                "time": "174.22"
+            },
+            {
+                "lineLyric": "为你弹奏肖邦的夜曲",
+                "time": "178.54001"
+            },
+            {
+                "lineLyric": "纪念我死去的爱情",
+                "time": "182.31"
+            },
+            {
+                "lineLyric": "而我为你隐姓埋名",
+                "time": "185.11"
+            },
+            {
+                "lineLyric": "在月光下弹琴",
+                "time": "188.03"
+            },
+            {
+                "lineLyric": "对你心跳的感应",
+                "time": "190.61"
+            },
+            {
+                "lineLyric": "还是如此温热亲近",
+                "time": "193.4"
+            },
+            {
+                "lineLyric": "怀念你那鲜红的唇印",
+                "time": "196.17"
+            },
+            {
+                "lineLyric": "一群嗜血的蚂蚁被腐肉所吸引",
+                "time": "201.72"
+            },
+            {
+                "lineLyric": "我面无表情看孤独的风景",
+                "time": "204.82"
+            },
+            {
+                "lineLyric": "失去你爱恨开始分明",
+                "time": "207.5"
+            },
+            {
+                "lineLyric": "失去你还有什么事好关心",
+                "time": "210.05"
+            },
+            {
+                "lineLyric": "当鸽子不再象征和平",
+                "time": "213.05"
+            },
+            {
+                "lineLyric": "我终于被提醒",
+                "time": "214.86"
+            },
+            {
+                "lineLyric": "广场上喂食的是秃鹰",
+                "time": "216.19"
+            },
+            {
+                "lineLyric": "我用漂亮的押韵",
+                "time": "218.54001"
+            },
+            {
+                "lineLyric": "形容被掠夺一空的爱情",
+                "time": "219.79001"
+            }
+        ],
+        url: ""
+    },
+    {
+        musicInfo: {
+            name: "BINGBIAN病变",
+            artist: "鞠文娴",
+            pic: 'https://img4.kuwo.cn/star/albumcover/500/34/14/1645251387.jpg'
+        },
+        lrcList: [],
+        url: ""
+    },
+    {
+        musicInfo: {
+            name: "夜的第七章",
+            artist: "周杰伦",
+            pic: 'https://img3.kuwo.cn/star/albumcover/500/45/96/3463817628.jpg'
+        },
+        lrcList: [
+            {
+                "lineLyric": "夜的第七章-周杰伦&潘儿",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词：黄俊郎",
+                "time": "1.11"
+            },
+            {
+                "lineLyric": "曲：周杰伦",
+                "time": "2.85"
+            },
+            {
+                "lineLyric": "编曲：钟兴民&林迈可",
+                "time": "5.78"
+            },
+            {
+                "lineLyric": "男：",
+                "time": "42.71"
+            },
+            {
+                "lineLyric": "1983年小巷12月晴朗",
+                "time": "43.24"
+            },
+            {
+                "lineLyric": "夜的第七章",
+                "time": "45.78"
+            },
+            {
+                "lineLyric": "打字机继续推向",
+                "time": "46.61"
+            },
+            {
+                "lineLyric": "接近事实的那下一行",
+                "time": "48.04"
+            },
+            {
+                "lineLyric": "石楠烟斗的雾飘向枯萎的树",
+                "time": "49.63"
+            },
+            {
+                "lineLyric": "沉默的对我哭诉",
+                "time": "52.74"
+            },
+            {
+                "lineLyric": "贝克街旁的圆形广场",
+                "time": "54.87"
+            },
+            {
+                "lineLyric": "盔甲骑士臂上",
+                "time": "56.75"
+            },
+            {
+                "lineLyric": "鸢尾花的徽章微亮",
+                "time": "57.94"
+            },
+            {
+                "lineLyric": "无人马车声响深夜的拜访",
+                "time": "60.32"
+            },
+            {
+                "lineLyric": "邪恶在维多利亚的月光下",
+                "time": "62.44"
+            },
+            {
+                "lineLyric": "血色的开场",
+                "time": "64.57"
+            },
+            {
+                "lineLyric": "消失的手枪焦黑的手杖",
+                "time": "65.66"
+            },
+            {
+                "lineLyric": "融化的蜡像",
+                "time": "67.59"
+            },
+            {
+                "lineLyric": "谁不在场珠宝箱上",
+                "time": "68.54"
+            },
+            {
+                "lineLyric": "符号的假象",
+                "time": "70.2"
+            },
+            {
+                "lineLyric": "矛盾通往他堆砌的死巷",
+                "time": "71.18"
+            },
+            {
+                "lineLyric": "证据被完美埋葬",
+                "time": "72.89"
+            },
+            {
+                "lineLyric": "那嘲弄苏格兰警场的嘴角上扬",
+                "time": "74.25"
+            },
+            {
+                "lineLyric": "女：",
+                "time": "76.479996"
+            },
+            {
+                "lineLyric": "如果邪恶是华丽残酷的乐章",
+                "time": "76.65"
+            },
+            {
+                "lineLyric": "男：",
+                "time": "80.85"
+            },
+            {
+                "lineLyric": "那么正义是深沉无奈的惆怅",
+                "time": "81.07"
+            },
+            {
+                "lineLyric": "女：",
+                "time": "82.65"
+            },
+            {
+                "lineLyric": "它的终场我会亲手写上",
+                "time": "82.83"
+            },
+            {
+                "lineLyric": "男：",
+                "time": "84.770004"
+            },
+            {
+                "lineLyric": "那我就点亮在灰烬中的微光",
+                "time": "85.21"
+            },
+            {
+                "lineLyric": "女：",
+                "time": "87.93"
+            },
+            {
+                "lineLyric": "晨曦的光风干最后一行忧伤",
+                "time": "88.08"
+            },
+            {
+                "lineLyric": "男：",
+                "time": "91.36"
+            },
+            {
+                "lineLyric": "那么雨滴会洗净黑暗的高墙",
+                "time": "91.53"
+            },
+            {
+                "lineLyric": "女：",
+                "time": "93.28"
+            },
+            {
+                "lineLyric": "黑色的墨染上安详",
+                "time": "93.44"
+            },
+            {
+                "lineLyric": "男：",
+                "time": "96.7"
+            },
+            {
+                "lineLyric": "散场灯关上红色的布幕下降",
+                "time": "96.89"
+            },
+            {
+                "lineLyric": "事实只能穿向",
+                "time": "125.09"
+            },
+            {
+                "lineLyric": "没有脚印的土壤",
+                "time": "126.11"
+            },
+            {
+                "lineLyric": "突兀的细微花香",
+                "time": "127.53"
+            },
+            {
+                "lineLyric": "刻意显眼的服装",
+                "time": "128.93"
+            },
+            {
+                "lineLyric": "每个人为不同的理由戴着面具说谎",
+                "time": "130.34"
+            },
+            {
+                "lineLyric": "动机也只有一种名字那叫做欲望",
+                "time": "133.14"
+            },
+            {
+                "lineLyric": "Far farther farther far",
+                "time": "136.17"
+            },
+            {
+                "lineLyric": "Farther ther far farther far far",
+                "time": "137.5"
+            },
+            {
+                "lineLyric": "越过人性的沼泽",
+                "time": "139.1"
+            },
+            {
+                "lineLyric": "谁真的可以不被弄脏",
+                "time": "140.2"
+            },
+            {
+                "lineLyric": "我们可以遗忘原谅",
+                "time": "141.62"
+            },
+            {
+                "lineLyric": "但必须知道真相",
+                "time": "143.45"
+            },
+            {
+                "lineLyric": "被移动过的铁床",
+                "time": "144.79001"
+            },
+            {
+                "lineLyric": "那最后一块图终于拼上",
+                "time": "145.73"
+            },
+            {
+                "lineLyric": "我听见脚步声",
+                "time": "147.54001"
+            },
+            {
+                "lineLyric": "预料的软皮鞋跟",
+                "time": "148.68"
+            },
+            {
+                "lineLyric": "他推开门晚风晃了煤油灯一阵",
+                "time": "150.13"
+            },
+            {
+                "lineLyric": "打字机停在凶手的名称我转身",
+                "time": "153.03"
+            },
+            {
+                "lineLyric": "西敏寺的夜空开始沸腾",
+                "time": "156.34"
+            },
+            {
+                "lineLyric": "在胸口绽放艳丽的死亡",
+                "time": "159.26"
+            },
+            {
+                "lineLyric": "我品尝这最后一口甜美的真相",
+                "time": "161.48"
+            },
+            {
+                "lineLyric": "微笑回想正义只是安静的伸张",
+                "time": "164.36"
+            },
+            {
+                "lineLyric": "提琴在泰晤士",
+                "time": "167.6"
+            },
+            {
+                "lineLyric": "合：",
+                "time": "169.1"
+            },
+            {
+                "lineLyric": "如果邪恶是华丽残酷的乐章",
+                "time": "169.61"
+            },
+            {
+                "lineLyric": "脚步声预料的软皮鞋跟",
+                "time": "170.89"
+            },
+            {
+                "lineLyric": "他推开门晚风晃了煤油灯一阵",
+                "time": "172.93"
+            },
+            {
+                "lineLyric": "它的终场我会亲手写上",
+                "time": "175.17"
+            },
+            {
+                "lineLyric": "打字机停在凶手的名称我转身",
+                "time": "175.6"
+            },
+            {
+                "lineLyric": "西敏寺的夜空开始沸腾",
+                "time": "179.01"
+            },
+            {
+                "lineLyric": "女：",
+                "time": "186.52"
+            },
+            {
+                "lineLyric": "黑色的墨染上安详",
+                "time": "186.69"
+            },
+            {
+                "lineLyric": "男：",
+                "time": "192.29"
+            },
+            {
+                "lineLyric": "如果邪恶是华丽残酷的乐章",
+                "time": "192.35"
+            },
+            {
+                "lineLyric": "它的终场我会亲手写上",
+                "time": "197.70999"
+            },
+            {
+                "lineLyric": "晨曦的光风干最后一行忧伤",
+                "time": "203.29001"
+            },
+            {
+                "lineLyric": "黑色的墨染上安详",
+                "time": "208.97"
+            }
+        ],
+        url: ""
     },
 ]
 export default musicList
