@@ -4,11 +4,11 @@
       <el-header>
         <Header />
       </el-header>
-      <el-container class="h100">
+      <el-container class="container">
         <el-aside width="200px">
           <Aside />
         </el-aside>
-        <el-main class="bgc-ccc">
+        <el-main class="main auto bgc-ccc">
           <!--          添加路由缓存-->
           <router-view v-slot="{ Component }">
             <keep-alive :include="store.state.cachedViews">
@@ -31,4 +31,12 @@ const store = useStore()
 onBeforeMount(() => store.commit('getUserInfo'))
 </script>
 
-<style scoped></style>
+<style scoped>
+.main {
+  height: 100%;
+  border: 1px solid #ff9d76;
+}
+.container {
+  height: calc(100% - 60px);
+}
+</style>

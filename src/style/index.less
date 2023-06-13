@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 // TODO: flex
 .flex {
   display: flex;
@@ -15,6 +19,9 @@
 //TODO: Position
 .absolute {
   position: absolute;
+}
+.fixed {
+  position: fixed;
 }
 .relative {
   position: relative;
@@ -76,6 +83,9 @@ each(range(20), {
     border-radius: (@value * 2px);
   }
 });
+.radius50 {
+  border-radius: 50%;
+}
 
 //TODO: padding and margin
 each(range(10), {
