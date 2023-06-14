@@ -120,7 +120,7 @@ function nextSong() {
 
 <style scoped>
  .container {
-   height: 600px;
+   height: 100%;
    min-height: 600px;
    background-color: #ffffff;
  }
