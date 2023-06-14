@@ -32,6 +32,7 @@ provide('rolling',rolling)
 provide('audio',audio)
 provide('timer',timer)
 provide('duration',duration)
+provide('scrollLyric', (val) => scrollLyric(val))
 provide('play',flag => play(flag))
 
 watch(isPlay, (val) => val ? audio.value.play() : audio.value.pause() )
@@ -52,7 +53,7 @@ function play(flag = isPlay.value) {
     audio.value.play();
     isPlay.value = true;
     timer.value = setInterval(() => {
-      // console.log('播放中...');
+      console.log('播放中...');
       playIndex.value = document.querySelectorAll(".sign").length;
       if(playIndex.value > 0) {
         !rolling.value && scrollLyric();
@@ -78,12 +79,12 @@ function play(flag = isPlay.value) {
 }
 
 //滚动歌词
-function scrollLyric() {
+function scrollLyric(behavior = 'smooth') {
   let currentLyric = document.querySelector(".currentLyric");
   if(!currentLyric) return;
-  let lrc_list = document.querySelector(".lrc_list");
-  lrc_list.scrollTo({
+  document.querySelector(".lrc_list").scrollTo({
     top: currentLyric.offsetTop - 400,
+    behavior,
   })
 }
 

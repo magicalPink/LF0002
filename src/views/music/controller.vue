@@ -1,5 +1,5 @@
 <script setup>
-import {inject, onMounted, ref, watch} from "vue";
+import { inject,  onMounted, watch } from "vue";
 
 let musicList = inject('musicList')
 let currentTime = inject('currentTime')
@@ -10,6 +10,8 @@ let duration = inject('duration')
 let play = inject('play')
 let timer = inject('timer')
 let audio = inject('audio')
+let scrollLyric = inject('scrollLyric')
+
 
 //获取音乐时长
 function getDuration(playBack) {
@@ -44,7 +46,11 @@ function sliderStop() {
 //继续播放
 function sliderPlay(value) {
   audio.value.currentTime = value;
-  play(true);
+  play(true)
+  setTimeout(() => {
+    //瞬间滚动到当前播放歌词
+    scrollLyric('instant')
+  }, 50);
 }
 
 //时间处理
