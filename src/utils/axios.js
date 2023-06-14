@@ -43,6 +43,8 @@ axios.interceptors.response.use(
       ElMessage.error(`Code: ${code}, Message: ${msg}`)
       if (code == 401) {
         location.href = '/#/login'
+        //解决 白屏问题
+        location.reload()
       }
       console.error(`[Axios Error]`, error.response)
     } else {
