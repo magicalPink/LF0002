@@ -1965,5 +1965,803 @@ const musicList = [
         ],
         url: ""
     },
+    {
+        musicInfo:{
+            name: "晴天",
+            artist: "周杰伦",
+            pic:"https://img2.kuwo.cn/star/albumcover/500/64/96/2266534336.jpg"
+        },
+        lrcList:[
+            {
+                "lineLyric": "晴天-周杰伦",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词：周杰伦",
+                "time": "1.88"
+            },
+            {
+                "lineLyric": "曲：周杰伦",
+                "time": "3.76"
+            },
+            {
+                "lineLyric": "编曲：周杰伦",
+                "time": "5.65"
+            },
+            {
+                "lineLyric": "制作人：周杰伦",
+                "time": "7.53"
+            },
+            {
+                "lineLyric": "合声：周杰伦",
+                "time": "9.42"
+            },
+            {
+                "lineLyric": "合声编写：周杰伦",
+                "time": "11.3"
+            },
+            {
+                "lineLyric": "吉他：蔡科俊Again",
+                "time": "13.18"
+            },
+            {
+                "lineLyric": "贝斯：陈任佑",
+                "time": "15.07"
+            },
+            {
+                "lineLyric": "鼓：陈柏州",
+                "time": "16.95"
+            },
+            {
+                "lineLyric": "录音助理：刘勇志",
+                "time": "18.84"
+            },
+            {
+                "lineLyric": "录音工程：杨瑞代Alfa Studio",
+                "time": "20.73"
+            },
+            {
+                "lineLyric": "混音工程：杨大纬杨大纬录音工作室",
+                "time": "27.72"
+            },
+            {
+                "lineLyric": "故事的小黄花",
+                "time": "29.22"
+            },
+            {
+                "lineLyric": "从出生那年就飘着",
+                "time": "32.67"
+            },
+            {
+                "lineLyric": "童年的荡秋千",
+                "time": "36.15"
+            },
+            {
+                "lineLyric": "随记忆一直晃到现在",
+                "time": "39.6"
+            },
+            {
+                "lineLyric": "Re So So Si Do Si La",
+                "time": "44.55"
+            },
+            {
+                "lineLyric": "So La Si Si Si Si La Si La So",
+                "time": "45.72"
+            },
+            {
+                "lineLyric": "吹着前奏望着天空",
+                "time": "49.74"
+            },
+            {
+                "lineLyric": "我想起花瓣试着掉落",
+                "time": "53.1"
+            },
+            {
+                "lineLyric": "为你翘课的那一天",
+                "time": "56.58"
+            },
+            {
+                "lineLyric": "花落的那一天",
+                "time": "58.8"
+            },
+            {
+                "lineLyric": "教室的那一间",
+                "time": "60.51"
+            },
+            {
+                "lineLyric": "我怎么看不见",
+                "time": "62.16"
+            },
+            {
+                "lineLyric": "消失的下雨天",
+                "time": "64.01"
+            },
+            {
+                "lineLyric": "我好想再淋一遍",
+                "time": "65.76"
+            },
+            {
+                "lineLyric": "没想到失去的勇气我还留着",
+                "time": "69.75"
+            },
+            {
+                "lineLyric": "好想再问一遍",
+                "time": "75.81"
+            },
+            {
+                "lineLyric": "你会等待还是离开",
+                "time": "77.88"
+            },
+            {
+                "lineLyric": "刮风这天我试过握着你手",
+                "time": "84.75"
+            },
+            {
+                "lineLyric": "但偏偏雨渐渐大到我看你不见",
+                "time": "90.51"
+            },
+            {
+                "lineLyric": "还要多久我才能在你身边",
+                "time": "98.7"
+            },
+            {
+                "lineLyric": "等到放晴的那天也许我会比较好一点",
+                "time": "105.39"
+            },
+            {
+                "lineLyric": "从前从前有个人爱你很久",
+                "time": "112.740005"
+            },
+            {
+                "lineLyric": "但偏偏风渐渐把距离吹得好远",
+                "time": "118.53"
+            },
+            {
+                "lineLyric": "好不容易又能再多爱一天",
+                "time": "126.72"
+            },
+            {
+                "lineLyric": "但故事的最后你好像还是说了拜拜",
+                "time": "133.38"
+            },
+            {
+                "lineLyric": "为你翘课的那一天",
+                "time": "154.59"
+            },
+            {
+                "lineLyric": "花落的那一天",
+                "time": "156.81"
+            },
+            {
+                "lineLyric": "教室的那一间",
+                "time": "158.52"
+            },
+            {
+                "lineLyric": "我怎么看不见",
+                "time": "160.32"
+            },
+            {
+                "lineLyric": "消失的下雨天",
+                "time": "162.03"
+            },
+            {
+                "lineLyric": "我好想再淋一遍",
+                "time": "163.83"
+            },
+            {
+                "lineLyric": "没想到失去的勇气我还留着",
+                "time": "167.97"
+            },
+            {
+                "lineLyric": "好想再问一遍",
+                "time": "172.14"
+            },
+            {
+                "lineLyric": "你会等待还是离开",
+                "time": "175.98"
+            },
+            {
+                "lineLyric": "刮风这天我试过握着你手",
+                "time": "182.82"
+            },
+            {
+                "lineLyric": "但偏偏雨渐渐大到我看你不见",
+                "time": "188.37"
+            },
+            {
+                "lineLyric": "还要多久我才能在你身边",
+                "time": "196.8"
+            },
+            {
+                "lineLyric": "等到放晴的那天也许我会比较好一点",
+                "time": "203.45999"
+            },
+            {
+                "lineLyric": "从前从前有个人爱你很久",
+                "time": "210.87"
+            },
+            {
+                "lineLyric": "偏偏风渐渐把距离吹得好远",
+                "time": "216.99"
+            },
+            {
+                "lineLyric": "好不容易又能再多爱一天",
+                "time": "224.79001"
+            },
+            {
+                "lineLyric": "但故事的最后你好像还是说了拜拜",
+                "time": "231.45"
+            },
+            {
+                "lineLyric": "刮风这天我试过握着你手",
+                "time": "238.95"
+            },
+            {
+                "lineLyric": "但偏偏雨渐渐大到我看你不见",
+                "time": "241.77"
+            },
+            {
+                "lineLyric": "还要多久我才能够在你身边",
+                "time": "245.43"
+            },
+            {
+                "lineLyric": "等到放晴那天也许我会比较好一点",
+                "time": "248.94"
+            },
+            {
+                "lineLyric": "从前从前有个人爱你很久",
+                "time": "252.69"
+            },
+            {
+                "lineLyric": "但偏偏雨渐渐把距离吹得好远",
+                "time": "255.78"
+            },
+            {
+                "lineLyric": "好不容易又能再多爱一天",
+                "time": "259.26"
+            },
+            {
+                "lineLyric": "但故事的最后你好像还是说了拜",
+                "time": "262.74"
+            }
+        ],
+        url: ""
+    },
+    {
+        musicInfo:{
+            name: "大鱼",
+            artist: "周深",
+            pic:"https://img2.kuwo.cn/star/albumcover/500/65/1/1261222476.jpg"
+        },
+        lrcList:[
+            {
+                "lineLyric": "大鱼-(动画电影《大鱼海棠》印象曲) - 周深",
+                "time": "3.14"
+            },
+            {
+                "lineLyric": "海浪无声将夜幕深深淹没",
+                "time": "43.38"
+            },
+            {
+                "lineLyric": "漫过天空尽头的角落",
+                "time": "49.64"
+            },
+            {
+                "lineLyric": "大鱼在梦境的缝隙里游过",
+                "time": "57.46"
+            },
+            {
+                "lineLyric": "凝望你沉睡的轮廓",
+                "time": "63.54"
+            },
+            {
+                "lineLyric": "看海天一色 听风起雨落",
+                "time": "69.49"
+            },
+            {
+                "lineLyric": "执子手吹散苍茫茫烟波",
+                "time": "76.19"
+            },
+            {
+                "lineLyric": "大鱼的翅膀 已经太辽阔",
+                "time": "83.03"
+            },
+            {
+                "lineLyric": "我松开时间的绳索",
+                "time": "90.88"
+            },
+            {
+                "lineLyric": "怕你飞远去 怕你离我而去",
+                "time": "96.94"
+            },
+            {
+                "lineLyric": "更怕你永远停留在这里",
+                "time": "103.65"
+            },
+            {
+                "lineLyric": "每一滴泪水 都向你流淌去",
+                "time": "110.5"
+            },
+            {
+                "lineLyric": "倒流进天空的海底",
+                "time": "118.6"
+            },
+            {
+                "lineLyric": "海浪无声将夜幕深深淹没",
+                "time": "139.23"
+            },
+            {
+                "lineLyric": "漫过天空尽头的角落",
+                "time": "145.70999"
+            },
+            {
+                "lineLyric": "大鱼在梦境的缝隙里游过",
+                "time": "152.54001"
+            },
+            {
+                "lineLyric": "凝望你沉睡的轮廓",
+                "time": "159.47"
+            },
+            {
+                "lineLyric": "看海天一色 听风起雨落",
+                "time": "165.42"
+            },
+            {
+                "lineLyric": "执子手吹散苍茫茫烟波",
+                "time": "172.16"
+            },
+            {
+                "lineLyric": "大鱼的翅膀 已经太辽阔",
+                "time": "179.13"
+            },
+            {
+                "lineLyric": "我松开时间的绳索",
+                "time": "186.76"
+            },
+            {
+                "lineLyric": "看你飞远去 看你离我而去",
+                "time": "192.86"
+            },
+            {
+                "lineLyric": "原来你生来就属于天际",
+                "time": "199.64"
+            },
+            {
+                "lineLyric": "每一滴泪水 都向你流淌去",
+                "time": "206.45"
+            },
+            {
+                "lineLyric": "倒流回最初的相遇",
+                "time": "214.28"
+            }
+        ],
+        url: ""
+    },
+    {
+        musicInfo:{
+            name: "泡沫",
+            artist: "G.E.M.邓紫棋",
+            pic:"https://img1.kuwo.cn/star/albumcover/500/24/35/4281428590.jpg"
+        },
+        lrcList:[
+            {
+                "lineLyric": "泡沫 - G.E.M. 邓紫棋",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词：G.E.M. 邓紫棋",
+                "time": "0.31"
+            },
+            {
+                "lineLyric": "曲：G.E.M. 邓紫棋",
+                "time": "0.54"
+            },
+            {
+                "lineLyric": "OP：蜂鸟音乐",
+                "time": "0.76"
+            },
+            {
+                "lineLyric": "SP：百纳娱乐",
+                "time": "0.99"
+            },
+            {
+                "lineLyric": "阳光下的泡沫 是彩色的",
+                "time": "1.24"
+            },
+            {
+                "lineLyric": "就像被骗的我 是幸福的",
+                "time": "8.31"
+            },
+            {
+                "lineLyric": "追究什么对错 你的谎言",
+                "time": "15.33"
+            },
+            {
+                "lineLyric": "基于你还爱我",
+                "time": "22.38"
+            },
+            {
+                "lineLyric": "美丽的泡沫 虽然一刹花火",
+                "time": "28.6"
+            },
+            {
+                "lineLyric": "你所有承诺 虽然都太脆弱",
+                "time": "35.73"
+            },
+            {
+                "lineLyric": "但爱像泡沫 如果能够看破",
+                "time": "42.78"
+            },
+            {
+                "lineLyric": "有什么难过",
+                "time": "49.82"
+            },
+            {
+                "lineLyric": "早该知道泡沫 一触就破",
+                "time": "57.81"
+            },
+            {
+                "lineLyric": "就像已伤的心 不胜折磨",
+                "time": "64.73"
+            },
+            {
+                "lineLyric": "也不是谁的错 谎言再多",
+                "time": "71.8"
+            },
+            {
+                "lineLyric": "基于你还爱我",
+                "time": "78.85"
+            },
+            {
+                "lineLyric": "美丽的泡沫 虽然一刹花火",
+                "time": "85.06"
+            },
+            {
+                "lineLyric": "你所有承诺 虽然都太脆弱",
+                "time": "92.18"
+            },
+            {
+                "lineLyric": "爱本是泡沫 如果能够看破",
+                "time": "99.259995"
+            },
+            {
+                "lineLyric": "有什么难过",
+                "time": "106.31"
+            },
+            {
+                "lineLyric": "再美的花朵 盛开过就凋落",
+                "time": "113.35"
+            },
+            {
+                "lineLyric": "再亮眼的星 一闪过就坠落",
+                "time": "120.42"
+            },
+            {
+                "lineLyric": "爱本是泡沫 如果能够看破",
+                "time": "127.52"
+            },
+            {
+                "lineLyric": "有什么难过",
+                "time": "134.56"
+            },
+            {
+                "lineLyric": "为什么难过 有什么难过",
+                "time": "141.53"
+            },
+            {
+                "lineLyric": "为什么难过",
+                "time": "155.67"
+            },
+            {
+                "lineLyric": "全都是泡沫 只一刹的花火",
+                "time": "166.27"
+            },
+            {
+                "lineLyric": "你所有承诺 全部都太脆弱",
+                "time": "173.31"
+            },
+            {
+                "lineLyric": "而你的轮廓 怪我没有看破",
+                "time": "180.46"
+            },
+            {
+                "lineLyric": "才如此难过",
+                "time": "187.41"
+            },
+            {
+                "lineLyric": "相爱的把握 要如何再搜索",
+                "time": "194.45"
+            },
+            {
+                "lineLyric": "相拥着寂寞 难道就不寂寞",
+                "time": "201.58"
+            },
+            {
+                "lineLyric": "爱本是泡沫 怪我没有看破",
+                "time": "208.66"
+            },
+            {
+                "lineLyric": "才如此难过",
+                "time": "215.65"
+            },
+            {
+                "lineLyric": "在雨下的泡沫 一触就破",
+                "time": "223.65"
+            },
+            {
+                "lineLyric": "当初炽热的心 早已沉没",
+                "time": "230.78"
+            },
+            {
+                "lineLyric": "说什么你爱我 如果骗我",
+                "time": "237.70999"
+            },
+            {
+                "lineLyric": "我宁愿你沉默",
+                "time": "244.76"
+            }
+        ],
+        url: ""
+    },
+    {
+        musicInfo:{
+            name: "一生所爱",
+            artist: "卢冠廷&莫文蔚",
+            pic:"https://img3.kuwo.cn/star/albumcover/500/90/21/1404447877.jpg"
+        },
+        lrcList:[
+            {
+                "lineLyric": "一生所爱 - 卢冠廷/莫文蔚",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词：唐书琛",
+                "time": "3.5"
+            },
+            {
+                "lineLyric": "曲：卢冠廷",
+                "time": "7.62"
+            },
+            {
+                "lineLyric": "男：从前现在过去了再不来",
+                "time": "38.93"
+            },
+            {
+                "lineLyric": "红红落叶长埋尘土内",
+                "time": "48.07"
+            },
+            {
+                "lineLyric": "开始终结总是没变改",
+                "time": "55.97"
+            },
+            {
+                "lineLyric": "天边的你飘泊白云外",
+                "time": "65.46"
+            },
+            {
+                "lineLyric": "苦海翻起爱恨",
+                "time": "75.57"
+            },
+            {
+                "lineLyric": "在世间难逃避命运",
+                "time": "84.26"
+            },
+            {
+                "lineLyric": "相亲竟不可接近",
+                "time": "93.81"
+            },
+            {
+                "lineLyric": "或我应该相信是缘分",
+                "time": "103.009995"
+            },
+            {
+                "lineLyric": "情人别后永远再不来",
+                "time": "149.65"
+            },
+            {
+                "lineLyric": "女：消散的情缘",
+                "time": "154.86"
+            },
+            {
+                "lineLyric": "男：无言独坐放眼尘世外",
+                "time": "158.89"
+            },
+            {
+                "lineLyric": "女：愿来日再续",
+                "time": "164.22"
+            },
+            {
+                "lineLyric": "男：鲜花虽会凋谢",
+                "time": "166.49"
+            },
+            {
+                "lineLyric": "女：只愿",
+                "time": "169.44"
+            },
+            {
+                "lineLyric": "男：但会再开",
+                "time": "171.6"
+            },
+            {
+                "lineLyric": "女：为你",
+                "time": "174.43"
+            },
+            {
+                "lineLyric": "男：一生所爱隐约",
+                "time": "175.79001"
+            },
+            {
+                "lineLyric": "女：守候",
+                "time": "178.78"
+            },
+            {
+                "lineLyric": "男：在白云外",
+                "time": "180.46"
+            },
+            {
+                "lineLyric": "合：苦海翻起爱恨",
+                "time": "186.05"
+            },
+            {
+                "lineLyric": "在世间难逃避命运",
+                "time": "194.65"
+            },
+            {
+                "lineLyric": "男：相亲竟不可接近",
+                "time": "204.27"
+            },
+            {
+                "lineLyric": "或我应该相信是缘分",
+                "time": "213.45"
+            },
+            {
+                "lineLyric": "合：苦海翻起爱恨",
+                "time": "222.86"
+            },
+            {
+                "lineLyric": "在世间难逃避命运",
+                "time": "231.47"
+            },
+            {
+                "lineLyric": "男：相亲竟不可接近",
+                "time": "241.13"
+            },
+            {
+                "lineLyric": "或我应该相信是缘分",
+                "time": "249.95"
+            }
+        ],
+        url: ""
+    },
+    {
+        musicInfo:{
+            name: "月半小夜曲",
+            artist: "陈慧娴",
+            pic:"https://img2.kuwo.cn/star/albumcover/500/46/79/1639351031.jpg"
+        },
+        lrcList:[
+            {
+                "lineLyric": "月半小夜曲 (Live) - 陈慧娴 (Priscilla Chan)",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词：向雪怀",
+                "time": "8.59"
+            },
+            {
+                "lineLyric": "曲：河合奈保子",
+                "time": "17.19"
+            },
+            {
+                "lineLyric": "仍然倚在失眠夜望天边星宿",
+                "time": "25.79"
+            },
+            {
+                "lineLyric": "仍然听见小提琴如泣似诉再挑逗",
+                "time": "31.85"
+            },
+            {
+                "lineLyric": "为何只剩一弯月留在我的天空",
+                "time": "37.99"
+            },
+            {
+                "lineLyric": "这晚以后音讯隔绝",
+                "time": "44.99"
+            },
+            {
+                "lineLyric": "人如天上的明月是不可拥有",
+                "time": "50.35"
+            },
+            {
+                "lineLyric": "情如曲过只遗留无可挽救再分别",
+                "time": "56.53"
+            },
+            {
+                "lineLyric": "为何只是失望填密我的空虚",
+                "time": "62.69"
+            },
+            {
+                "lineLyric": "这晚夜没有吻别",
+                "time": "69.51"
+            },
+            {
+                "lineLyric": "仍在说永久想不到是借口",
+                "time": "74.94"
+            },
+            {
+                "lineLyric": "从未意会要分手",
+                "time": "81.37"
+            },
+            {
+                "lineLyric": "但我的心每分每刻仍然被她占有",
+                "time": "90.270004"
+            },
+            {
+                "lineLyric": "她似这月儿仍然是不开口",
+                "time": "97.36"
+            },
+            {
+                "lineLyric": "提琴独奏独奏着明月半倚深秋",
+                "time": "102.34"
+            },
+            {
+                "lineLyric": "我的牵挂我的渴望 直至以后",
+                "time": "108.93"
+            },
+            {
+                "lineLyric": "但我的心每分每刻仍然被她占有",
+                "time": "142.25"
+            },
+            {
+                "lineLyric": "她似这月儿仍然是不开口",
+                "time": "149.47"
+            },
+            {
+                "lineLyric": "提琴独奏独奏着明月半倚深秋",
+                "time": "154.42"
+            },
+            {
+                "lineLyric": "我的牵挂我的渴望 直至以后",
+                "time": "161.09"
+            },
+            {
+                "lineLyric": "仍在说永久想不到是借口",
+                "time": "166.77"
+            },
+            {
+                "lineLyric": "从未意会要分手",
+                "time": "172.88"
+            },
+            {
+                "lineLyric": "但我的心每分每刻仍然被她占有",
+                "time": "182.03"
+            },
+            {
+                "lineLyric": "她似这月儿仍然是不开口",
+                "time": "189.22"
+            },
+            {
+                "lineLyric": "提琴独奏独奏着明月半倚深秋",
+                "time": "194.09"
+            },
+            {
+                "lineLyric": "我的牵挂我的渴望 直至以后",
+                "time": "200.72"
+            }
+        ],
+        url: ""
+    },
+
 ]
+
+// {
+//     musicInfo:{
+//         name: "晴天",
+//           artist: "周杰伦",
+//           pic:"https://img2.kuwo.cn/star/albumcover/500/64/96/2266534336.jpg"
+//     },
+//     lrcList:'',
+//       url: ""
+// },
+
 export default musicList
