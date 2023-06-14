@@ -2,10 +2,10 @@
   <transition name="el-zoom-in-top">
     <!--    注册-->
     <main v-if="loginFlag === false" class="loginForm p10">
-      <h1>注册你的即时账户</h1>
+      <h1>注册你的账户</h1>
       <p>
         <span>已有账户？</span>
-        <span style="color: #ff9d76; cursor: pointer" @click="goAndLogIn(true)">前去登录</span>
+        <span style="color: #409EFF; cursor: pointer" @click="goAndLogIn(true)">前去登录</span>
       </p>
       <el-form ref="ruleFormRef" :model="ruleForm" status-icon :rules="rules" label-width="0">
         <el-form-item prop="nickname">
@@ -52,10 +52,10 @@
   <transition name="el-zoom-in-bottom">
     <!--    登录-->
     <main v-if="loginFlag === true" class="loginForm p10">
-      <h1>登录你的即时账户</h1>
+      <h1>登录你的账户</h1>
       <p>
         <span>没有账户？</span>
-        <span style="color: #ff9d76; cursor: pointer" @click="goAndLogIn(false)">免费注册</span>
+        <span style="color: #409EFF; cursor: pointer" @click="goAndLogIn(false)">免费注册</span>
       </p>
       <el-form ref="loginFormRef" :model="loginForm" status-icon :rules="rules" label-width="0">
         <el-form-item prop="username">
