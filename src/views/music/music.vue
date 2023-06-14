@@ -53,7 +53,7 @@ function play(flag = isPlay.value) {
     audio.value.play();
     isPlay.value = true;
     timer.value = setInterval(() => {
-      console.log('播放中...');
+      // console.log('播放中...');
       playIndex.value = document.querySelectorAll(".sign").length;
       if(playIndex.value > 0) {
         !rolling.value && scrollLyric();
@@ -109,6 +109,7 @@ function rotatePic() {
 <style scoped>
  .container {
    height: 100%;
+   min-height: 600px;
    background-color: #ffffff;
  }
  audio {

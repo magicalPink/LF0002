@@ -32,7 +32,7 @@ function scrollList() {
   if(timer.value) {
     clearTimeout(timer.value)
   }
-  console.log('滚动了');
+  // console.log('滚动了');
   rolling.value = true
   timer.value = setTimeout(() => {
     rolling.value = false
@@ -42,11 +42,11 @@ function scrollList() {
 }
 
 //歌词高度滚动为0
-function setSollTop() {
+function setScrollTop() {
   document.querySelector('.lrc_list').scrollTop = 0
 }
 
-watch(current, () => setSollTop())
+watch(current, () => setScrollTop())
 
 //页面销毁
 onUnmounted(() => {
@@ -57,8 +57,7 @@ onUnmounted(() => {
 <template>
   <div class="lrc_content mr10 ml10">
     <h1 class="p5">{{ musicList[current].musicInfo.name }}</h1>
-    {{playIndex}}
-    {{ currentTime }}
+
     <div @mousewheel="scrollList" class="lrc_list auto pr10">
       <div v-if="!musicList[current].lrcList.length">暂无歌词</div>
       <div :class="getClass(item,index)" v-for="(item,index) in musicList[current].lrcList" :key="item.time">
