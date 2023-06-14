@@ -1,5 +1,5 @@
 <script setup>
-import {inject, onMounted, ref, watch} from "vue";
+import { inject,  onMounted, watch } from "vue";
 
 let musicList = inject('musicList')
 let currentTime = inject('currentTime')
@@ -10,7 +10,8 @@ let duration = inject('duration')
 let play = inject('play')
 let timer = inject('timer')
 let audio = inject('audio')
-const isChange = ref(false)
+let scrollLyric = inject('scrollLyric')
+
 
 //获取音乐时长
 function getDuration(playBack) {
@@ -38,17 +39,18 @@ function nextSong() {
 
 //正在被拖动时改变当前播放值
 function sliderStop() {
-  if (isChange.value) {
     clearInterval(timer.value);
     audio.value.pause();
     isPlay.value = false;
-  }
 }
 //继续播放
 function sliderPlay(value) {
   audio.value.currentTime = value;
-  play(true);
-  isChange.value = false;
+  play(true)
+  setTimeout(() => {
+    //瞬间滚动到当前播放歌词
+    scrollLyric('instant')
+  }, 50);
 }
 
 //时间处理
@@ -73,25 +75,24 @@ onMounted(() => getDuration())
 </script>
 
 <template>
-  <div style="text-align: center">
+  <div style="text-align: center;width: 40%">
     <div>
-      <el-image class="radius5" style="width: 300px; height: 300px" :src="musicList[current].musicInfo.pic"/>
+      <el-image class="radius50 musicPic" style="width: 300px; height: 300px" :src="musicList[current].musicInfo.pic"/>
     </div>
     <div>
-      <div class="time">
+      <div class="time mt10">
         <span>{{ transTime(currentTime) }}</span>
         <span> / </span>
         <span>{{ transTime(duration) }}</span>
       </div>
-      <el-slider
-          v-model="currentTime"
-          :max="duration"
-          @change="sliderPlay"
-          @input="sliderStop"
-          :format-tooltip="(val) => transTime(val)"
-          @mousedown.native="isChange = true"
-          @mouseup.native="isChange = false"
-      ></el-slider>
+
+        <el-slider
+            v-model="currentTime"
+            :max="duration"
+            @change="sliderPlay"
+            @input="sliderStop"
+            :format-tooltip="(val) => transTime(val)"
+        ></el-slider>
     </div>
     <div class="controls radius10 center flex items-center justify-center">
       <el-icon :size="30" color="#fff" @click="previousSong">
@@ -113,11 +114,13 @@ onMounted(() => getDuration())
 
 
 <style scoped>
-
+.musicPic {
+  transition: all .2s;
+}
 .controls {
   width: 200px;
   height: 50px;
   background-color: black;
-  margin: 0 auto;
+  margin: 30px auto 0;
 }
 </style>

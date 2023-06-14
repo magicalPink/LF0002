@@ -42,4 +42,6 @@ const handleSelect = (key: string, keyPath: string[]) => {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

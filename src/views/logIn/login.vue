@@ -28,7 +28,6 @@ import LoginForm from './com/loginForm.vue'
   width: 350px;
   height: 500px;
   overflow: hidden;
-  color: rgba(219, 126, 229, 0.99);
   right: 5%;
 }
 </style>

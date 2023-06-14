@@ -4,14 +4,23 @@ import Controller from "@/views/music/controller.vue";
 import MusicList from "@/views/music/musicList.vue";
 import musicList from "./musicInfo.js"
 import { provide, ref, watch, onUnmounted } from "vue";
-//当前播放的音乐ID
+// 当前播放的音乐索引
 const current = ref(0)
+// 当前播放的时间
 const currentTime = ref(0)
+// 是否正在播放
 const isPlay = ref(false)
+// 当前播放到歌曲的第index局
 const playIndex = ref(0)
+// audio
 const audio = ref(null)
+// 定时器
 let timer = ref(null)
+// 图片选择角度
+let rotateDeg = ref(0)
+// 歌曲总时长
 const duration = ref(0)
+// 歌曲被手动滚动状态
 const rolling = ref(false)
 
 provide('musicList',musicList)
@@ -23,9 +32,12 @@ provide('rolling',rolling)
 provide('audio',audio)
 provide('timer',timer)
 provide('duration',duration)
+provide('scrollLyric', (val) => scrollLyric(val))
 provide('play',flag => play(flag))
 
 watch(isPlay, (val) => val ? audio.value.play() : audio.value.pause() )
+watch(current, () => rotateDeg.value = 0)
+
 //页面销毁
 onUnmounted(() => {
   clearInterval(timer.value);
@@ -41,11 +53,12 @@ function play(flag = isPlay.value) {
     audio.value.play();
     isPlay.value = true;
     timer.value = setInterval(() => {
-      // console.log('播放中...');
+      console.log('播放中...');
       playIndex.value = document.querySelectorAll(".sign").length;
       if(playIndex.value > 0) {
         !rolling.value && scrollLyric();
       }
+      rotatePic()
       if (audio.value.ended || audio.value.paused) { //暂停或者结束清除定时器
         isPlay.value = false;
         clearInterval(timer.value);
@@ -66,15 +79,19 @@ function play(flag = isPlay.value) {
 }
 
 //滚动歌词
-function scrollLyric() {
+function scrollLyric(behavior = 'smooth') {
   let currentLyric = document.querySelector(".currentLyric");
   if(!currentLyric) return;
-  console.log(currentLyric.offsetTop);
-  let lrc_list = document.querySelector(".lrc_list");
-  lrc_list.scrollTo({
+  document.querySelector(".lrc_list").scrollTo({
     top: currentLyric.offsetTop - 400,
-    behavior: "smooth",
+    behavior,
   })
+}
+
+// 旋转头像
+function rotatePic() {
+  let musicPic = document.querySelector('.musicPic')
+  musicPic.style.transform = `rotate(${rotateDeg.value += 1}deg)`
 }
 
 </script>
@@ -86,16 +103,16 @@ function scrollLyric() {
     <Lyric />
     <audio :src="'/music/music' + current + '.mp3'" ref="audio" controls></audio>
   </div>
+
 </template>
 
 <style scoped>
  .container {
-   width: 80%;
-   height: 600px;
-   margin: 20px auto;
+   height: 100%;
    background-color: #ffffff;
  }
  audio {
    display: none;
  }
+
 </style>
