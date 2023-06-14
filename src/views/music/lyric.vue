@@ -64,7 +64,6 @@ onUnmounted(() => {
         <el-icon @click="setCurrentTime(item.time)" class="relative top3 mr5 pointer" :size="20">
           <CaretRight />
         </el-icon>
-        <span>{{ item.time }} </span>
         <span>{{ item.lineLyric }}</span>
       </div>
     </div>
