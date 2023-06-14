@@ -74,8 +74,9 @@ onUnmounted(() => {
 <style lang="less" scoped>
 .lrc_content {
   width: 30%;
+  height: 100%;
   .lrc_list {
-    height: 80%;
+    height: calc(100% - 80px);
     > div {
       border-bottom: 1px solid #ffeeee;
       transition: all 0.3s;
