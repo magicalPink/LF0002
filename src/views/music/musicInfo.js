@@ -1398,5 +1398,572 @@ const musicList = [
         ],
         url: ""
     },
+    {
+        musicInfo:{
+            "musicrid": "MUSIC_260128960",
+            "barrage": "0",
+            "ad_type": "",
+            "artist": "Lil笑笑",
+            "mvpayinfo": {
+                "play": 0,
+                "vid": 0,
+                "down": 0
+            },
+            "pic": "https://img4.kuwo.cn/star/albumcover/500/35/78/2021769841.jpg",
+            "isstar": 0,
+            "rid": 260128960,
+            "upPcStr": "kuwo://play/?play=MQ==&num=MQ==&musicrid0=TVVTSUNfMjYwMTI4OTYw&name0=yb2y6LuotsGyu7ausNfDtbnl&artist0=TGls0KbQpg==&album0=yb2y6LuotsGyu7ausNfDtbnl&artistid0=ODc2ODIyNQ==&albumid0=MzQ5NDU5MjM=&playsource=d2ViwK3G8L/Nu6e2yy0+MjAxNrDmtaXH+tKz",
+            "duration": 199,
+            "score100": "97",
+            "ad_subtype": "0",
+            "content_type": "0",
+            "mvPlayCnt": 8,
+            "track": 1,
+            "hasLossless": true,
+            "hasmv": 0,
+            "releaseDate": "2023-02-05",
+            "album": "山茶花读不懂白玫瑰",
+            "albumid": 34945923,
+            "pay": "16515324",
+            "artistid": 8768225,
+            "albumpic": "https://img4.kuwo.cn/star/albumcover/500/35/78/2021769841.jpg",
+            "originalsongtype": 1,
+            "songTimeMinutes": "03:19",
+            "isListenFee": false,
+            "mvUpPcStr": "kuwo://play/?play=MQ==&num=MQ==&musicrid0=TVVTSUNfMjYwMTI4OTYw&name0=yb2y6LuotsGyu7ausNfDtbnl&artist0=TGls0KbQpg==&album0=yb2y6LuotsGyu7ausNfDtbnl&artistid0=ODc2ODIyNQ==&albumid0=MzQ5NDU5MjM=&playsource=d2ViwK3G8L/Nu6e2yy0+MjAxNrDmtaXH+tKz&media=bXY=&mvid0=MA==&mvinfo_play0=MA==&mvinfo_download0=MA==",
+            "pic120": "https://img4.kuwo.cn/star/albumcover/120/35/78/2021769841.jpg",
+            "albuminfo": "山茶花 读不懂白玫瑰\n北山的风吹不到南山尾\n你羡慕我孤独的纯粹\n我羡慕你总会有人陪",
+            "name": "山茶花读不懂白玫瑰",
+            "online": 1,
+            "payInfo": {
+                "play": "1100",
+                "nplay": "001111111111",
+                "overseas_nplay": "0",
+                "local_encrypt": "1",
+                "limitfree": 0,
+                "refrain_start": 0,
+                "feeType": {
+                    "song": "1",
+                    "vip": "1"
+                },
+                "down": "1111",
+                "ndown": "111111111111",
+                "download": "1111",
+                "cannotDownload": 0,
+                "overseas_ndown": "0",
+                "refrain_end": 0,
+                "cannotOnlinePlay": 0,
+                "paytagindex": {
+                    "S": 2,
+                    "F": 3,
+                    "ZP": 6,
+                    "H": 1,
+                    "ZPGA201": 9,
+                    "ZPLY": 11,
+                    "HR": 4,
+                    "L": 0,
+                    "ZPGA501": 10,
+                    "DB": 7,
+                    "AR501": 8
+                }
+            },
+            "tme_musician_adtype": "0"
+        },
+        lrcList:[
+            {
+                "lineLyric": "山茶花读不懂白玫瑰 - Lil笑笑",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词Lyricist：晨晨晨",
+                "time": "2.5"
+            },
+            {
+                "lineLyric": "曲Composer：晨晨晨",
+                "time": "3.47"
+            },
+            {
+                "lineLyric": "编曲Arranger：卡其漠罗洋/王灏",
+                "time": "4.43"
+            },
+            {
+                "lineLyric": "混音Mixing Engineer：任天宇",
+                "time": "6.56"
+            },
+            {
+                "lineLyric": "合声Backing Vocal Performe：李沅芷",
+                "time": "7.91"
+            },
+            {
+                "lineLyric": "统筹Coordinator：申佳琪",
+                "time": "9.45"
+            },
+            {
+                "lineLyric": "制作人Producer：苏晨",
+                "time": "10.61"
+            },
+            {
+                "lineLyric": "监制Executive Producer：刘家泽、苏晨",
+                "time": "11.77"
+            },
+            {
+                "lineLyric": "制作公司Production：匠心音乐 x 蔚来音乐 V-LAND Music",
+                "time": "13.51"
+            },
+            {
+                "lineLyric": "有一个善良纯洁的女孩",
+                "time": "16.63"
+            },
+            {
+                "lineLyric": "在下雪的冬天划亮了火柴",
+                "time": "20.05"
+            },
+            {
+                "lineLyric": "手捧温暖的光向你走来",
+                "time": "23.71"
+            },
+            {
+                "lineLyric": "你怎能轻视她对你的爱",
+                "time": "26.84"
+            },
+            {
+                "lineLyric": "（山茶花花语）",
+                "time": "28.65"
+            },
+            {
+                "lineLyric": "有一个天真浪漫的男孩",
+                "time": "30.79"
+            },
+            {
+                "lineLyric": "用白色衬衫把阳光叫醒来",
+                "time": "34.17"
+            },
+            {
+                "lineLyric": "声音发出在不同的时代",
+                "time": "37.8"
+            },
+            {
+                "lineLyric": "我足与你相配 的告白",
+                "time": "40.94"
+            },
+            {
+                "lineLyric": "（白玫瑰花语）",
+                "time": "43.23"
+            },
+            {
+                "lineLyric": "山茶花 读不懂白玫瑰",
+                "time": "46.69"
+            },
+            {
+                "lineLyric": "北山的风吹不到南山尾",
+                "time": "50.27"
+            },
+            {
+                "lineLyric": "你羡慕我孤独的纯粹",
+                "time": "53.81"
+            },
+            {
+                "lineLyric": "我羡慕你总会有人陪",
+                "time": "56.87"
+            },
+            {
+                "lineLyric": "山茶花 读不懂白玫瑰",
+                "time": "60.83"
+            },
+            {
+                "lineLyric": "遗憾的花不能一起枯萎",
+                "time": "64.4"
+            },
+            {
+                "lineLyric": "只想疲惫时有你依偎",
+                "time": "67.88"
+            },
+            {
+                "lineLyric": "从此再也不怕夜的黑",
+                "time": "70.97"
+            },
+            {
+                "lineLyric": "有一个善良纯洁的女孩",
+                "time": "92.53"
+            },
+            {
+                "lineLyric": "在下雪的冬天划亮了火柴",
+                "time": "95.89"
+            },
+            {
+                "lineLyric": "手捧温暖的光向你走来",
+                "time": "99.56"
+            },
+            {
+                "lineLyric": "你怎能轻视她对你的爱",
+                "time": "102.67"
+            },
+            {
+                "lineLyric": "（山茶花花语）",
+                "time": "105.25"
+            },
+            {
+                "lineLyric": "有一个天真浪漫的男孩",
+                "time": "106.72"
+            },
+            {
+                "lineLyric": "用白色衬衫把阳光叫醒来",
+                "time": "110.009995"
+            },
+            {
+                "lineLyric": "声音发出在不同的时代",
+                "time": "113.64"
+            },
+            {
+                "lineLyric": "我足与你相配 的告白",
+                "time": "116.8"
+            },
+            {
+                "lineLyric": "（白玫瑰花语）",
+                "time": "119.66"
+            },
+            {
+                "lineLyric": "山茶花 读不懂白玫瑰",
+                "time": "122.56"
+            },
+            {
+                "lineLyric": "北山的风吹不到南山尾",
+                "time": "126.09"
+            },
+            {
+                "lineLyric": "你羡慕我孤独的纯粹",
+                "time": "129.63"
+            },
+            {
+                "lineLyric": "我羡慕你总会有人陪",
+                "time": "132.75"
+            },
+            {
+                "lineLyric": "山茶花 读不懂白玫瑰",
+                "time": "136.62"
+            },
+            {
+                "lineLyric": "遗憾的花不能一起枯萎",
+                "time": "140.25"
+            },
+            {
+                "lineLyric": "只想疲惫时有你依偎",
+                "time": "143.69"
+            },
+            {
+                "lineLyric": "从此再也不怕夜的黑",
+                "time": "146.86"
+            },
+            {
+                "lineLyric": "山茶花 读不懂白玫瑰",
+                "time": "152.44"
+            },
+            {
+                "lineLyric": "北山的风吹不到南山尾",
+                "time": "156.11"
+            },
+            {
+                "lineLyric": "你羡慕我孤独的纯粹",
+                "time": "159.63"
+            },
+            {
+                "lineLyric": "我羡慕你总会有人陪",
+                "time": "162.76"
+            },
+            {
+                "lineLyric": "山茶花 读不懂白玫瑰",
+                "time": "166.63"
+            },
+            {
+                "lineLyric": "遗憾的花不能一起枯萎",
+                "time": "170.20999"
+            },
+            {
+                "lineLyric": "只想疲惫时有你依偎",
+                "time": "173.75"
+            },
+            {
+                "lineLyric": "从此再也不怕夜的黑",
+                "time": "176.81"
+            }
+        ],
+        url: ""
+    },
+    {
+        musicInfo:{
+            "musicrid": "MUSIC_263404563",
+            "barrage": "0",
+            "ad_type": "",
+            "artist": "杨友友",
+            "mvpayinfo": {
+                "play": 0,
+                "vid": 0,
+                "down": 0
+            },
+            "pic": "https://img1.kuwo.cn/star/albumcover/500/11/39/4144356952.jpg",
+            "isstar": 0,
+            "rid": 263404563,
+            "upPcStr": "kuwo://play/?play=MQ==&num=MQ==&musicrid0=TVVTSUNfMjYzNDA0NTYz&name0=0rC7qNf2wcuzocO1ueW7qLXEw84=&artist0=0e7T0dPR&album0=0rC7qNf2wcuzocO1ueW7qLXEw84=&artistid0=MTE2NTgyMjE=&albumid0=MzU2OTYyNTY=&playsource=d2ViwK3G8L/Nu6e2yy0+MjAxNrDmtaXH+tKz",
+            "duration": 197,
+            "score100": "93",
+            "ad_subtype": "0",
+            "content_type": "0",
+            "mvPlayCnt": 4,
+            "track": 1,
+            "hasLossless": true,
+            "hasmv": 0,
+            "releaseDate": "2023-02-24",
+            "album": "野花做了场玫瑰花的梦",
+            "albumid": 35696256,
+            "pay": "16711935",
+            "artistid": 11658221,
+            "albumpic": "https://img1.kuwo.cn/star/albumcover/500/11/39/4144356952.jpg",
+            "originalsongtype": 1,
+            "songTimeMinutes": "03:17",
+            "isListenFee": true,
+            "mvUpPcStr": "kuwo://play/?play=MQ==&num=MQ==&musicrid0=TVVTSUNfMjYzNDA0NTYz&name0=0rC7qNf2wcuzocO1ueW7qLXEw84=&artist0=0e7T0dPR&album0=0rC7qNf2wcuzocO1ueW7qLXEw84=&artistid0=MTE2NTgyMjE=&albumid0=MzU2OTYyNTY=&playsource=d2ViwK3G8L/Nu6e2yy0+MjAxNrDmtaXH+tKz&media=bXY=&mvid0=MA==&mvinfo_play0=MA==&mvinfo_download0=MA==",
+            "pic120": "https://img1.kuwo.cn/star/albumcover/120/11/39/4144356952.jpg",
+            "albuminfo": "再怎样努力的丑小鸭\n变成天鹅也只是在童话\n我将漫山遍野开满了花\n等你好多春秋和冬夏",
+            "name": "野花做了场玫瑰花的梦",
+            "online": 1,
+            "payInfo": {
+                "play": "1111",
+                "nplay": "111111111111",
+                "overseas_nplay": "11111",
+                "local_encrypt": "1",
+                "limitfree": 0,
+                "refrain_start": 47000,
+                "feeType": {
+                    "song": "1",
+                    "vip": "1"
+                },
+                "down": "1111",
+                "ndown": "111111111111",
+                "download": "1111",
+                "cannotDownload": 0,
+                "overseas_ndown": "11111",
+                "listen_fragment": "1",
+                "refrain_end": 83000,
+                "cannotOnlinePlay": 0,
+                "paytagindex": {
+                    "S": 2,
+                    "F": 3,
+                    "ZP": 6,
+                    "H": 1,
+                    "ZPGA201": 9,
+                    "ZPLY": 11,
+                    "HR": 4,
+                    "L": 0,
+                    "ZPGA501": 10,
+                    "DB": 7,
+                    "AR501": 8
+                }
+            },
+            "tme_musician_adtype": "0"
+        },
+        lrcList:[
+            {
+                "lineLyric": "野花做了场玫瑰花的梦 - 杨友友",
+                "time": "0.0"
+            },
+            {
+                "lineLyric": "词：于子将@作乐音乐",
+                "time": "1.26"
+            },
+            {
+                "lineLyric": "曲：于子将@作乐音乐",
+                "time": "2.07"
+            },
+            {
+                "lineLyric": "编曲：作乐音乐",
+                "time": "2.88"
+            },
+            {
+                "lineLyric": "和声：萨洛",
+                "time": "3.42"
+            },
+            {
+                "lineLyric": "混音/母带：于子将",
+                "time": "3.78"
+            },
+            {
+                "lineLyric": "制作人：于子将",
+                "time": "4.5"
+            },
+            {
+                "lineLyric": "监制：姚康康",
+                "time": "5.04"
+            },
+            {
+                "lineLyric": "宣发：张丹娴/廖文婷",
+                "time": "5.49"
+            },
+            {
+                "lineLyric": "统筹：唐欣宇",
+                "time": "6.3"
+            },
+            {
+                "lineLyric": "出品人：胡伟",
+                "time": "6.75"
+            },
+            {
+                "lineLyric": "OP：深圳启韵文化传媒有限公司",
+                "time": "7.2"
+            },
+            {
+                "lineLyric": "【未经许可,不得翻唱或使用】",
+                "time": "8.37"
+            },
+            {
+                "lineLyric": "『酷狗音乐人•星曜计划』",
+                "time": "9.36"
+            },
+            {
+                "lineLyric": "再怎样努力的丑小鸭",
+                "time": "10.54"
+            },
+            {
+                "lineLyric": "变成天鹅也只是在童话",
+                "time": "14.34"
+            },
+            {
+                "lineLyric": "我将漫山遍野开满了花",
+                "time": "19.83"
+            },
+            {
+                "lineLyric": "等你好多春秋和冬夏",
+                "time": "23.86"
+            },
+            {
+                "lineLyric": "放弃了一直呵护我的沙",
+                "time": "29.05"
+            },
+            {
+                "lineLyric": "相信你可以陪我到天涯",
+                "time": "32.79"
+            },
+            {
+                "lineLyric": "脸红过后只剩下红着眼掉泪花",
+                "time": "37.75"
+            },
+            {
+                "lineLyric": "爱过也恨过的我就像一个笑话",
+                "time": "42.32"
+            },
+            {
+                "lineLyric": "野花做了一场玫瑰花的梦",
+                "time": "47.18"
+            },
+            {
+                "lineLyric": "原来你和我只是短暂的相拥",
+                "time": "51.55"
+            },
+            {
+                "lineLyric": "掏了心拼了命也没能让你感动",
+                "time": "55.84"
+            },
+            {
+                "lineLyric": "把我留下吹冷风到千疮百孔",
+                "time": "60.82"
+            },
+            {
+                "lineLyric": "野花做了一场玫瑰花的梦",
+                "time": "65.65"
+            },
+            {
+                "lineLyric": "她什么都没做就赢走你心动",
+                "time": "70.020004"
+            },
+            {
+                "lineLyric": "托了情付了爱却换来彻骨的痛",
+                "time": "74.37"
+            },
+            {
+                "lineLyric": "寒透的心再不能解冻",
+                "time": "79.24"
+            },
+            {
+                "lineLyric": "放弃了一直呵护我的沙",
+                "time": "102.880005"
+            },
+            {
+                "lineLyric": "相信你可以陪我到天涯",
+                "time": "106.630005"
+            },
+            {
+                "lineLyric": "脸红过后只剩下红着眼掉泪花",
+                "time": "111.56"
+            },
+            {
+                "lineLyric": "爱过也恨过的我就像一个笑话",
+                "time": "116.130005"
+            },
+            {
+                "lineLyric": "野花做了一场玫瑰花的梦",
+                "time": "121.0"
+            },
+            {
+                "lineLyric": "原来你和我只是短暂的相拥",
+                "time": "125.4"
+            },
+            {
+                "lineLyric": "掏了心拼了命也没能让你感动",
+                "time": "129.7"
+            },
+            {
+                "lineLyric": "把我留下吹冷风到千疮百孔",
+                "time": "134.64"
+            },
+            {
+                "lineLyric": "野花做了一场玫瑰花的梦",
+                "time": "139.47"
+            },
+            {
+                "lineLyric": "她什么都没做就赢走你心动",
+                "time": "143.87"
+            },
+            {
+                "lineLyric": "托了情付了爱却换来彻骨的痛",
+                "time": "148.18"
+            },
+            {
+                "lineLyric": "寒透的心再不能解冻",
+                "time": "153.08"
+            },
+            {
+                "lineLyric": "野花做了一场玫瑰花的梦",
+                "time": "157.89"
+            },
+            {
+                "lineLyric": "原来你和我只是短暂的相拥",
+                "time": "162.33"
+            },
+            {
+                "lineLyric": "掏了心拼了命也没能让你感动",
+                "time": "166.62"
+            },
+            {
+                "lineLyric": "把我留下吹冷风到千疮百孔",
+                "time": "171.51"
+            },
+            {
+                "lineLyric": "野花做了一场玫瑰花的梦",
+                "time": "176.41"
+            },
+            {
+                "lineLyric": "她什么都没做就赢走你心动",
+                "time": "180.78"
+            },
+            {
+                "lineLyric": "托了情付了爱却换来彻骨的痛",
+                "time": "185.08"
+            },
+            {
+                "lineLyric": "寒透的心再不能解冻",
+                "time": "190.02"
+            }
+        ],
+        url: ""
+    },
 ]
 export default musicList
