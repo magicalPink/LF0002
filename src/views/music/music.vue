@@ -34,6 +34,8 @@ provide('timer',timer)
 provide('duration',duration)
 provide('scrollLyric', (val) => scrollLyric(val))
 provide('play',flag => play(flag))
+provide('previousSong',() => previousSong())
+provide('nextSong',() => nextSong())
 
 watch(isPlay, (val) => val ? audio.value.play() : audio.value.pause() )
 watch(current, () => rotateDeg.value = 0)
@@ -53,7 +55,7 @@ function play(flag = isPlay.value) {
     audio.value.play();
     isPlay.value = true;
     timer.value = setInterval(() => {
-      // console.log('播放中...');
+      console.log('播放中...');
       playIndex.value = document.querySelectorAll(".sign").length;
       if(playIndex.value > 0) {
         !rolling.value && scrollLyric();
@@ -65,10 +67,7 @@ function play(flag = isPlay.value) {
       }
       if(audio.value.ended) {
         //下一首
-        current.value +=1
-        if(current.value > musicList.length - 1) {
-          current.value = 0
-        }
+        nextSong()
       }
       currentTime.value = audio.value.currentTime;
     }, 50);
@@ -90,8 +89,21 @@ function scrollLyric(behavior = 'smooth') {
 
 // 旋转头像
 function rotatePic() {
-  let musicPic = document.querySelector('.musicPic')
-  musicPic.style.transform = `rotate(${rotateDeg.value += 1}deg)`
+    document.querySelector('.musicPic').style.transform = `rotate(${rotateDeg.value += 1}deg)`
+}
+
+function previousSong() {
+  current.value -=1
+  if(current.value < 0) {
+    current.value = musicList.length - 1
+  }
+}
+
+function nextSong() {
+  current.value +=1
+  if(current.value > musicList.length - 1) {
+    current.value = 0
+  }
 }
 
 </script>
