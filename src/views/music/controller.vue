@@ -50,7 +50,7 @@ function sliderPlay(value) {
   setTimeout(() => {
     //瞬间滚动到当前播放歌词
     scrollLyric('instant')
-  }, 50);
+  }, 100);
 }
 
 //时间处理
@@ -108,6 +108,10 @@ onMounted(() => getDuration())
         <CaretRight/>
       </el-icon>
     </div>
+    <h2 class="flex">
+      <span class="mr10">{{ playIndex }}</span>
+      <span>{{ currentTime }}</span>
+    </h2>
   </div>
 
 </template>

@@ -34,7 +34,6 @@ onBeforeMount(() => store.commit('getUserInfo'))
 <style scoped>
 .main {
   height: 100%;
-  border: 1px solid #ff9d76;
 }
 .container {
   height: calc(100% - 60px);
