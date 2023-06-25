@@ -19,7 +19,7 @@ function changeMusic(index) {
 <template>
   <div class="auto" style="width: 20%; height: 90%;">
     <div @click="changeMusic(index)" :class="getClass(index)" v-for="(item,index) in musicList" :key="item.name">
-      <h1>{{item.musicInfo.name}}</h1>
+      <h3>{{item.musicInfo.name}}</h3>
       <p>{{item.musicInfo.artist}}</p>
     </div>
   </div>
