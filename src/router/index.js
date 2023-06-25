@@ -52,17 +52,23 @@ router.beforeEach(async (to, from, next) => {
     next()
   } else {
     if (!arrayExistence(store.state.asideMenu) && token) {
-      let { data } = await getMenuList()
-      data &&
+      try {
+        let { data } = await getMenuList()
+        data &&
         data.data.map(buildRoute).forEach((item) => {
           router.addRoute('Home', item)
         })
-      router.addRoute({
-        path: '/:pathMatch(.*)',
-        component: () => import('../views/404.vue')
-      })
-      store.commit('setAsideMenu', data.data)
-      next({ ...to, replace: true })
+        router.addRoute({
+          path: '/:pathMatch(.*)',
+          component: () => import('../views/404.vue')
+        })
+        store.commit('setAsideMenu', data.data)
+        next({ ...to, replace: true })
+      } catch (error) {
+        console.log(error)
+        next('/login')
+      }
+
     } else {
       token ? next() : next('/login')
     }

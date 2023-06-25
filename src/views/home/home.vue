@@ -1,9 +1,6 @@
 <template>
   <div class="common-layout h100">
-    <el-container class="h100">
-      <el-header>
         <Header />
-      </el-header>
       <el-container class="container">
         <el-aside width="200px">
           <Aside />
@@ -17,7 +14,6 @@
           </router-view>
         </el-main>
       </el-container>
-    </el-container>
   </div>
 </template>
 

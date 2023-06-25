@@ -1,5 +1,4 @@
 <template>
-  <div>
     <el-menu
       :default-active="activeIndex"
       class="el-menu-demo"
@@ -17,7 +16,6 @@
         <el-menu-item index="quit">退出</el-menu-item>
       </el-sub-menu>
     </el-menu>
-  </div>
 </template>
 
 <script lang="ts" setup>
