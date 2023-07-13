@@ -4,7 +4,7 @@ import RoomList from "./room.vue";
 import store from "@/store/index.js";
 import { ElMessage } from "element-plus";
 import { formatDate } from "@/utils/tool.js";
-import { wsUrl } from "@/config.js";
+import {wsUrl} from "@/config.js";
 const input = ref("");
 let roomList = ref([]);
 let gameRoom = ref({});
