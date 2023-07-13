@@ -54,6 +54,12 @@ each(range(10), {
     .bottom@{value} {
         bottom: (@value * 1px);
     }
+    .percentw@{value} {
+        width: (@value * 10%);
+    }
+    .percenth@{value} {
+        height: (@value * 10%);
+    }
 });
 
 //TODO: 布局
@@ -75,6 +81,11 @@ each(range(10), {
 //TODO: color
 .white {
   color: white;
+}
+
+//TODO: 换行
+.wrap {
+  word-break:break-all
 }
 
 //TODO: radius
