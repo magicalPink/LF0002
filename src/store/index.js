@@ -10,16 +10,18 @@ const routerState = {
   asideMenu: []
 }
 
+
+
 // Create a new store instance.
 export default createStore({
   state() {
     return { ...userState, ...routerState }
   },
   mutations: {
-
     getUserInfo(state) {
       getBasicInfo().then((res) => {
         state.userInfo = res.data.data
+        sessionStorage.setItem('userInfo', JSON.stringify(res.data.data))
       })
     },
     addCachedView(state, name) {
