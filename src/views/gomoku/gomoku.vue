@@ -4,7 +4,7 @@ import RoomList from "./room.vue";
 import store from "@/store/index.js";
 import { ElMessage } from "element-plus";
 import { formatDate } from "@/utils/tool.js";
-
+import { wsUrl } from "@/config.js";
 const input = ref("");
 let roomList = ref([]);
 let gameRoom = ref({});
@@ -19,9 +19,9 @@ watch(roomList, (roomList) => {
     gameRoom.value = roomList.find(item => item.userList.some(user => user.id === userInfo.id));
   }
 });
-
+console.log(import.meta.env.VITE_BASE_API);
 // 创建WebSocket连接
-const socket = new WebSocket("ws://127.0.0.1:3001" + "?token=" + localStorage.getItem("token"));
+const socket = new WebSocket(wsUrl + "?token=" + localStorage.getItem("token"));
 
 // 监听连接成功事件
 socket.onopen = () => {
