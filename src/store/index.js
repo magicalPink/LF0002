@@ -1,16 +1,16 @@
 import { createStore } from 'vuex'
 import { getBasicInfo } from '@/api/home'
 import router from '@/router/index.js'
+import { wsUrl } from "@/config.js";
 const userState = {
-  userInfo: null
+  userInfo: null,
+  socket: null
 }
 
 const routerState = {
   cachedViews: [],
   asideMenu: []
 }
-
-
 
 // Create a new store instance.
 export default createStore({
@@ -22,7 +22,13 @@ export default createStore({
       getBasicInfo().then((res) => {
         state.userInfo = res.data.data
         sessionStorage.setItem('userInfo', JSON.stringify(res.data.data))
+        if(state.socket) return;
+        state.socket = new WebSocket(wsUrl + "?token=" + localStorage.getItem("token"));
       })
+    },
+    initSocket(state) {
+      if(state.socket) return;
+      state.socket = new WebSocket(wsUrl + "?token=" + localStorage.getItem("token"));
     },
     addCachedView(state, name) {
       if (state.cachedViews.includes(name)) return
@@ -33,10 +39,13 @@ export default createStore({
     },
     //退出登录
     logout(state) {
-      state.userInfo = null
+      state.userInfo = {}
       state.cachedViews = []
       state.asideMenu = []
+      state.socket.close()
+      state.socket = null
       localStorage.removeItem('token')
+      sessionStorage.removeItem('userInfo')
       router.replace('login')
     }
   },
