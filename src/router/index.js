@@ -31,7 +31,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: () => import('@/views/home/home.vue'),
-    children: store.state.asideMenu.map(buildRoute)
+    children: store && store.state.asideMenu.map(buildRoute)
   },
   {
     path: '/login',
