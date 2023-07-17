@@ -261,7 +261,6 @@ function giveUp() {
 
 </script>
 <template>
-  {{gameRoom}}
   <div v-if="gameRoom && gameRoom.roomId">
     <h2>
       <span style="color: #186e06" class="pr10" v-if="gameRoom.status === 1">
