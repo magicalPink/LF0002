@@ -85,6 +85,11 @@ const initSocket = () => {
     }
     if (message.type === "chatList") {
       gameRoom.value.chatList = message.chatList;
+      // chatContent 滚动到最底部
+      setTimeout(() => {
+        const chatContent = document.querySelector(".chatContent");
+        chatContent.scrollTop = chatContent.scrollHeight;
+      }, 0);
     }
     if( message.type === "drop") {
       gameRoom.value.gameList[message.info.x][message.info.y] = message.info.role;
