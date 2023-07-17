@@ -24,12 +24,18 @@ watch(roomList, (roomList) => {
   }
 });
 
+onMounted(() => {
+  console.log(socket);
+  initSocket();
+});
+
 watch(socket, (s) => {
   initSocket();
 }, { deep:true });
 
 const initSocket = () => {
   if(!socket.value) return;
+  console.log("初始化socket");
   // 监听连接成功事件
   socket.value.onopen = () => {
     console.log("WebSocket连接已建立");
@@ -38,6 +44,10 @@ const initSocket = () => {
   socket.value.onclose = () => {
     console.log("WebSocket连接已关闭");
   };
+  // 离开页面后再回来获取房间列表
+  if(socket.value.readyState === 1) {
+    socket.value.send('{"type":"getRoomList"}');
+  }
 
 // 监听接收到消息事件
   socket.value.onmessage = (event) => {
@@ -87,6 +97,9 @@ const initSocket = () => {
         ElMessage.success("你赢了");
       } else {
         ElMessage.error("你输了");
+      }
+      if(oneself.value.role !== 1) {
+        unready();
       }
     }
   };
@@ -236,7 +249,7 @@ function giveUp() {
           </div>
         </div>
         <div class="flex">
-          <el-input v-model="input" placeholder="请输入内容"></el-input>
+          <el-input v-model="input" @keydown.enter="sendMsg" placeholder="请输入内容"></el-input>
           <el-button @click="sendMsg">发送</el-button>
         </div>
         <div>
