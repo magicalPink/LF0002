@@ -87,6 +87,9 @@ const initSocket = () => {
     if (message.type === "roomList") {
       roomList.value = message.roomList;
     }
+    if( message.type === "ready") {
+      gameRoom.value.userList = message.userList;
+    }
     if (message.type === "chatList") {
       gameRoom.value.chatList = message.chatList;
       // chatContent 滚动到最底部
