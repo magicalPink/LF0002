@@ -3,11 +3,12 @@ import { onMounted, provide, ref, watch,computed } from "vue";
 import { useStore } from 'vuex'
 import RoomList from "./room.vue";
 const store = useStore()
-import { ElMessage } from "element-plus";
+import { ElMessage,ElMessageBox} from "element-plus";
 import { formatDate } from "@/utils/tool.js";
 const input = ref("");
 let roomList = ref([]);
 let gameRoom = ref({});
+let repenting = ref(false);
 
 let socket = computed(() => store.state.socket);
 let oneself = computed(() => gameRoom.value.userList.find(item => item.id === store.state.userInfo.id) || {});
@@ -80,6 +81,9 @@ const initSocket = () => {
     if( message.type === "warning") {
       ElMessage.warning(message);
     }
+    if( message.type === "error") {
+      ElMessage.error(message);
+    }
     if (message.type === "roomList") {
       roomList.value = message.roomList;
     }
@@ -94,6 +98,7 @@ const initSocket = () => {
     if( message.type === "drop") {
       gameRoom.value.gameList[message.info.x][message.info.y] = message.info.role;
       gameRoom.value.currentUser = message.info.role === 1 ? 0 : 1;
+      gameRoom.value.lastPiece = message.info;
     }
     if( message.type === "gameOver") {
       gameRoom.value.status = 2;
@@ -106,6 +111,43 @@ const initSocket = () => {
       if(oneself.value.role !== 1) {
         unready();
       }
+    }
+    if(message.type === "regret") {
+      ElMessageBox.confirm(
+        '对方请求悔棋，同意吗?',
+        'Warning',
+        {
+          confirmButtonText: '同意',
+          cancelButtonText: '拒绝',
+          type: 'warning',
+          closeOnClickModal: false,
+          showClose: false,
+          closeOnPressEscape: false
+        }
+      )
+        .then(() => {
+          socket.value.send(JSON.stringify({
+            type: "regret",
+            roomId: gameRoom.value.roomId,
+            info: message.info,
+            consent: true
+          }));
+        })
+        .catch(() => {
+          socket.value.send(JSON.stringify({
+            type: "regret",
+            roomId: gameRoom.value.roomId,
+            info: message.info,
+            consent: false
+          }));
+        });
+    }
+    if(message.type == 'regretTrue') {
+      //message.gameRoom
+      gameRoom.value.gameList = message.roomData.gameList;
+      gameRoom.value.currentUser = message.roomData.currentUser;
+      gameRoom.value.lastPiece = message.roomData.lastPiece;
+      repenting.value = false;
     }
   };
 }
@@ -183,15 +225,18 @@ function remind() {
 //悔棋
 function regret() {
   socket.value.send(JSON.stringify({
-    type: "regret",
-    roomId: gameRoom.value.roomId
+    type: "begEegret",
+    roomId: gameRoom.value.roomId,
+    role: oneself.value.role,
   }));
+  repenting.value = true;
+  ElMessage.success("已发送悔棋请求");
 }
 
 //drop
 function drop(line,cell,l) {
   if(gameRoom.value.status !== 1) return;
-  if(gameRoom.value.currentUser !== oneself.value.role) return ElMessage.warning("还没轮到您");
+  if(gameRoom.value.lastPiece.role == oneself.value.role) return ElMessage.warning("还没轮到您");
   if(l !== 9) return;
   console.log(line,cell);
   socket.value.send(JSON.stringify({
@@ -216,11 +261,12 @@ function giveUp() {
 
 </script>
 <template>
+  {{gameRoom}}
   <div v-if="gameRoom && gameRoom.roomId">
     <h2>
       <span style="color: #186e06" class="pr10" v-if="gameRoom.status === 1">
         游戏已开始
-        <span v-if="gameRoom.currentUser === oneself.role" style="color: #186e06">您的回合</span>
+        <span v-if="gameRoom.currentUser == oneself.role" style="color: #186e06">您的回合</span>
         <span v-else style="color:darkred;">对方回合</span>
       </span>
       <span v-else-if="gameRoom.status === 2">
@@ -236,8 +282,12 @@ function giveUp() {
       <div class="gameContent">
         <div class="line" v-for="(item,line) in gameRoom.gameList" :key="line">
           <div @click="drop(line,cell,l)" class="cell" v-for="(l,cell) in item" :key="cell">
-            <div class="blackC" v-if="l == 1"></div>
-            <div class="whiteC" v-if="l == 0"></div>
+            <div class="blackC" v-if="l == 1">
+              <span v-if="gameRoom.lastPiece.x == line && gameRoom.lastPiece.y == cell">F</span>
+            </div>
+            <div class="whiteC" v-if="l == 0">
+              <span v-if="gameRoom.lastPiece.x == line && gameRoom.lastPiece.y == cell">F</span>
+            </div>
           </div>
         </div>
       </div>
@@ -268,8 +318,8 @@ function giveUp() {
           <el-button type="success" v-if="oneself.role === 1 && gameRoom.status !== 1" @click="startGame">开始游戏</el-button>
           <el-button type="success" v-if="!oneself.ready && gameRoom.status !== 1" @click="ready">就绪</el-button>
           <el-button type="warning" v-else-if="oneself.role !== 1 && gameRoom.status !== 1" @click="unready">取消就绪</el-button>
-          <el-button type="primary"  v-if="gameRoom.currentUser !== oneself.role && gameRoom.status" @click="remind">提醒对方下棋</el-button>
-          <el-button type="danger" v-if="gameRoom.status === 1" @click="regret" round>悔棋</el-button>
+          <el-button type="primary"  v-if="gameRoom.currentUser != oneself.role && gameRoom.status" @click="remind">提醒对方下棋</el-button>
+          <el-button type="danger" v-if="gameRoom.status === 1 && !repenting && gameRoom.gameList && gameRoom.lastPiece.role == oneself.role" @click="regret" round>悔棋</el-button>
           <el-button @click="giveUp" v-if="gameRoom.status === 1">投降</el-button>
           <el-button type="danger" v-if="gameRoom.status !== 1" @click="leaveRoom">离开房间</el-button>
         </div>
@@ -304,6 +354,9 @@ function giveUp() {
       border-radius: 50%;
       background-color: #000;
       margin: 5px;
+      color: #fff;
+      text-align: center;
+      line-height: 30px;
     }
     .whiteC {
       width: 30px;
@@ -311,6 +364,9 @@ function giveUp() {
       border-radius: 50%;
       background-color: #fff;
       margin: 5px;
+      color: black;
+      text-align: center;
+      line-height: 30px;
     }
   }
 }
