@@ -42,6 +42,9 @@ export default createStore({
       state.userInfo = {}
       state.cachedViews = []
       state.asideMenu = []
+      state.socket.send(JSON.stringify({
+        type: "logOut",
+      }));
       state.socket.close()
       state.socket = null
       localStorage.removeItem('token')
