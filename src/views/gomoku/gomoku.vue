@@ -3,7 +3,7 @@ import { onMounted, provide, ref, watch,computed } from "vue";
 import { useStore } from 'vuex'
 import RoomList from "./room.vue";
 const store = useStore()
-import { ElMessage,ElMessageBox} from "element-plus";
+import { ElMessage,ElMessageBox,ElNotification } from "element-plus";
 import { formatDate } from "@/utils/tool.js";
 const input = ref("");
 let roomList = ref([]);
@@ -56,7 +56,12 @@ const initSocket = () => {
     // 处理接收到的消息
     console.log("接收到消息:", message);
     if( message.type === "success") {
-      ElMessage.success(message);
+      ElNotification({
+        title: 'Success',
+        message: message.message,
+        type: 'success',
+        duration: 2000
+      })
     }
     if( message.message === "游戏已开始") {
       gameRoom.value.status = 1;
@@ -79,10 +84,20 @@ const initSocket = () => {
       ];
     }
     if( message.type === "warning") {
-      ElMessage.warning(message);
+      ElNotification({
+        title: 'Warning',
+        message: message.message,
+        type: 'warning',
+        duration: 2000
+      })
     }
     if( message.type === "error") {
-      ElMessage.error(message);
+      ElNotification({
+        title: 'Error',
+        message: message.message,
+        type: 'error',
+        duration: 2000
+      })
     }
     if (message.type === "roomList") {
       roomList.value = message.roomList;
@@ -107,9 +122,19 @@ const initSocket = () => {
       gameRoom.value.status = 2;
       gameRoom.value.ending = message.ending;
       if(message.ending === oneself.value.role) {
-        ElMessage.success("你赢了");
+        ElNotification({
+          title: 'Success',
+          message: '你赢了',
+          type: 'success',
+          duration: 2000
+        })
       } else {
-        ElMessage.error("你输了");
+        ElNotification({
+          title: 'Error',
+          message: '你输了',
+          type: 'error',
+          duration: 2000
+        })
       }
       if(oneself.value.role !== 1) {
         unready();
@@ -157,7 +182,15 @@ const initSocket = () => {
 
 const sendMsg = () => {
   // 发送消息
-  if(input.value === "") return ElMessage.warning("消息不能为空");
+  if(input.value === "") {
+    ElNotification({
+      title: 'Warning',
+      message: '消息不能为空',
+      type: 'warning',
+      duration: 2000
+    })
+    return;
+  }
   socket.value.send(JSON.stringify({ type: "message", roomId: gameRoom.value.roomId, message: input.value }));
   input.value = "";
 };
@@ -196,8 +229,24 @@ function ready() {
 
 //开始游戏
 function startGame() {
-  if(!allReady.value) return ElMessage.warning("请等待对方就绪");
-  if(gameRoom.value.userList.length < 2) return ElMessage.warning("请等待对方加入");
+  if(!allReady.value) {
+    ElNotification({
+      title: 'Warning',
+      message: '请等待对方就绪',
+      type: 'warning',
+      duration: 2000
+    })
+    return;
+  }
+  if(gameRoom.value.userList.length < 2) {
+    ElNotification({
+      title: 'Warning',
+      message: '请等待对方加入',
+      type: 'warning',
+      duration: 2000
+    })
+    return;
+  }
   socket.value.send(JSON.stringify({
     type: "startGame",
     roomId: gameRoom.value.roomId
@@ -228,7 +277,12 @@ function regret() {
     role: oneself.value.role,
   }));
   repenting.value = true;
-  ElMessage.success("已发送悔棋请求");
+  ElNotification({
+    title: 'Success',
+    message: '已发送悔棋请求',
+    type: 'success',
+    duration: 2000
+  })
 }
 
 //drop
