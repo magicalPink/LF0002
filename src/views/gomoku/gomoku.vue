@@ -186,11 +186,6 @@ function joinRoom(roomId) {
   }));
 }
 
-//断开连接
-function closeSocket() {
-  socket.value.close();
-}
-
 //就绪
 function ready() {
   socket.value.send(JSON.stringify({
@@ -277,11 +272,17 @@ function giveUp() {
         <span v-else style="color:darkred;">您输了</span>
       </span>
       <span style="color:darkred;" v-else>游戏未开始</span>
-
+      <span>
+        比分：
+        <span class="mr10" v-for="l in gameRoom.userList">
+          <span>{{l.role === 1 ? '黑棋：' : '白棋：'}}</span>
+          <span style="color: #186e06">{{l.score}}</span>
+        </span>
+      </span>
     </h2>
 
     <div class="flex">
-      <div class="gameContent">
+      <div class="gameContent mr10">
         <div class="line" v-for="(item,line) in gameRoom.gameList" :key="line">
           <div @click="drop(line,cell,l)" class="cell" v-for="(l,cell) in item" :key="cell">
             <div class="blackC" v-if="l == 1">
@@ -375,7 +376,7 @@ function giveUp() {
 
 .chatContent {
   width: 400px;
-  height: 500px;
+  height: 445px;
   overflow: auto;
 }
 .chatlist {
