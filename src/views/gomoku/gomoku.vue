@@ -250,11 +250,29 @@ function drop(line,cell,l) {
 
 //投降
 function giveUp() {
-  socket.value.send(JSON.stringify({
-    type: "giveUp",
-    roomId: gameRoom.value.roomId,
-    role: oneself.value.role
-  }));
+  ElMessageBox.confirm(
+    '确定要投降吗?',
+    'Warning',
+    {
+      confirmButtonText: '投降',
+      cancelButtonText: '不投降',
+      type: 'warning',
+      closeOnClickModal: false,
+      showClose: false,
+      closeOnPressEscape: false
+    }
+  )
+    .then(() => {
+      socket.value.send(JSON.stringify({
+        type: "giveUp",
+        roomId: gameRoom.value.roomId,
+        role: oneself.value.role
+      }));
+    })
+    .catch(() => {
+      console.log("不投降");
+    });
+
 }
 
 </script>
