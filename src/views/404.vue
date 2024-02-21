@@ -26,7 +26,7 @@ export default {
         if (_t !== 0) {
           this.time = _t--
         } else {
-          this.$router.replace('/')
+          this.$router.replace('Home')
           clearTimeout(this.time_end)
           this.time_end = null
         }

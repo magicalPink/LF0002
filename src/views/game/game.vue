@@ -1,11 +1,13 @@
 <template>
   <div>
-    音乐
+    <h2>GAME</h2>
   </div>
 </template>
 
-<script setup>
-
+<script>
+export default {
+  name: "game"
+};
 </script>
 
 <style scoped>

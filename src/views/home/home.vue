@@ -1,37 +1,46 @@
 <template>
   <div class="common-layout h100">
-        <Header />
-      <el-container class="container">
-        <el-aside width="200px">
-          <Aside />
-        </el-aside>
-        <el-main class="main auto bgc-ccc">
-          <!--          添加路由缓存-->
-          <router-view v-slot="{ Component }">
-            <keep-alive :include="store.state.cachedViews">
-              <component :is="Component"></component>
-            </keep-alive>
-          </router-view>
-        </el-main>
-      </el-container>
+    <!--          添加路由缓存-->
+    <router-view v-slot="{ Component }">
+      <keep-alive :include="[]">
+        <component :is="Component"></component>
+      </keep-alive>
+    </router-view>
+    <van-tabbar v-model="active">
+      <van-tabbar-item name="Game" icon="gem-o" @click="router.push('Game')">游戏</van-tabbar-item>
+      <van-tabbar-item name="Music" icon="music-o" @click="router.push('Music')">音乐</van-tabbar-item>
+      <van-tabbar-item name="Chat" icon="chat-o" @click="router.push('Chat')">聊天</van-tabbar-item>
+      <van-tabbar-item name="User" icon="contact-o" @click="router.push('User')">个人中心</van-tabbar-item>
+    </van-tabbar>
   </div>
 </template>
 
 <script setup>
-import { onBeforeMount, reactive, ref } from 'vue'
-import Header from './com/header.vue'
-import Aside from './com/aside.vue'
-import { useStore } from 'vuex'
-const store = useStore()
 
-onBeforeMount(() => store.commit('getUserInfo'))
+import { ref, onBeforeMount, onDeactivated } from "vue";
+
+import { useUserStore } from "@/store/userStore.js";
+
+import { useRoute,useRouter } from "vue-router";
+
+const router = useRouter()
+const route = useRoute()
+
+const userStore = useUserStore();
+
+const active = ref(route.name)
+
+onBeforeMount(() => userStore.getUserInfo());
+
+onDeactivated(() => {
+  console.log('卸载');
+  userStore.basicsSocket.closeWebSocket()
+})
+
 </script>
 
 <style scoped>
 .main {
   height: 100%;
-}
-.container {
-  height: calc(100% - 60px);
 }
 </style>
