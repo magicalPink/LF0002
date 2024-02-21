@@ -1,21 +1,16 @@
 <template>
   <div>
-    <el-switch
-      inline-prompt
-      :model-value="theme"
-      active-value="dark"
-      inactive-value="auto"
-      @click="toggle()"
-      @change="(theme) => settingsStore.setTheme(theme)"
-    >
-    </el-switch>
-        <el-button @click="userStore.logout()">退出登录</el-button>
-        <van-button type="primary" >退出登录</van-button>
+    <MobileView v-if="isMobile"/>
+    <PCView v-else/>
   </div>
 </template>
 
 <script setup>
-import { computed, ref } from "vue";
+import PCView from "./pc/pc.vue"
+
+import MobileView from "./mobile/mobile.vue"
+
+import { computed, provide } from "vue";
 
 import { useToggle } from '@vueuse/shared'
 
@@ -29,6 +24,8 @@ const settingsStore = useSettingStore()
 
 const theme = computed(() => settingsStore.theme)
 
+const isMobile = computed(() => settingsStore.isMobile)
+
 const userStore = useUserStore();
 
 const isDark = useDark({
@@ -41,6 +38,8 @@ const isDark = useDark({
 })
 
 const toggle = useToggle(isDark);
+
+provide('param',{userStore,settingsStore,theme,isDark,toggle})
 
 </script>
 

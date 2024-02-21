@@ -84,8 +84,8 @@
 <script setup>
 import { ref, reactive } from 'vue'
 import { register, login } from '@/api/user'
-import { ElMessage } from 'element-plus'
 import { useRouter } from 'vue-router'
+import Message from "@/utils/message.js";
 
 const router = useRouter()
 const loading = ref(false)
@@ -148,10 +148,11 @@ const submitForm = async (formEl) => {
         let { data } = await login(loginForm)
         loading.value = false
         if (data.status == 0) {
-          ElMessage.success('登录成功')
-          //储存token
+          Message({
+            message: '登录成功',
+            type:'success',
+          })
           localStorage.setItem('token', data.token)
-          //跳转到首页
           router.replace('Home')
         }
       } else {
@@ -159,7 +160,10 @@ const submitForm = async (formEl) => {
         let { data } = await register({ nickname, username, password })
         loading.value = false
         if (data.status == 0) {
-          ElMessage.success('注册成功')
+          Message({
+            message: '注册成功',
+            type:'success',
+          })
           loginFlag.value = true
         }
       }

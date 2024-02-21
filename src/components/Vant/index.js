@@ -3,6 +3,12 @@ import {
   Button,
   Tabbar,
   TabbarItem,
+  Switch,
+  Cell,
+  Image,
+  Toast,
+  Dialog,
+  Icon,
 } from "vant"
 
 const components = {
@@ -10,6 +16,12 @@ const components = {
   Button,
   Tabbar,
   TabbarItem,
+  Switch,
+  Cell,
+  Image,
+  Toast,
+  Dialog,
+  Icon,
 }
 
 export default components
