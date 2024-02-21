@@ -1,6 +1,5 @@
 <template>
   <div>
-    <p>USER</p>
     <MobileView v-if="isMobile"/>
     <PCView v-else/>
   </div>

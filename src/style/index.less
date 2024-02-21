@@ -1,4 +1,6 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -99,7 +101,7 @@ each(range(20), {
 }
 
 //TODO: padding and margin
-each(range(10), {
+each(range(50), {
   .pr@{value} {
     padding-right: (@value * 2px);
   }
@@ -129,5 +131,13 @@ each(range(10), {
   }
   .m@{value} {
     margin: (@value * 2px);
+  }
+  .mx@{value} {
+    margin-left: (@value * 2px);
+    margin-right: (@value * 2px);
+  }
+  .my@{value} {
+    margin-top: (@value * 2px);
+    margin-bottom: (@value * 2px);
   }
 });

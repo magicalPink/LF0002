@@ -5,7 +5,7 @@ import { useSettingStore } from "@/store/settingStore.js";
 
 import { useDark } from "@vueuse/core";
 
-import { useWindowSize } from '@vant/use';
+import { useWindowSize } from "@vant/use";
 
 const settingsStore = useSettingStore();
 
@@ -23,16 +23,16 @@ const isDark = useDark({
 });
 
 watch([width, height], () => {
-  console.log('window resized');
-  console.log('width',width.value);
-  console.log('height',height.value);
+  console.log("window resized");
+  console.log("width", width.value);
+  console.log("height", height.value);
   //宽度小于500设置为移动端样式
   settingsStore.setIsMobile(width.value < 500);
 });
 </script>
 
 <template>
-  <van-config-provider :theme="theme">
+  <van-config-provider :theme="theme" class="h100">
     <router-view></router-view>
   </van-config-provider>
 </template>
@@ -40,7 +40,7 @@ watch([width, height], () => {
 <style lang="less">
 ::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 4px; /*高宽分别对应横竖滚动条的尺寸*/
+  width: 2px; /*高宽分别对应横竖滚动条的尺寸*/
   height: 1px;
 }
 
@@ -48,19 +48,12 @@ watch([width, height], () => {
   /*滚动条里面小方块*/
   border-radius: 10px;
   box-shadow: inset 0 0 5px rgba(97, 184, 179, 0.1);
-  background: #78b4b4;
+  background: #ced0d0;
 }
 
 ::-webkit-scrollbar-track {
   /*滚动条里面轨道*/
-  box-shadow: inset 0 0 5px rgba(87, 175, 187, 0.1);
-  border-radius: 10px;
-  background: #ededed;
-}
-
-* {
-  margin: 0;
-  padding: 0;
+  background: #ffffff;
 }
 
 /* 在移动端视口宽度小于或等于500px时应用 */
