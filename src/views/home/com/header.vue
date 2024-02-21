@@ -6,10 +6,8 @@
       :ellipsis="false"
       @select="handleSelect"
     >
-      <el-menu-item index="0">LOGO</el-menu-item>
       <div style="flex-grow: 1" />
-      <el-menu-item index="1">HELLO LF0002</el-menu-item>
-      <el-sub-menu index="2">
+      <el-sub-menu index="1">
         <template #title>{{ store.state.userInfo?.nickname }}</template>
         <el-menu-item index="edit">编辑</el-menu-item>
         <el-menu-item index="changePassword">修改密码</el-menu-item>

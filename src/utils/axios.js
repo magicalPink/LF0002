@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import { ElMessage } from 'element-plus'
 import {baseURL} from '@/config.js'
-
+import { useUserStore } from "@/store/userStore.js";
 const axios = Axios.create({
   baseURL,
   timeout: 20000, // 请求超时 20s
@@ -39,12 +39,13 @@ axios.interceptors.response.use(
   (error) => {
     if (error.response && error.response.data) {
       const code = error.response.status
-      const msg = error.response.data.message
-      ElMessage.error(`Code: ${code}, Message: ${msg}`)
+      const msg = error.response?.data?.message || '系统异常'
+      ElMessage.error(msg)
       if (code == 401) {
-        location.href = '/#/login'
+        useUserStore().logout()
+        // location.href = '/#/login'
         //解决 白屏问题
-        location.reload()
+        // location.reload()
       }
       console.error(`[Axios Error]`, error.response)
     } else {

@@ -1,37 +1,32 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { getMenuList } from '@/api/system.js'
-import { arrayExistence } from '@/utils/tool'
-
-import store from '@/store/index.js'
-const modules = import.meta.glob('../views/**/*.vue')
-const obtainFile = (path) => {
-  return modules[`../views/${path}`]
-}
-
-// 判断路由是否需要缓存
-const shouldKeepAlive = (route) => route.keepAlive
-
-// 构建路由配置项
-const buildRoute = (item) => {
-  const children = item.children || []
-  const route = {
-    path: item.path || '',
-    name: item.name || '',
-    component: item.fileAddress ? obtainFile(item.fileAddress) : null,
-    children: children.map(buildRoute)
-  }
-  if (shouldKeepAlive(item)) {
-    store.commit('addCachedView', item.path)
-  }
-  return route
-}
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: () => import('@/views/home/home.vue'),
-    children: store && store.state.asideMenu.map(buildRoute)
+    children: [
+      {
+        path: '/game',
+        name: 'Game',
+        component: () => import('@/views/game/game.vue'),
+      },
+      {
+        path: '/music',
+        name: 'Music',
+        component: () => import('@/views/music/music.vue'),
+      },
+      {
+        path: '/user',
+        name: 'User',
+        component: () => import('@/views/user/user.vue'),
+      },
+      {
+        path: '/chat',
+        name: 'Chat',
+        component: () => import('@/views/chat/chat.vue'),
+      },
+    ]
   },
   {
     path: '/login',
@@ -48,30 +43,12 @@ const router = createRouter({
 router.beforeEach(async (to, from, next) => {
   // 获取菜单列表
   const token = localStorage.getItem('token')
-  if (to.path === '/login') {
+  if (to.name === 'Login') {
     next()
+  } if(to.name === 'Home') {
+    token ? next('Game') : next('/login')
   } else {
-    if (!arrayExistence(store.state.asideMenu) && token) {
-      try {
-        let { data } = await getMenuList()
-        data &&
-        data.data.map(buildRoute).forEach((item) => {
-          router.addRoute('Home', item)
-        })
-        router.addRoute({
-          path: '/:pathMatch(.*)',
-          component: () => import('../views/404.vue')
-        })
-        store.commit('setAsideMenu', data.data)
-        next({ ...to, replace: true })
-      } catch (error) {
-        console.log(error)
-        next('/login')
-      }
-
-    } else {
-      token ? next() : next('/login')
-    }
+    token ? next() : next('/login')
   }
 })
 

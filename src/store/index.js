@@ -1,7 +1,7 @@
 import { createStore } from 'vuex'
 import { getBasicInfo } from '@/api/home'
 import router from '@/router/index.js'
-import { wsUrl } from "@/config.js";
+import { wsBaseUrl } from "@/config.js";
 const userState = {
   userInfo: null,
   socket: null
@@ -23,12 +23,15 @@ export default createStore({
         state.userInfo = res.data.data
         sessionStorage.setItem('userInfo', JSON.stringify(res.data.data))
         if(state.socket) return;
-        state.socket = new WebSocket(wsUrl + "?token=" + localStorage.getItem("token"));
+        state.socket = new WebSocket(wsBaseUrl + "?token=" + localStorage.getItem("token"));
+        socket.value.onopen = () => {
+          console.log("WebSocket连接已建立");
+        };
       })
     },
     initSocket(state) {
       if(state.socket) return;
-      state.socket = new WebSocket(wsUrl + "?token=" + localStorage.getItem("token"));
+      state.socket = new WebSocket(wsBaseUrl + "?token=" + localStorage.getItem("token"));
     },
     addCachedView(state, name) {
       if (state.cachedViews.includes(name)) return
@@ -49,7 +52,7 @@ export default createStore({
       state.socket = null
       localStorage.removeItem('token')
       sessionStorage.removeItem('userInfo')
-      router.replace('login')
+      router.replace('Login')
     }
   },
   actions: {

@@ -1,11 +1,13 @@
 <template>
   <div>
-    音乐
+    Chat
   </div>
 </template>
 
-<script setup>
-
+<script>
+export default {
+  name: "chat"
+};
 </script>
 
 <style scoped>
