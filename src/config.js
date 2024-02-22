@@ -2,13 +2,13 @@
 const baseURL = {
   //location
   development: 'http://127.0.0.1:4000/api/',
-  production: 'http://124.222.235.110/prod/'
+  production: 'http://111.229.200.218/prod/'
 }[import.meta.env.MODE]
 
 //基础通信服务
 const wsBaseUrl = {
   development: 'ws://127.0.0.1:3001',
-  production: 'ws://124.222.235.110:3001'
+  production: 'ws://111.229.200.218:3001'
 }[import.meta.env.MODE]
 
 export { baseURL, wsBaseUrl }
