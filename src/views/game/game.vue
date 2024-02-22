@@ -1,13 +1,29 @@
 <template>
   <div>
-    <h2>GAME</h2>
+    <MobileView v-if="isMobile"/>
+    <PCView v-else/>
   </div>
 </template>
 
-<script>
-export default {
-  name: "game"
-};
+<script setup>
+import PCView from "./pc/pc.vue"
+
+import MobileView from "./mobile/mobile.vue"
+
+import { computed, provide } from "vue";
+
+import { useUserStore } from "@/store/userStore.js";
+
+import { useSettingStore } from "@/store/settingStore.js";
+
+const settingsStore = useSettingStore()
+
+const isMobile = computed(() => settingsStore.isMobile)
+
+const userStore = useUserStore();
+
+provide('param',{userStore,settingsStore})
+
 </script>
 
 <style scoped>

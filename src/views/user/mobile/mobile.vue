@@ -11,6 +11,7 @@
         radius="5"
       />
     </div>
+    <van-cell title="编辑资料" is-link />
     <van-cell center title="暗黑主题">
       <template #right-icon>
         <van-switch
