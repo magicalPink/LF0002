@@ -52,7 +52,4 @@ const theme = computed(() => settingsStore.theme);
 </script>
 
 <style scoped>
-.userContent {
-  border: 1px solid #e5e5e5;
-}
 </style>

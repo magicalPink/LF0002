@@ -1,6 +1,5 @@
 import { defineStore } from "pinia";
 import { getBasicInfo } from "@/api/home.js";
-import Message from "@/utils/message.js";
 import router from "@/router/index.js";
 import WebSocketManager from "@/utils/socket.js";
 
@@ -27,10 +26,6 @@ export const useUserStore = defineStore({
     },
     //退出登录
     async logout() {
-      await Message({
-        message: "正在退出账号",
-        loading: true
-      });
       this.closeWebSocket();
       this.userInfo = {};
       localStorage.removeItem("token");
