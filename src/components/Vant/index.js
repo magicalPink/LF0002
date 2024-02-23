@@ -5,10 +5,17 @@ import {
   TabbarItem,
   Switch,
   Cell,
+  CellGroup,
   Image,
   Toast,
   Dialog,
   Icon,
+  Grid,
+  GridItem,
+  Popup,
+  NavBar,
+  Field,
+  Loading,
 } from "vant"
 
 const components = {
@@ -18,10 +25,17 @@ const components = {
   TabbarItem,
   Switch,
   Cell,
+  CellGroup,
   Image,
   Toast,
   Dialog,
   Icon,
+  Grid,
+  GridItem,
+  Popup,
+  NavBar,
+  Field,
+  Loading,
 }
 
 export default components

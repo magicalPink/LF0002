@@ -10,6 +10,10 @@ import PCView from "./pc/pc.vue"
 
 import MobileView from "./mobile/mobile.vue"
 
+import Message from "@/utils/message.js"
+
+import { setNickname, setAvatar } from "@/api/user.js";
+
 import { computed, provide } from "vue";
 
 import { useToggle } from '@vueuse/shared'
@@ -39,7 +43,29 @@ const isDark = useDark({
 
 const toggle = useToggle(isDark);
 
-provide('param',{userStore,settingsStore,theme,isDark,toggle})
+const setNickName = (data,callback) => {
+  setNickname(data).then(res => {
+    Message({
+      message: '修改成功',
+      type:'success'
+    })
+    userStore.getUserInfo()
+    callback()
+  })
+}
+
+const setUserAvatar = (data,callback) => {
+  setAvatar(data).then(res => {
+    Message({
+      message: '修改成功',
+      type:'success'
+    })
+    userStore.getUserInfo()
+    callback()
+  })
+}
+
+provide('param',{userStore,settingsStore,theme,isDark,toggle,setNickName,setUserAvatar})
 
 </script>
 

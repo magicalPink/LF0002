@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MobileView v-if="isMobile"/>
+    <MobileView v-if="isMobile" :onlineList="onlineList"/>
     <PCView v-else/>
   </div>
 </template>
@@ -10,7 +10,9 @@ import PCView from "./pc/pc.vue"
 
 import MobileView from "./mobile/mobile.vue"
 
-import { computed, provide } from "vue";
+import { ref, computed, onMounted, provide } from "vue";
+
+import { getOnlineList } from "@/api/user.js";
 
 import { useUserStore } from "@/store/userStore.js";
 
@@ -21,6 +23,14 @@ const settingsStore = useSettingStore()
 const isMobile = computed(() => settingsStore.isMobile)
 
 const userStore = useUserStore();
+
+let onlineList = ref([])
+
+onMounted(() => {
+  getOnlineList().then(res => {
+    onlineList.value = res.data.data
+  })
+})
 
 provide('param',{userStore,settingsStore})
 

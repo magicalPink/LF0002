@@ -15,3 +15,33 @@ export function login(data) {
     data
   })
 }
+// 获取基本信息
+export function getBasicInfo() {
+  return axios({
+    url: 'info/userinfo',
+    method: 'get'
+  })
+}
+//设置用户名称
+export function setNickname(data) {
+  return axios({
+    url: 'info/setNickname',
+    method: 'post',
+    data
+  })
+}
+//设置用户头像
+export function setAvatar(data) {
+  return axios({
+    url: 'info/setAvatar',
+    method: 'post',
+    data
+  })
+}
+// 获取基本信息
+export function getOnlineList() {
+  return axios({
+    url: 'info/getOnlineList',
+    method: 'get'
+  })
+}

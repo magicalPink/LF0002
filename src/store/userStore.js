@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { getBasicInfo } from "@/api/home.js";
+import { getBasicInfo } from "@/api/user.js";
 import router from "@/router/index.js";
 import WebSocketManager from "@/utils/socket.js";
 
