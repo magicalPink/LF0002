@@ -25,7 +25,7 @@ export function getBasicInfo() {
 //设置用户名称
 export function setNickname(data) {
   return axios({
-    url: 'info/setNickname',
+    url: 'info/setnickname',
     method: 'post',
     data
   })
@@ -33,7 +33,7 @@ export function setNickname(data) {
 //设置用户头像
 export function setAvatar(data) {
   return axios({
-    url: 'info/setAvatar',
+    url: 'info/setavatar',
     method: 'post',
     data
   })
@@ -41,7 +41,7 @@ export function setAvatar(data) {
 // 获取基本信息
 export function getOnlineList() {
   return axios({
-    url: 'info/getOnlineList',
+    url: 'info/getonlinelist',
     method: 'get'
   })
 }
