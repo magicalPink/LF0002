@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { getBasicInfo } from '@/api/home'
+import { getBasicInfo } from '@/api/user.js'
 import router from '@/router/index.js'
 import { wsBaseUrl } from "@/config.js";
 const userState = {

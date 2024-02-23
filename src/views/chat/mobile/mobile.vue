@@ -1,13 +1,11 @@
 <template>
-  <div class="pt10">
+  <div class="pt5">
     mobileCHAT
   </div>
 </template>
 
 <script setup>
-import { ref } from "vue";
-
-import { inject } from "vue";
+import { ref,inject } from "vue";
 
 const param = inject("param");
 </script>
