@@ -46,6 +46,9 @@
 .selectnone {
   user-select: none;
 }
+.border {
+  border: 1px solid #e5e5e5;
+}
 each(range(10), {
     .top@{value} {
         top: (@value * 1px);
@@ -93,6 +96,7 @@ each(range(10), {
   word-break:break-all
 }
 
+
 //TODO: radius
 each(range(20), {
   .radius@{value} {
@@ -105,6 +109,9 @@ each(range(20), {
 
 //TODO: padding and margin
 each(range(50), {
+  .fs@{value} {
+    font-size: (@value * 1px);
+  }
   .pr@{value} {
     padding-right: (@value * 2px);
   }

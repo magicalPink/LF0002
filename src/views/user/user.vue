@@ -45,7 +45,6 @@ const toggle = useToggle(isDark);
 
 const setNickName = (data,callback) => {
   setNickname(data).then(res => {
-    console.log(res);
     Message({
       message: '修改成功',
       type:'success'

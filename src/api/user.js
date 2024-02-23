@@ -38,3 +38,10 @@ export function setAvatar(data) {
     data
   })
 }
+// 获取基本信息
+export function getOnlineList() {
+  return axios({
+    url: 'info/getOnlineList',
+    method: 'get'
+  })
+}

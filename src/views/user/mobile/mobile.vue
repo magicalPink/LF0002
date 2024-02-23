@@ -1,6 +1,6 @@
 <template>
   <div class="pt10">
-    <div class="userContent mx5 radius5 mb10 p5 flex justify-between">
+    <div class="border mx5 radius5 mb10 p5 flex justify-between">
       <div>
         <h4>{{ param.userStore.userInfo.nickname || "MeiHL" }}</h4>
       </div>
@@ -144,7 +144,4 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.userContent {
-  border: 1px solid #e5e5e5;
-}
 </style>
