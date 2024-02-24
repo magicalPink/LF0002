@@ -26,6 +26,11 @@ const routes = [
         name: 'Chat',
         component: () => import('@/views/chat/chat.vue'),
       },
+      {
+        path: '/gomoku',
+        name: 'Gomoku',
+        component: () => import('@/views/gomoku/gomoku.vue'),
+      },
     ]
   },
   {
