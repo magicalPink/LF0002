@@ -29,7 +29,7 @@
         </router-view>
       </div>
     </div>
-    <van-tabbar v-if="isMobile" v-model="active">
+    <van-tabbar v-if="isMobile && showTabbar" v-model="active">
       <van-tabbar-item name="Game" icon="gem-o" @click="router.push('Game')">游戏</van-tabbar-item>
       <van-tabbar-item name="Music" icon="music-o" @click="router.push('Music')">音乐</van-tabbar-item>
       <van-tabbar-item name="Chat" icon="chat-o" @click="router.push('Chat')">聊天</van-tabbar-item>
@@ -59,6 +59,10 @@ const route = useRoute();
 const userStore = useUserStore();
 
 const active = ref(route.name);
+
+const showTabbar = computed(() => {
+  return active.value === "Game" || active.value === "Music" || active.value === "Chat" || active.value === "User"
+})
 
 watch(route, () => active.value = route.name);
 

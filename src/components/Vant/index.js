@@ -16,6 +16,9 @@ import {
   NavBar,
   Field,
   Loading,
+  ActionSheet,
+  CountDown,
+  Circle
 } from "vant"
 
 const components = {
@@ -36,6 +39,9 @@ const components = {
   NavBar,
   Field,
   Loading,
+  ActionSheet,
+  CountDown,
+  Circle
 }
 
 export default components
