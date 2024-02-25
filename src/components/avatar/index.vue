@@ -54,7 +54,7 @@ const color = computed(() => {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 });
 
-const imageSize = computed(() => props.size - 10)
+const imageSize = computed(() => props.size - 8)
 
 const currentRate = ref(100)
 

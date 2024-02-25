@@ -103,8 +103,7 @@ export default class WebSocketManager {
     // 根据业务自行处理
     // TODO: 设置最近响应时间
     this.lastCommunicationTime = new Date().getTime();
-    console.log('receiveMessage:', event.data)
-    this.receiveMessageCallback && receiveMessageCallback(event.data)
+    this.receiveMessageCallback && this.receiveMessageCallback(event.data)
   }
 
   /**

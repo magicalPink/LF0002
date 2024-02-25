@@ -1,20 +1,17 @@
 <template>
   <div class="h100 pt30" style="background-color: #F2F3F7">
+    {{roomData}}
     <!--  对手  -->
     <div class="flex items-center m5">
-      <Avatar size="50" src="/image/avatar/avatar5.png"/>
-      <div v-if="true">
-        <p class="ml5 black">樟脑丸</p>
-        <div class="ml5 mt2 flex black">
-          <span>局时</span>
-          <van-count-down class="ml3 relative top3 black" :time="300000"  format="mm:ss"/>
-        </div>
+      <Avatar size="50" :src="gomokuStore.opponent?.avatar"/>
+      <div v-if="gomokuStore.opponent?.id">
+        <p class="ml5 black">{{ gomokuStore.opponent?.nickname }}</p>
       </div>
       <p v-else class="ml5">正在等待对手</p>
     </div>
     <!--  棋盘  -->
     <div class="chessboard">
-          <div class="flex" v-for="(item,line) in chessboard" :key="line">
+          <div class="flex" v-for="(item,line) in roomData.chessboard" :key="line">
             <div @click="drop(line,cell,l)" class="chess-cell" v-for="(l,cell) in item" :key="cell">
               <div class="blackC" v-if="l == 1">
               </div>
@@ -25,13 +22,9 @@
     </div>
     <!--  自己  -->
     <div class="flex items-center row-reverse mr5">
-      <Avatar size="50" src="/image/avatar/avatar1.png"/>
+      <Avatar size="50" :src="gomokuStore.oneSelf?.avatar"/>
       <div>
-        <p class="mr5 black">梅干花菜鹿</p>
-        <div class="mr5 mt2 flex black">
-          <span>局时</span>
-          <van-count-down class="ml3 relative top3 black" :time="300000"  format="mm:ss"/>
-        </div>
+        <p class="mr5 black" style="text-align: right">{{ gomokuStore.oneSelf?.nickname }}</p>
       </div>
     </div>
    <!-- 操作区   -->
@@ -46,38 +39,27 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+import roundButton from "@/components/roundButton/index.vue"
 
 import Avatar from "@/components/avatar/index.vue"
 
-import roundButton from "@/components/roundButton/index.vue"
+import {computed, onMounted, ref} from 'vue'
+
+import { useGomokuStore } from "@/store/gomokuStore.js";
+
+import { useUserStore } from "@/store/userStore.js";
+
+const userStore = useUserStore()
+
+const gomokuStore = useGomokuStore()
+
+const roomData = computed(() => gomokuStore.roomData)
 
 import {useRouter} from "vue-router";
 
 const router = useRouter()
 
-const drop = () => {
-
-}
-
-const chessboard = ref([
-  [0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 1],
-  [9, 1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 1, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 1, 0, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 1, 0, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-  [1, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 0],
-]
-)
+const drop = () => {}
 </script>
 
 <style lang="less" scoped>
