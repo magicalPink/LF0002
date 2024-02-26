@@ -1,6 +1,6 @@
 <template>
-  <div class="h100 pt30" style="background-color: #F2F3F7">
-    {{roomData}}
+  <div class="h100 pt10 flex flex-column justify-center pb50" style="background-color: #F2F3F7">
+    <p class="pr10 absolute w100" style="text-align: right;top:10px">房间号：<span class="blue">{{roomData?.roomId?.slice(7,15)}}</span></p>
     <!--  对手  -->
     <div class="flex items-center m5">
       <Avatar size="50" :src="gomokuStore.opponent?.avatar"/>
@@ -28,12 +28,16 @@
       </div>
     </div>
    <!-- 操作区   -->
-    <div class="flex justify-between p20">
+    <div class="flex justify-between px10 absolute w100" style="bottom: 20px">
       <roundButton label="离开" icon="arrow-left" @click="router.go(-1)"/>
       <roundButton label="认输" icon="warning"/>
       <roundButton label="悔棋" icon="underway"/>
       <roundButton label="发言" icon="chat"/>
       <roundButton label="表情" icon="smile"/>
+    </div>
+    <div class="flex justify-center absolute-t50 w100">
+      <van-button style="margin-right: 10px" type="primary" round>开始游戏</van-button>
+      <van-button style="margin-left: 10px" type="success" round>邀请好友</van-button>
     </div>
   </div>
 </template>

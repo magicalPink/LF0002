@@ -10,13 +10,14 @@
         :color="color"
     >
       <template #default>
-        <van-image
+        <div class="flex items-center justify-center" style="width: 100%;height: 100%">
+          <van-image
             round
             :width="imageSize"
             :height="imageSize"
-            class="mt2"
             :src="src"
-        />
+          />
+        </div>
       </template>
     </van-circle>
     <van-image
@@ -54,7 +55,7 @@ const color = computed(() => {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 });
 
-const imageSize = computed(() => props.size - 8)
+const imageSize = computed(() => props.size - 5)
 
 const currentRate = ref(100)
 

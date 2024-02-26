@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+let userId = JSON.parse(sessionStorage.getItem('userInfo'))?.id
 
 export const useGomokuStore = defineStore({
   id: "gomokuStore",
@@ -6,7 +7,6 @@ export const useGomokuStore = defineStore({
     roomData: {
       userList:[],
     },
-    userInfo:JSON.parse(sessionStorage.getItem('userInfo'))
   }),
   actions: {
     receiveMessage(message) {
@@ -20,19 +20,19 @@ export const useGomokuStore = defineStore({
   },
   getters: {
     oneSelf(){
-      if(this.roomData.userList[0]?.id == this.userInfo.id) {
+      if(this.roomData.userList[0]?.id == userId) {
         return this.roomData.userList[0]
       }
-      if(this.roomData.userList[1]?.id == this.userInfo.id) {
+      if(this.roomData.userList[1]?.id == userId) {
         return this.roomData.userList[1]
       }
       return this.roomData.userList[0]
     },
     opponent() {
-      if(this.roomData.userList[0]?.id !== this.userInfo.id) {
+      if(this.roomData.userList[0]?.id !== userId) {
         return this.roomData.userList[0]
       }
-      if(this.roomData.userList[1]?.id !== this.userInfo.id) {
+      if(this.roomData.userList[1]?.id !== userId) {
         return this.roomData.userList[1]
       }
       return this.roomData.userList[1]
