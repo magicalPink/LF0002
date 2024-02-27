@@ -41,7 +41,7 @@ const selectGomoku = (value, num) => {
       Game:'Gomoku',
       user:userStore.userInfo,
       type:"joinRoom",
-      roomId:71440
+      roomId:23263
     })
   } else {
     userStore.sendMessage({

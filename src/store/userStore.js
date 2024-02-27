@@ -6,8 +6,6 @@ import { wsBaseUrl } from "@/config.js";
 import WebSocketManager from "@/utils/socket.js";
 import { useGomokuStore } from "./gomokuStore.js"
 
-let GomokuStore = useGomokuStore()
-
 export const useUserStore = defineStore({
   id: "userStore",
   state: () => ({
@@ -26,7 +24,7 @@ export const useUserStore = defineStore({
       let data = JSON.parse(message)
       //五子棋消息
       if(data.Game === "Gomoku") {
-        return GomokuStore.receiveMessage(data)
+        return useGomokuStore().receiveMessage(data)
       }
       console.log(data)
     },

@@ -1,69 +1,165 @@
 <template>
   <div class="h100 pt10 flex flex-column justify-center pb50" style="background-color: #F2F3F7">
-    <p class="pr10 absolute w100" style="text-align: right;top:10px">房间号：<span class="blue">{{roomData?.roomId?.slice(7,15)}}</span></p>
+    <p class="pr10 absolute w100" style="text-align: right;top:10px">房间号：<span
+      class="blue">{{ roomData?.roomId?.slice(7, 15) }}</span></p>
     <!--  对手  -->
     <div class="flex items-center m5">
-      <Avatar size="50" :src="gomokuStore.opponent?.avatar"/>
-      <div v-if="gomokuStore.opponent?.id">
-        <p class="ml5 black">{{ gomokuStore.opponent?.nickname }}</p>
+      <Avatar size="50" :src="gomokuStore.opponent?.avatar" />
+      <div class="flex flex-column justify-between" v-if="gomokuStore.opponent?.id">
+        <p class="ml5 black mb5">{{ gomokuStore.opponent?.nickname }}</p>
+        <div class="flex pl5">
+          <div class="blackC mr5" v-if="gomokuStore.opponent?.chess == 'black'">
+          </div>
+          <div class="whiteC mr5" v-if="gomokuStore.opponent?.chess == 'white'">
+          </div>
+          <van-tag type="success" v-if="gomokuStore.opponent?.ready == true">已准备</van-tag>
+        </div>
       </div>
       <p v-else class="ml5">正在等待对手</p>
     </div>
     <!--  棋盘  -->
     <div class="chessboard">
-          <div class="flex" v-for="(item,line) in roomData.chessboard" :key="line">
-            <div @click="drop(line,cell,l)" class="chess-cell" v-for="(l,cell) in item" :key="cell">
-              <div class="blackC" v-if="l == 1">
-              </div>
-              <div class="whiteC" v-if="l == 0">
-              </div>
-            </div>
+      <div class="flex" v-for="(item,line) in roomData.chessboard" :key="line">
+        <div @click="drop(line,cell,l)" class="chess-cell" v-for="(l,cell) in item" :key="cell">
+          <div class="blackC" v-if="l == 1">
           </div>
+          <div class="whiteC" v-if="l == 0">
+          </div>
+        </div>
+      </div>
     </div>
     <!--  自己  -->
     <div class="flex items-center row-reverse mr5">
-      <Avatar size="50" :src="gomokuStore.oneSelf?.avatar"/>
-      <div>
-        <p class="mr5 black" style="text-align: right">{{ gomokuStore.oneSelf?.nickname }}</p>
+      <Avatar size="50" :src="gomokuStore.oneSelf?.avatar" />
+      <div class="flex flex-column justify-between">
+        <p class="mr5 black mb5" style="text-align: right">{{ gomokuStore.oneSelf?.nickname }}</p>
+        <div class="flex justify-right pr5">
+          <van-tag type="success" v-if="gomokuStore.oneSelf?.ready == true">已准备</van-tag>
+          <div class="blackC ml5" v-if="gomokuStore.oneSelf?.chess == 'black'">
+          </div>
+          <div class="whiteC ml5" v-if="gomokuStore.oneSelf?.chess == 'white'">
+          </div>
+        </div>
       </div>
     </div>
-   <!-- 操作区   -->
+    <!-- 操作区   -->
     <div class="flex justify-between px10 absolute w100" style="bottom: 20px">
-      <roundButton label="离开" icon="arrow-left" @click="router.go(-1)"/>
-      <roundButton label="认输" icon="warning"/>
-      <roundButton label="悔棋" icon="underway"/>
-      <roundButton label="发言" icon="chat"/>
-      <roundButton label="表情" icon="smile"/>
+      <roundButton label="离开" icon="arrow-left" @click="leave" />
+      <roundButton label="认输" icon="warning" />
+      <roundButton label="悔棋" icon="underway" />
+      <roundButton label="发言" icon="chat" />
+      <roundButton label="表情" icon="smile" />
     </div>
     <div class="flex justify-center absolute-t50 w100">
-      <van-button style="margin-right: 10px" type="primary" round>开始游戏</van-button>
-      <van-button style="margin-left: 10px" type="success" round>邀请好友</van-button>
+      <van-button style="margin-right: 10px" type="primary" round @click="start">开始游戏</van-button>
+      <van-button style="margin-left: 10px" type="success" round @click="inviteFriend">邀请好友</van-button>
     </div>
+    <van-popup
+      v-model:show="friendShow"
+      round
+      position="bottom"
+      :style="{ height: '60%' }"
+    >
+      <h4 class="pt5 align-center">邀请在线用户</h4>
+      <div class="pt5">
+        <div v-for="item in onlineList" class="border mx5 radius5 mb10 p5 flex justify-between items-center">
+          <div class="flex">
+            <van-image
+              width="50"
+              height="50"
+              :src="item?.avatar"
+              radius="5"
+            />
+            <div class="flex flex-column justify-between ml10">
+              <h4>{{ item?.nickname || "MeiHL" }}</h4>
+              <p v-if="item.state == 'Gomoku'" class="fs12" style="color: #ff499b">五子棋游戏中</p>
+              <p v-else class="fs12" style="color: #00ff8c">在线</p>
+            </div>
+          </div>
+          <van-button @click="invite(item.id)" :disabled="!!item.state" size="small" color="linear-gradient(to right, #ff6034, #ee0a24)">
+            邀请
+          </van-button>
+        </div>
+      </div>
+    </van-popup>
   </div>
 </template>
 
 <script setup>
-import roundButton from "@/components/roundButton/index.vue"
+import Message from "@/utils/message.js"
 
-import Avatar from "@/components/avatar/index.vue"
+import roundButton from "@/components/roundButton/index.vue";
 
-import {computed, onMounted, ref} from 'vue'
+import Avatar from "@/components/avatar/index.vue";
+
+import { computed, onDeactivated, onMounted, ref, watch } from "vue";
 
 import { useGomokuStore } from "@/store/gomokuStore.js";
 
 import { useUserStore } from "@/store/userStore.js";
 
-const userStore = useUserStore()
+import { useRouter } from "vue-router";
 
-const gomokuStore = useGomokuStore()
+import { getOnlineList } from "@/api/user.js";
 
-const roomData = computed(() => gomokuStore.roomData)
+const userStore = useUserStore();
 
-import {useRouter} from "vue-router";
+const gomokuStore = useGomokuStore();
 
-const router = useRouter()
+const roomData = computed(() => gomokuStore.roomData);
 
-const drop = () => {}
+const router = useRouter();
+
+const friendShow = ref(false)
+
+const onlineList = ref([])
+
+watch(() => roomData?.currentUser,(val)=>{
+  console.log(val);
+})
+
+const leave = () => {
+  userStore.sendMessage({
+    Game:'Gomoku',
+    type:"leave",
+    user:userStore.userInfo,
+    roomId:roomData.value.roomId
+  })
+}
+
+const invite = (inviteUserId) => {
+  userStore.sendMessage({
+    Game:'Gomoku',
+    type:"invite",
+    user:userStore.userInfo,
+    roomId:roomData.value.roomId,
+    inviteUserId,
+  })
+}
+
+const drop = () => {
+};
+
+const inviteFriend = () => {
+  friendShow.value = true
+  getOnlineList().then(res => {
+    onlineList.value = res.data.data
+  })
+}
+
+const start = () => {
+  if(gomokuStore.oneSelf?.ready) {
+    return Message({
+      message:"已准备",
+    })
+  }
+  userStore.sendMessage({
+    Game:'Gomoku',
+    type:"start",
+    user:userStore.userInfo,
+    roomId:roomData.value.roomId
+  })
+}
 </script>
 
 <style lang="less" scoped>
@@ -77,6 +173,7 @@ const drop = () => {}
   border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* 添加阴影 */
 }
+
 .blackC, .whiteC {
   width: 20px;
   height: 20px;
@@ -97,6 +194,7 @@ const drop = () => {}
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* 白棋较浅的阴影 */
 }
+
 /* 以下是可选的光泽效果 */
 .blackC::after, .whiteC::after {
   content: "";
@@ -106,6 +204,7 @@ const drop = () => {}
   background: radial-gradient(circle at 5% 53%, rgba(255, 255, 255, 0.5), transparent);
   border-radius: 50%;
 }
+
 .chess-cell {
   width: 23px;
   height: 23px;
