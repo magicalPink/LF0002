@@ -1,51 +1,55 @@
-import { ElMessageBox } from 'element-plus'
+import { ElMessageBox } from "element-plus";
 
-import { showDialog, showConfirmDialog } from 'vant';
+import { showDialog, showConfirmDialog } from "vant";
 
 import { useSettingStore } from "@/store/settingStore.js";
 
-const settingsStore = useSettingStore()
+const settingsStore = useSettingStore();
 
-const MessageBox = (type = 'alert',param,confirm,cancal) => {
-  if(settingsStore.isMobile) {
-    if(type === 'alert') {
+const MessageBox = (type = "alert", param, confirm, cancal) => {
+  if (settingsStore.isMobile) {
+    if (type === "alert") {
       showDialog({
         title: param.title,
-        message: param.message,
-      }).then(() => {
-        confirm()
-      });
-    } else if(type === 'confirm') {
-      showConfirmDialog({
-        title: param.title,
-        message: param.message,
+        message: param.message
       }).then(() => {
         confirm();
-      })
+      });
+    } else if (type === "confirm") {
+      showConfirmDialog({
+        title: param.title,
+        message: param.message
+      }).then(() => {
+        confirm();
+      }).catch(() => {
+        cancal();
+      });
+
     }
   } else {
-    if(type === 'alert') {
+    if (type === "alert") {
       ElMessageBox.alert(param.message, param.title, {
-        confirmButtonText: param.confirmButtonText || '确认',
+        confirmButtonText: param.confirmButtonText || "确认",
         callback: () => {
-          confirm()
+          confirm();
         }
-      })
-    } else if(type == 'confirm') {
+      });
+    } else if (type == "confirm") {
       ElMessageBox.confirm(
         param.message,
         param.title,
         {
-          confirmButtonText: param.confirmButtonText || '确认',
-          cancelButtonText: param.cancelButtonText || '取消',
-          type: param.type,
+          confirmButtonText: param.confirmButtonText || "确认",
+          cancelButtonText: param.cancelButtonText || "取消",
+          type: param.type
         }
-      )
-        .then(() => {
-          confirm()
-        })
+      ).then(() => {
+          confirm();
+      }).catch(() => {
+        cancal();
+      });
     }
   }
-}
+};
 
-export default MessageBox
+export default MessageBox;

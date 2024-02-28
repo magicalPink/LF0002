@@ -11,6 +11,9 @@
 .justify-center {
   justify-content: center;
 }
+.justify-right {
+  justify-content: right;
+}
 .justify-between {
   justify-content: space-between;
 }
@@ -39,7 +42,15 @@
   top: 50%;
   transform: translateY(-50%);
 }
-
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.bold{
+  font-weight: bold;
+}
 .auto {
   overflow: auto;
 }
@@ -96,6 +107,9 @@ each(range(10), {
 .black {
   color: black !important;
 }
+.blue {
+  color: #2c96ff !important;
+}
 
 //TODO: 换行
 .wrap {
@@ -119,41 +133,62 @@ each(range(50), {
     font-size: (@value * 1px);
   }
   .pr@{value} {
-    padding-right: (@value * 2px);
+    padding-right: (@value * 1px);
   }
   .pl@{value} {
-    padding-left: (@value * 2px);
+    padding-left: (@value * 1px);
   }
   .pt@{value} {
-    padding-top: (@value * 2px);
+    padding-top: (@value * 1px);
   }
   .pb@{value} {
-    padding-bottom: (@value * 2px);
+    padding-bottom: (@value * 1px);
   }
   .p@{value} {
-    padding: (@value * 2px);
+    padding: (@value * 1px);
+  }
+  .px@{value} {
+    padding-left: (@value * 1px);
+    padding-right: (@value * 1px);
+  }
+  .py@{value} {
+    padding-top: (@value * 1px);
+    padding-bottom: (@value * 1px);
   }
   .mt@{value} {
-    margin-top: (@value * 2px);
+    margin-top: (@value * 1px);
   }
   .mb@{value} {
-    margin-bottom: (@value * 2px);
+    margin-bottom: (@value * 1px);
   }
   .mr@{value} {
-    margin-right: (@value * 2px);
+    margin-right: (@value * 1px);
   }
   .ml@{value} {
-    margin-left: (@value * 2px);
+    margin-left: (@value * 1px);
   }
   .m@{value} {
-    margin: (@value * 2px);
+    margin: (@value * 1px);
   }
   .mx@{value} {
-    margin-left: (@value * 2px);
-    margin-right: (@value * 2px);
+    margin-left: (@value * 1px);
+    margin-right: (@value * 1px);
   }
   .my@{value} {
-    margin-top: (@value * 2px);
-    margin-bottom: (@value * 2px);
+    margin-top: (@value * 1px);
+    margin-bottom: (@value * 1px);
   }
 });
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 2s linear infinite;
+}

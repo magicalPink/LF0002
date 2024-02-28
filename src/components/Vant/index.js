@@ -18,7 +18,8 @@ import {
   Loading,
   ActionSheet,
   CountDown,
-  Circle
+  Circle,
+  Tag
 } from "vant"
 
 const components = {
@@ -41,7 +42,8 @@ const components = {
   Loading,
   ActionSheet,
   CountDown,
-  Circle
+  Circle,
+  Tag
 }
 
 export default components

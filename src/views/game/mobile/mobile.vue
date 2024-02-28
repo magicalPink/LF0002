@@ -17,7 +17,11 @@
 <script setup>
 import {ref, inject} from "vue";
 
+import { useUserStore } from "@/store/userStore.js";
+
 import {useRouter} from "vue-router";
+
+const userStore = useUserStore()
 
 const router = useRouter()
 
@@ -33,9 +37,18 @@ const actions = [
 const selectGomoku = (value, num) => {
   const {name} = value
   if (name == "加入房间") {
-    router.push('Gomoku')
+    userStore.sendMessage({
+      Game:'Gomoku',
+      user:userStore.userInfo,
+      type:"joinRoom",
+      roomId:23263
+    })
   } else {
-    router.push('Gomoku')
+    userStore.sendMessage({
+      Game:'Gomoku',
+      user:userStore.userInfo,
+      type:"createRoom",
+    })
   }
 }
 

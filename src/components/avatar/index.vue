@@ -1,29 +1,30 @@
 <template>
-  <div>
+  <div :style="{width:size + 'px',height:size + 'px'}">
     <van-circle
-        v-if="keepTime"
+        v-show="keepTime"
         v-model:current-rate="currentRate"
         :rate="rate"
         :speed="1"
-        :stroke-width="60"
+        :stroke-width="120"
         :size="size"
         :color="color"
     >
       <template #default>
-        <van-image
+        <div class="flex items-center justify-center" style="width: 100%;height: 100%">
+          <van-image
             round
             :width="imageSize"
             :height="imageSize"
-            class="mt2"
             :src="src"
-        />
+          />
+        </div>
       </template>
     </van-circle>
     <van-image
-        v-else
+        v-show="!keepTime"
         round
-        :width="imageSize + 10"
-        :height="imageSize + 10"
+        :width="imageSize + 5"
+        :height="imageSize + 5"
         class="mt2"
         :src="src"
     />
@@ -58,7 +59,7 @@ const imageSize = computed(() => props.size - 10)
 
 const currentRate = ref(100)
 
-const keepTime = ref(true)
+const keepTime = ref(false)
 
 const rate = ref(100)
 
@@ -71,6 +72,11 @@ const reset = () => {
   rate.value = 100
   currentRate.value = 100
 }
+
+defineExpose({
+  start,
+  reset,
+});
 </script>
 
 <style scoped>

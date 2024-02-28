@@ -1,9 +1,9 @@
 <template>
   <div class="pt5">
     <div v-for="item in onlineList" class="border mx5 radius5 mb10 p5 flex justify-between">
-      <div>
+      <div class="flex flex-column justify-between">
         <h4>{{ item?.nickname || "MeiHL" }}</h4>
-        <p class="fs12 mt5" style="color: #00ff8c">在线</p>
+        <p class="fs12" style="color: #00ff8c">在线</p>
       </div>
       <van-image
         width="50"

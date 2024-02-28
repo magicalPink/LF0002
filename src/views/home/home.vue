@@ -68,6 +68,8 @@ watch(route, () => active.value = route.name);
 
 onBeforeMount(() => userStore.getUserInfo());
 
+onBeforeMount(() => userStore.startSockst());
+
 </script>
 
 <style scoped>
