@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import Message from "@/utils/message.js"
 import MessageBox from "@/utils/messageBox.js"
 import { useUserStore } from "@/store/userStore.js";
-let userId = JSON.parse(sessionStorage.getItem('userInfo'))?.id
 
 export const useGomokuStore = defineStore({
   id: "gomokuStore",
@@ -55,20 +54,23 @@ export const useGomokuStore = defineStore({
     }
   },
   getters: {
+    userId() {
+      return JSON.parse(sessionStorage.getItem('userInfo'))?.id
+    },
     oneSelf(){
-      if(this.roomData.userList[0]?.id == userId) {
+      if(this.roomData.userList[0]?.id == this.userId) {
         return this.roomData.userList[0]
       }
-      if(this.roomData.userList[1]?.id == userId) {
+      if(this.roomData.userList[1]?.id == this.userId) {
         return this.roomData.userList[1]
       }
       return this.roomData.userList[0]
     },
     opponent() {
-      if(this.roomData.userList[0]?.id !== userId) {
+      if(this.roomData.userList[0]?.id !== this.userId) {
         return this.roomData.userList[0]
       }
-      if(this.roomData.userList[1]?.id !== userId) {
+      if(this.roomData.userList[1]?.id !== this.userId) {
         return this.roomData.userList[1]
       }
       return this.roomData.userList[1] || {}
