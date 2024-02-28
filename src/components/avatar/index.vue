@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div :style="{width:size + 'px',height:size + 'px'}">
     <van-circle
-        v-if="keepTime"
+        v-show="keepTime"
         v-model:current-rate="currentRate"
         :rate="rate"
         :speed="1"
-        :stroke-width="60"
+        :stroke-width="120"
         :size="size"
         :color="color"
     >
@@ -21,10 +21,10 @@
       </template>
     </van-circle>
     <van-image
-        v-else
+        v-show="!keepTime"
         round
-        :width="imageSize + 10"
-        :height="imageSize + 10"
+        :width="imageSize + 5"
+        :height="imageSize + 5"
         class="mt2"
         :src="src"
     />
@@ -55,11 +55,11 @@ const color = computed(() => {
   return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
 });
 
-const imageSize = computed(() => props.size - 5)
+const imageSize = computed(() => props.size - 10)
 
 const currentRate = ref(100)
 
-const keepTime = ref(true)
+const keepTime = ref(false)
 
 const rate = ref(100)
 
@@ -72,6 +72,11 @@ const reset = () => {
   rate.value = 100
   currentRate.value = 100
 }
+
+defineExpose({
+  start,
+  reset,
+});
 </script>
 
 <style scoped>

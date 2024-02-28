@@ -27,7 +27,10 @@ export default class WebSocketManager {
     // let id = `${this.id}-${Math.random()}`
     let token = localStorage.getItem("token")
 
-    if(!token) return console.error("获取不到token,无法连接socket")
+    if(!token) {
+      this.closeWebSocket()
+      console.error("获取不到token,无法连接socket");
+    }
     // 创建 WebSocket 对象
     this.socket = new WebSocket(this.url + "?token=" + token)
 
@@ -48,8 +51,9 @@ export default class WebSocketManager {
       // 清除定时器
       clearTimeout(this.pingTimeout)
       clearTimeout(this.reconnectTimeout)
+
       // 尝试重连
-      if (this.reconnectAttempts < this.maxReconnectAttempts) {
+      if (this.reconnectAttempts < this.maxReconnectAttempts && localStorage.getItem("token")) {
         this.reconnectAttempts++
         this.reconnectTimeout = setTimeout(() => {
           this.connectWebSocket()
@@ -71,6 +75,7 @@ export default class WebSocketManager {
    * 启动心跳机制
    */
   startHeartbeat() {
+    if(!localStorage.getItem("token")) return;
     console.log('开始执行心跳');
     clearTimeout(this.pingTimeout)
     this.pingTimeout = setInterval(() => {

@@ -71,7 +71,7 @@ export const useGomokuStore = defineStore({
       if(this.roomData.userList[1]?.id !== userId) {
         return this.roomData.userList[1]
       }
-      return this.roomData.userList[1]
+      return this.roomData.userList[1] || {}
     }
   },
   persist: true,

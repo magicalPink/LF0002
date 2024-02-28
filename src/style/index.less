@@ -48,7 +48,9 @@
 .align-right {
   text-align: right;
 }
-
+.bold{
+  font-weight: bold;
+}
 .auto {
   overflow: auto;
 }
@@ -177,3 +179,16 @@ each(range(50), {
     margin-bottom: (@value * 1px);
   }
 });
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 2s linear infinite;
+}

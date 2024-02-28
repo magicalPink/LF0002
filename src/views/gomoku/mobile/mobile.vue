@@ -4,7 +4,7 @@
       class="blue">{{ roomData?.roomId?.slice(7, 15) }}</span></p>
     <!--  对手  -->
     <div class="flex items-center m5">
-      <Avatar size="50" :src="gomokuStore.opponent?.avatar" />
+      <Avatar ref="opponentAvatar" size="60" :src="gomokuStore.opponent?.avatar" />
       <div class="flex flex-column justify-between" v-if="gomokuStore.opponent?.id">
         <p class="ml5 black mb5">{{ gomokuStore.opponent?.nickname }}</p>
         <div class="flex pl5">
@@ -19,18 +19,19 @@
     </div>
     <!--  棋盘  -->
     <div class="chessboard">
-      <div class="flex" v-for="(item,line) in roomData.chessboard" :key="line">
-        <div @click="drop(line,cell,l)" class="chess-cell" v-for="(l,cell) in item" :key="cell">
-          <div class="blackC" v-if="l == 1">
+      <div class="flex" v-for="(item,x) in roomData.chessboard" :key="x">
+        <div @click="drop(x,y,val)" class="chess-cell" v-for="(val,y) in item" :key="y">
+          <van-icon v-if="location.x == x && location.y == y" color="#5c5c5c" class="spin" size="20" style="font-weight: 800" name="aim" />
+          <div class="blackC" v-if="val == 'black'">
           </div>
-          <div class="whiteC" v-if="l == 0">
+          <div class="whiteC" v-if="val == 'white'">
           </div>
         </div>
       </div>
     </div>
     <!--  自己  -->
     <div class="flex items-center row-reverse mr5">
-      <Avatar size="50" :src="gomokuStore.oneSelf?.avatar" />
+      <Avatar ref="oneSelfAvatar" size="60" :src="gomokuStore.oneSelf?.avatar" />
       <div class="flex flex-column justify-between">
         <p class="mr5 black mb5" style="text-align: right">{{ gomokuStore.oneSelf?.nickname }}</p>
         <div class="flex justify-right pr5">
@@ -50,7 +51,7 @@
       <roundButton label="发言" icon="chat" />
       <roundButton label="表情" icon="smile" />
     </div>
-    <div class="flex justify-center absolute-t50 w100">
+    <div v-if="roomData.roomStatus == 'noStart'" class="flex justify-center absolute-t50 w100">
       <van-button style="margin-right: 10px" type="primary" round @click="start">开始游戏</van-button>
       <van-button style="margin-left: 10px" type="success" round @click="inviteFriend">邀请好友</van-button>
     </div>
@@ -82,6 +83,10 @@
         </div>
       </div>
     </van-popup>
+    <!-- 右滑进入 -->
+    <transition name="van-slide-right">
+      <div v-show="startGame" class="absolute-t50 radius10 px30 py20" style="background-color: #00ff8c;right: 30%">开始游戏</div>
+    </transition>
   </div>
 </template>
 
@@ -108,14 +113,45 @@ const gomokuStore = useGomokuStore();
 
 const roomData = computed(() => gomokuStore.roomData);
 
+const oneSelfAvatar = ref(null)
+
+const opponentAvatar = ref(null)
+
 const router = useRouter();
 
 const friendShow = ref(false)
 
+const startGame = ref(false)
+
+const location = ref({
+  x:null,
+  y:null,
+})
+
 const onlineList = ref([])
 
-watch(() => roomData?.currentUser,(val)=>{
+watch(() => roomData.value.currentUser,(val)=>{
+  location.value.x = null
+  location.value.y = null
+  opponentAvatar.value.reset()
+  oneSelfAvatar.value.reset()
+  if(val == gomokuStore.opponent.id) {
+    console.log(opponentAvatar.value);
+    opponentAvatar.value.start()
+  }
+  if(val == gomokuStore.oneSelf.id) {
+    oneSelfAvatar.value.start()
+  }
   console.log(val);
+  //音效等
+})
+
+watch(() => roomData.value.roomStatus,(val)=> {
+  console.log(val);
+  if(val === 'start') {
+    startGame.value = true
+    setTimeout(() => startGame.value = false,1000)
+  }
 })
 
 const leave = () => {
@@ -137,7 +173,25 @@ const invite = (inviteUserId) => {
   })
 }
 
-const drop = () => {
+const drop = (x,y,val) => {
+  if(gomokuStore.oneSelf.id === roomData.value.currentUser) {
+    //自己回合
+    console.log(x,y,val);
+    if(val === 9) {
+      if(location.value.x == x && location.value.y == y) {
+        userStore.sendMessage({
+          Game:'Gomoku',
+          type:"drop",
+          user:userStore.userInfo,
+          roomId:roomData.value.roomId,
+          drop:{x,y,chess:gomokuStore.oneSelf.chess},
+          opponentId:gomokuStore.opponent.id //对手Id
+        })
+      }
+      location.value.x = x
+      location.value.y = y
+    }
+  }
 };
 
 const inviteFriend = () => {
