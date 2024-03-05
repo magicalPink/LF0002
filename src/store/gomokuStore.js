@@ -23,6 +23,11 @@ export const useGomokuStore = defineStore({
           location.replace('/#/Home')
         }
       }
+      if(message.type === "message") {
+        Message({
+          message: message.message,
+        })
+      }
       if(message.type === "invite") {
         let roomId = message.roomId.slice(7, 15)
         MessageBox('confirm',{

@@ -21,7 +21,7 @@
     <div class="chessboard">
       <div class="flex" v-for="(item,x) in roomData.chessboard" :key="x">
         <div @click="drop(x,y,val)" class="chess-cell" v-for="(val,y) in item" :key="y">
-          <van-icon v-if="location.x == x && location.y == y" color="#5c5c5c" class="spin" size="20" style="font-weight: 800" name="aim" />
+          <van-icon v-if="location.x == x && location.y == y" color="#5c5c5c" class="spin" size="30" style="font-weight: 800" name="aim" />
           <div class="blackC" v-if="val == 'black'">
           </div>
           <div class="whiteC" v-if="val == 'white'">
@@ -51,7 +51,7 @@
       <roundButton label="发言" icon="chat" />
       <roundButton label="表情" icon="smile" />
     </div>
-    <div v-if="roomData.roomStatus == 'noStart'" class="flex justify-center absolute-t50 w100">
+    <div v-if="roomData.roomStatus != 'start'" class="flex justify-center absolute-t50 w100">
       <van-button style="margin-right: 10px" type="primary" round @click="start">开始游戏</van-button>
       <van-button style="margin-left: 10px" type="success" round @click="inviteFriend">邀请好友</van-button>
     </div>
@@ -77,9 +77,14 @@
               <p v-else class="fs12" style="color: #00ff8c">在线</p>
             </div>
           </div>
-          <van-button @click="invite(item.id)" :disabled="!!item.state" size="small" color="linear-gradient(to right, #ff6034, #ee0a24)">
-            邀请
-          </van-button>
+          <div>
+            <van-button style="margin-right: 5px" @click="invite(item.id,'game')" :disabled="!!item.state" size="small" color="linear-gradient(to right, #ff6034, #ee0a24)">
+              邀请比赛
+            </van-button>
+            <van-button @click="invite(item.id,'witnessABattle')" :disabled="!!item.state" size="small" >
+              邀请观战
+            </van-button>
+          </div>
         </div>
       </div>
     </van-popup>
@@ -151,6 +156,9 @@ watch(() => roomData.value.roomStatus,(val)=> {
   if(val === 'start') {
     startGame.value = true
     setTimeout(() => startGame.value = false,1000)
+  } else if(val === 'over') {
+    opponentAvatar.value.reset()
+    oneSelfAvatar.value.reset()
   }
 })
 
@@ -163,14 +171,18 @@ const leave = () => {
   })
 }
 
-const invite = (inviteUserId) => {
-  userStore.sendMessage({
-    Game:'Gomoku',
-    type:"invite",
-    user:userStore.userInfo,
-    roomId:roomData.value.roomId,
-    inviteUserId,
-  })
+const invite = (inviteUserId,type) => {
+  if(type == "game") {
+    userStore.sendMessage({
+      Game:'Gomoku',
+      type:"invite",
+      user:userStore.userInfo,
+      roomId:roomData.value.roomId,
+      inviteUserId,
+    })
+  }else {
+    console.log(9999);
+  }
 }
 
 const drop = (x,y,val) => {
