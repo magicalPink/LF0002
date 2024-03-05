@@ -60,7 +60,7 @@ export const useGomokuStore = defineStore({
   },
   getters: {
     userId() {
-      return JSON.parse(sessionStorage.getItem('userInfo'))?.id
+      return useUserStore().userInfo.id
     },
     oneSelf(){
       if(this.roomData.userList[0]?.id == this.userId) {
