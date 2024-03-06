@@ -22,11 +22,13 @@
         </el-menu-item>
       </el-menu>
       <div style="flex: 1">
-        <router-view v-slot="{ Component }">
-          <keep-alive :include="[]">
-            <component :is="Component"></component>
-          </keep-alive>
-        </router-view>
+        <transition name="el-zoom-in-top">
+          <router-view v-slot="{ Component }">
+            <keep-alive :include="[]">
+              <component :is="Component"></component>
+            </keep-alive>
+          </router-view>
+        </transition>
       </div>
     </div>
     <van-tabbar v-if="isMobile && showTabbar" v-model="active">
