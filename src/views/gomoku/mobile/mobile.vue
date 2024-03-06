@@ -45,11 +45,11 @@
     </div>
     <!-- 操作区   -->
     <div class="flex justify-between px10 absolute w100" style="bottom: 20px">
-      <roundButton label="离开" icon="arrow-left" @click="leave" />
-      <roundButton label="认输" icon="warning" />
-      <roundButton label="悔棋" icon="underway" />
-      <roundButton label="发言" icon="chat" />
-      <roundButton label="表情" icon="smile" />
+      <roundButton label="离开" icon="arrow-left" @click="operation('leave')" />
+      <roundButton label="认输" icon="warning" @click="operation('giveUp')"/>
+      <roundButton label="悔棋" icon="underway" @click="operation('regret')"/>
+      <roundButton label="发言" icon="chat" @click="operation('speak')"/>
+      <roundButton label="表情" icon="smile" @click="operation('Emote')"/>
     </div>
     <div v-if="roomData.roomStatus != 'start'" class="flex justify-center absolute-t50 w100">
       <van-button style="margin-right: 10px" type="primary" round @click="start">开始游戏</van-button>
@@ -97,25 +97,16 @@
 
 <script setup>
 import Message from "@/utils/message.js"
-
+import MessageBox from "@/utils/messageBox.js"
 import roundButton from "@/components/roundButton/index.vue";
-
 import Avatar from "@/components/avatar/index.vue";
-
 import { computed, onDeactivated, onMounted, ref, watch } from "vue";
-
 import { useGomokuStore } from "@/store/gomokuStore.js";
-
 import { useUserStore } from "@/store/userStore.js";
-
 import { useRouter } from "vue-router";
-
 import { getOnlineList } from "@/api/user.js";
-
 const userStore = useUserStore();
-
 const gomokuStore = useGomokuStore();
-
 const roomData = computed(() => gomokuStore.roomData);
 
 const oneSelfAvatar = ref(null)
@@ -162,13 +153,53 @@ watch(() => roomData.value.roomStatus,(val)=> {
   }
 })
 
-const leave = () => {
-  userStore.sendMessage({
-    Game:'Gomoku',
-    type:"leave",
-    user:userStore.userInfo,
-    roomId:roomData.value.roomId
-  })
+const operation = (type) => {
+  if(type == 'leave') {
+    userStore.sendMessage({
+      Game:'Gomoku',
+      type:"leave",
+      user:userStore.userInfo,
+      roomId:roomData.value.roomId
+    })
+  }
+  if(type == 'giveUp') {
+    if(gomokuStore.roomData.roomStatus != "start") {
+      return Message({message:"对局未开始"})
+    }
+    MessageBox('confirm',{
+      title:'认输',
+      message:'确定要认输吗',
+      type:'warning'
+    },() => {
+      userStore.sendMessage({
+        Game:'Gomoku',
+        user:userStore.userInfo,
+        type:"giveUp",
+        roomId:roomData.value.roomId
+      })
+    },() => {
+    })
+  }
+  if(type == 'regret') {
+    if(gomokuStore.roomData.currentUser == userStore.userInfo.id) {
+      return Message({message:"当前不能悔棋"})
+    }
+    MessageBox('confirm',{
+      title:'悔棋申请',
+      message:'申请悔棋需要对手同意，确定申请悔棋吗？',
+      type:'warning'
+    },() => {
+      userStore.sendMessage({
+        Game:'Gomoku',
+        user:userStore.userInfo,
+        chess:gomokuStore.oneSelf?.chess,
+        type:"applyForRegret",
+        roomId:roomData.value.roomId,
+        opponentId:gomokuStore.opponent.id //对手Id
+      })
+    },() => {
+    })
+  }
 }
 
 const invite = (inviteUserId,type) => {
@@ -186,22 +217,24 @@ const invite = (inviteUserId,type) => {
 }
 
 const drop = (x,y,val) => {
-  if(gomokuStore.oneSelf.id === roomData.value.currentUser) {
-    //自己回合
-    console.log(x,y,val);
-    if(val === 9) {
-      if(location.value.x == x && location.value.y == y) {
-        userStore.sendMessage({
-          Game:'Gomoku',
-          type:"drop",
-          user:userStore.userInfo,
-          roomId:roomData.value.roomId,
-          drop:{x,y,chess:gomokuStore.oneSelf.chess},
-          opponentId:gomokuStore.opponent.id //对手Id
-        })
+  if(gomokuStore.roomData.roomStatus == "start") {
+    if(gomokuStore.oneSelf.id === roomData.value.currentUser) {
+      //自己回合
+      console.log(x,y,val);
+      if(val === 9) {
+        if(location.value.x == x && location.value.y == y) {
+          userStore.sendMessage({
+            Game:'Gomoku',
+            type:"drop",
+            user:userStore.userInfo,
+            roomId:roomData.value.roomId,
+            drop:{x,y,chess:gomokuStore.oneSelf.chess},
+            opponentId:gomokuStore.opponent.id //对手Id
+          })
+        }
+        location.value.x = x
+        location.value.y = y
       }
-      location.value.x = x
-      location.value.y = y
     }
   }
 };

@@ -56,6 +56,31 @@ export const useGomokuStore = defineStore({
       if(message.type === "leave") {
         location.replace('/#/Home')
       }
+      //同意悔棋
+      if(message.type === "regret") {
+        let userStore = useUserStore()
+        MessageBox('confirm',{
+          title:'提示',
+          message:message.message,
+          type:'warning'
+        },() => {
+          userStore.sendMessage({
+            Game:'Gomoku',
+            user:userStore.userInfo,
+            type:"regret",
+            roomId:this.roomData.roomId,
+            opponentId:this.opponent.id //对手Id
+          })
+        },() => {
+          userStore.sendMessage({
+            Game:'Gomoku',
+            user:userStore.userInfo,
+            type:"disagreeRegret",
+            roomId:this.roomData.roomId,
+            opponentId:this.opponent.id //对手Id
+          })
+        })
+      }
     }
   },
   getters: {
