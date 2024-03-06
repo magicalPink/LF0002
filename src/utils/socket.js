@@ -77,6 +77,7 @@ export default class WebSocketManager {
   startHeartbeat() {
     if(!localStorage.getItem("token")) return;
     console.log('开始执行心跳');
+    this.reconnectAttempts = 0
     clearTimeout(this.pingTimeout)
     this.pingTimeout = setInterval(() => {
       console.log('心跳');
