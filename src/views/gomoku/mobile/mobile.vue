@@ -92,6 +92,17 @@
     <transition name="van-slide-right">
       <div v-show="startGame" class="absolute-t50 radius10 px30 py20" style="background-color: #00ff8c;right: 30%">开始游戏</div>
     </transition>
+    <!-- 表情包   -->
+    <van-popup
+      v-model:show="memeShow"
+      round
+      position="bottom"
+      :style="{ height: '30%' }"
+    >
+      <div class="p20">
+        <Meme :show-all="true" size="50" @clickMeme="clickMeme"/>
+      </div>
+    </van-popup>
   </div>
 </template>
 
@@ -99,6 +110,7 @@
 import Message from "@/utils/message.js"
 import MessageBox from "@/utils/messageBox.js"
 import roundButton from "@/components/roundButton/index.vue";
+import Meme from "@/components/meme/meme.vue"
 import Avatar from "@/components/avatar/index.vue";
 import { computed, onDeactivated, onMounted, ref, watch } from "vue";
 import { useGomokuStore } from "@/store/gomokuStore.js";
@@ -116,6 +128,8 @@ const opponentAvatar = ref(null)
 const router = useRouter();
 
 const friendShow = ref(false)
+
+const memeShow = ref(false)
 
 const startGame = ref(false)
 
@@ -150,6 +164,16 @@ watch(() => roomData.value.roomStatus,(val)=> {
   } else if(val === 'over') {
     opponentAvatar.value.reset()
     oneSelfAvatar.value.reset()
+  }
+})
+
+watch(() => gomokuStore.memeData,(data)=> {
+  console.log(data);
+  if(data.userId == gomokuStore.opponent?.id) {
+    opponentAvatar.value?.showMeme(data.memeIndex)
+  }
+  if(data.userId == gomokuStore.oneSelf?.id) {
+    oneSelfAvatar.value?.showMeme(data.memeIndex)
   }
 })
 
@@ -200,6 +224,21 @@ const operation = (type) => {
     },() => {
     })
   }
+  if(type == 'Emote') {
+    memeShow.value = true
+  }
+}
+
+const clickMeme = (val) => {
+  console.log(val);
+  userStore.sendMessage({
+    Game:'Gomoku',
+    type:"meme",
+    user:userStore.userInfo,
+    roomId:roomData.value.roomId,
+    memeIndex:val
+  })
+  memeShow.value = false
 }
 
 const invite = (inviteUserId,type) => {
