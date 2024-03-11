@@ -28,7 +28,7 @@
         class="mt2"
         :src="src"
     />
-    <Meme :active-index="avticeFace"/>
+    <Meme ref="meme"/>
   </div>
 </template>
 
@@ -46,11 +46,7 @@ const props = defineProps({
   }
 })
 
-const avticeFace = ref(null)
-
-const showFace = (face) => {
-  avticeFace.value = face
-}
+const meme = ref(null)
 
 const color = computed(() => {
   // 定义起始和结束颜色的RGB分量
@@ -82,9 +78,14 @@ const reset = () => {
   currentRate.value = 100
 }
 
+const showMeme = (index) => {
+  meme.value.setActiveIndex(index)
+}
+
 defineExpose({
   start,
   reset,
+  showMeme,
 });
 </script>
 
