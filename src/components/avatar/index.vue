@@ -1,5 +1,5 @@
 <template>
-  <div :style="{width:size + 'px',height:size + 'px'}">
+  <div class="relative" :style="{width:size + 'px',height:size + 'px'}">
     <van-circle
         v-show="keepTime"
         v-model:current-rate="currentRate"
@@ -28,10 +28,13 @@
         class="mt2"
         :src="src"
     />
+    <Meme ref="meme"/>
   </div>
 </template>
 
 <script setup>
+import Meme from "../meme/meme.vue"
+
 import {ref, defineProps, computed} from "vue"
 
 const props = defineProps({
@@ -42,6 +45,8 @@ const props = defineProps({
     default:"/image/avatar/avatar5.png"
   }
 })
+
+const meme = ref(null)
 
 const color = computed(() => {
   // 定义起始和结束颜色的RGB分量
@@ -73,9 +78,14 @@ const reset = () => {
   currentRate.value = 100
 }
 
+const showMeme = (index) => {
+  meme.value.setActiveIndex(index)
+}
+
 defineExpose({
   start,
   reset,
+  showMeme,
 });
 </script>
 

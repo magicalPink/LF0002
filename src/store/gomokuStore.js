@@ -8,6 +8,8 @@ export const useGomokuStore = defineStore({
   state: () => ({
     roomData: {
       userList:[],
+      //表情数据
+      memeData:{},
     },
   }),
   actions: {
@@ -28,6 +30,7 @@ export const useGomokuStore = defineStore({
           message: message.message,
         })
       }
+      //邀请
       if(message.type === "invite") {
         let roomId = message.roomId.slice(7, 15)
         MessageBox('confirm',{
@@ -47,12 +50,12 @@ export const useGomokuStore = defineStore({
           console.log(222);
         })
       }
-      //房间 信息
+      //房间信息
       if(message.type === "roomData") {
         this.roomData = message
         location.href = '/#/Gomoku'
       }
-      //房间 信息
+      //离开房间
       if(message.type === "leave") {
         location.replace('/#/Home')
       }
@@ -80,6 +83,10 @@ export const useGomokuStore = defineStore({
             opponentId:this.opponent.id //对手Id
           })
         })
+      }
+      //表情
+      if(message.type == 'meme') {
+        this.memeData = message.memeData
       }
     }
   },
