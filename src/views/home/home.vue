@@ -63,8 +63,8 @@ const userStore = useUserStore();
 const active = ref(route.name);
 
 const showTabbar = computed(() => {
-  return active.value === "Game" || active.value === "Music" || active.value === "Chat" || active.value === "User"
-})
+  return active.value === "Game" || active.value === "Music" || active.value === "Chat" || active.value === "User";
+});
 
 watch(route, () => active.value = route.name);
 
