@@ -33,7 +33,7 @@ watch([width, height], () => {
 
 <template>
   <van-config-provider :theme="theme" class="h100">
-    <transition name="el-zoom-in-top">
+    <transition name="el-fade-in-linear">
       <router-view></router-view>
     </transition>
   </van-config-provider>

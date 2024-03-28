@@ -1,8 +1,6 @@
 <template>
-  <div>
     <MobileView v-if="isMobile" :onlineList="onlineList"/>
     <PCView v-else/>
-  </div>
 </template>
 
 <script setup>

@@ -21,10 +21,10 @@
           <van-icon name="contact" size="24"/>
         </el-menu-item>
       </el-menu>
-      <div style="flex: 1">
-        <transition name="el-zoom-in-top">
+      <div style="flex: 1" class="relative h100">
+        <transition name="el-fade-in-linear">
           <router-view v-slot="{ Component }">
-            <keep-alive :include="[]">
+            <keep-alive>
               <component :is="Component"></component>
             </keep-alive>
           </router-view>

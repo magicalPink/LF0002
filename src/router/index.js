@@ -32,6 +32,11 @@ const routes = [
         name: 'Gomoku',
         component: () => import('@/views/gomoku/gomoku.vue'),
       },
+      {
+        path: '/deepFriedGoldenFlower',
+        name: 'DeepFriedGoldenFlower',
+        component: () => import('@/views/deepFriedGoldenFlower/index.vue'),
+      },
     ]
   },
   {

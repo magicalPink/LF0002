@@ -1,6 +1,6 @@
 <template>
   <!--    注册-->
-  <transition name="el-zoom-in-top">
+  <transition name="el-fade-in-linear">
     <main v-if="loginFlag === false" class="p10">
       <p style="margin-bottom: 10px">
         <span>已有账户？</span>

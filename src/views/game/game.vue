@@ -1,8 +1,6 @@
 <template>
-  <div>
     <MobileView v-if="isMobile"/>
     <PCView v-else/>
-  </div>
 </template>
 
 <script setup>
