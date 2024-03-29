@@ -205,6 +205,9 @@ const operation = (type) => {
     })
   }
   if(type == 'regret') {
+    if(gomokuStore.roomData.roomStatus != "start") {
+      return Message({message:"对局未开始"})
+    }
     if(gomokuStore.roomData.currentUser == userStore.userInfo.id) {
       return Message({message:"当前不能悔棋"})
     }
