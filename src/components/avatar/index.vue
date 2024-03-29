@@ -28,7 +28,7 @@
         class="mt2"
         :src="src"
     />
-    <Meme ref="meme"/>
+    <Meme ref="meme" :size="90"/>
   </div>
 </template>
 
