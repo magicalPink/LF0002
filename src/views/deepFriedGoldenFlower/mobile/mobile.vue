@@ -1,8 +1,9 @@
 <template>
   <div class="h100 cardBoard flex" style="flex-direction: column-reverse;">
+    <!--  功能  -->
     <div class="flex w100 justify-between p10">
-      <van-button color="#fff" style="background-color: #ffffff45" size="small">离开</van-button>
-      <van-button color="#fff" style="background-color: #ffffff45" size="small">表情</van-button>
+      <van-button @click="operation('leave')" color="#fff" style="background-color: #ffffff45" size="small">离开</van-button>
+      <van-button @click="operation('Emote')" color="#fff" style="background-color: #ffffff45" size="small">表情</van-button>
       <van-button color="#fff" style="background-color: #ffffff45" size="small">看牌</van-button>
       <van-button color="#fff" style="background-color: #ffffff45" size="small">跟注</van-button>
       <van-button color="#fff" style="background-color: #ffffff45" size="small">加注</van-button>
@@ -19,6 +20,7 @@
         <Card class="mr5" :scale="card.scale" v-for="card in userList[0].cardList" :cardObj="card" />
       </div>
     </div>
+    <!--  对手  -->
     <div class="flex justify-between" style="flex: auto">
       <div class="flex justify-between py10 pl5" style="flex-direction: column-reverse;">
         <div>
@@ -56,7 +58,8 @@
 import { onMounted, ref } from "vue";
 import Avatar from "@/components/avatar/index.vue";
 import Card from "@/components/card/index.vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 const userList = ref([
   {
     id: 1,
@@ -128,6 +131,15 @@ const userList = ref([
     ]
   }
 ]);
+
+const operation = (type) => {
+  if(type == 'leave') {
+    router.push('Game')
+  }
+  if(type == 'Emote') {
+    memeShow.value = true
+  }
+}
 
 </script>
 
