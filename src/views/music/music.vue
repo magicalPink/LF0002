@@ -1,5 +1,6 @@
 <template>
-    <MobileView v-if="isMobile"/>
+  <audio :src="'/music/music' + 1 + '.mp3'" ref="audio" controls></audio>
+  <MobileView v-if="isMobile"/>
     <PCView v-else/>
 </template>
 
