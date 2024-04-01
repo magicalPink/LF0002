@@ -47,7 +47,7 @@ watch([width, height], () => {
 }
 
 .dark {
-  background-color: #454545;
+  background-color: #000000;
 }
 .light {
   background-color: #fff;
