@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeMount, watch } from "vue";
+import { computed, onBeforeMount, onMounted, watch } from "vue";
 
 import { useSettingStore } from "@/store/settingStore.js";
 
@@ -29,6 +29,12 @@ watch([width, height], () => {
   //宽度小于500设置为移动端样式
   settingsStore.setIsMobile(width.value < 500);
 });
+
+onMounted(() => {
+  if (!localStorage.getItem("theme")) {
+    localStorage.setItem("theme",'auto')
+  }
+})
 </script>
 
 <template>
@@ -44,6 +50,13 @@ watch([width, height], () => {
   /*滚动条整体样式*/
   width: 2px; /*高宽分别对应横竖滚动条的尺寸*/
   height: 1px;
+}
+
+.dark {
+  background-color: #000000;
+}
+.light {
+  background-color: #fff;
 }
 
 ::-webkit-scrollbar-thumb {

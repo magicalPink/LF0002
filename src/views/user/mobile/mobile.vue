@@ -2,12 +2,12 @@
   <div class="pt10">
     <div class="border mx5 radius5 mb10 p5 flex justify-between">
       <div>
-        <h4>{{ param.userStore.userInfo.nickname || "MeiHL" }}</h4>
+        <h4>{{ userStore.userInfo.nickname || "MeiHL" }}</h4>
       </div>
       <van-image
         width="70"
         height="70"
-        :src="param.userStore.userInfo.avatar"
+        :src="userStore.userInfo.avatar"
         radius="5"
       />
     </div>
@@ -21,13 +21,13 @@
           active-value="dark"
           inactive-value="auto"
           @click="param.toggle()"
-          @change="(theme) => param.settingsStore.setTheme(theme)"
+          @change="(theme) => settingsStore.setTheme(theme)"
         >
         </van-switch>
       </template>
     </van-cell>
     <div class="mt10 mx5">
-      <van-button block @click="param.userStore.logout()">退出登录</van-button>
+      <van-button block @click="userStore.logout()">退出登录</van-button>
     </div>
     <!--  修改头像  -->
     <van-popup
@@ -93,6 +93,10 @@ import { useSettingStore } from "@/store/settingStore.js";
 
 const settingsStore = useSettingStore();
 
+import { useUserStore } from "@/store/userStore.js";
+
+const userStore = useUserStore();
+
 const param = inject("param");
 
 const nickName = ref("");
@@ -120,7 +124,7 @@ const avatarList = ref([
 
 const setNickName = () => {
   param.setNickName(
-    { id: param.userStore.userInfo.id, nickname: nickName.value },
+    { id: userStore.userInfo.id, nickname: nickName.value },
     () => {
       nicknameShow.value = false;
     }
@@ -129,7 +133,7 @@ const setNickName = () => {
 
 const setAvatar = () => {
   param.setUserAvatar(
-    { id: param.userStore.userInfo.id, avatar: avatar.value },
+    { id: userStore.userInfo.id, avatar: avatar.value },
     () => {
       avatarShow.value = false;
     }

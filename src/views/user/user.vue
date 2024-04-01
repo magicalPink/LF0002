@@ -63,7 +63,7 @@ const setUserAvatar = (data,callback) => {
   })
 }
 
-provide('param',{userStore,settingsStore,theme,isDark,toggle,setNickName,setUserAvatar})
+provide('param',{toggle,setNickName,setUserAvatar})
 
 </script>
 

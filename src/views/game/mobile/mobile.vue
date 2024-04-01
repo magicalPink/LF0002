@@ -2,7 +2,7 @@
   <div class="pt5">
     <van-grid :gutter="10">
       <van-grid-item class="pointer" :icon="getIcon('五子棋')" text="五子棋" @click="gomokuShow = true"/>
-      <van-grid-item class="pointer" :icon="getIcon('炸金花')" text="炸金花" @click="router.push('DeepFriedGoldenFlower')"/>
+      <van-grid-item class="pointer" :icon="getIcon('炸金花')" text="棋牌" @click="router.push('DeepFriedGoldenFlower')"/>
     </van-grid>
     <van-action-sheet
         v-model:show="gomokuShow"
@@ -15,9 +15,11 @@
 </template>
 
 <script setup>
-import {ref, inject} from "vue";
+import {ref} from "vue";
 
 import { useUserStore } from "@/store/userStore.js";
+
+import { useSettingStore } from "@/store/settingStore.js";
 
 import {useRouter} from "vue-router";
 
@@ -25,7 +27,7 @@ const userStore = useUserStore()
 
 const router = useRouter()
 
-const param = inject("param");
+const settingsStore = useSettingStore()
 
 const gomokuShow = ref(false);
 
@@ -54,14 +56,14 @@ const selectGomoku = (value, num) => {
 
 const getIcon = (icon) => {
   if (icon == "五子棋") {
-    if (param.settingsStore.theme === "auto") {
+    if (settingsStore.theme === "auto") {
       return "/image/gomoku.png"
     } else {
       return "/image/gomokuWhite.png"
     }
   }
   if (icon == "炸金花") {
-    if (param.settingsStore.theme === "auto") {
+    if (settingsStore.theme === "auto") {
       return "/image/playingCard.png"
     } else {
       return "/image/playingCardWhite.png"

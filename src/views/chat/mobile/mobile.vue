@@ -16,9 +16,7 @@
 </template>
 
 <script setup>
-import { ref, inject, onMounted,defineProps } from "vue";
-
-const param = inject("param");
+import { ref, onMounted,defineProps } from "vue";
 
 const props = defineProps({
   onlineList:{

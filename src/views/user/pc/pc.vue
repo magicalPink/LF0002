@@ -3,7 +3,7 @@
     <el-card>
       <div class="mx5 radius5 flex justify-between">
         <div>
-          <h3>{{ param.userStore.userInfo.nickname || "MeiHL" }}</h3>
+          <h3>{{ userStore.userInfo.nickname || "MeiHL" }}</h3>
         </div>
         <van-image
           width="70"
@@ -22,7 +22,7 @@
           active-value="dark"
           inactive-value="auto"
           @click="param.toggle()"
-          @change="(theme) => param.settingsStore.setTheme(theme)"
+          @change="(theme) => settingsStore.setTheme(theme)"
         >
         </el-switch>
       </div>
@@ -30,7 +30,7 @@
     <el-card class="mt5">
       <div class="flex justify-between items-center">
         <h4>退出登录</h4>
-        <el-button @click="param.userStore.logout()">退出登录</el-button>
+        <el-button @click="userStore.logout()">退出登录</el-button>
       </div>
     </el-card>
   </div>
@@ -44,6 +44,10 @@ import { inject } from "vue";
 import { useSettingStore } from "@/store/settingStore.js";
 
 const settingsStore = useSettingStore();
+
+import { useUserStore } from "@/store/userStore.js";
+
+const userStore = useUserStore();
 
 const param = inject("param");
 

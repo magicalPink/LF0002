@@ -1,5 +1,6 @@
 <template>
   <div class="h100 pt10 flex flex-column justify-center pb50" style="background-color: #F2F3F7">
+    <h2 class="red">样式待优化，请切换移动端样式</h2>
     <p class="pr10 absolute" style="text-align: right;top:10px">房间号：<span
       class="blue">{{ roomData?.roomId?.slice(7, 15) }}</span></p>
     <!--  对手  -->
