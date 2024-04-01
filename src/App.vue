@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeMount, watch } from "vue";
+import { computed, onBeforeMount, onMounted, watch } from "vue";
 
 import { useSettingStore } from "@/store/settingStore.js";
 
@@ -29,6 +29,12 @@ watch([width, height], () => {
   //宽度小于500设置为移动端样式
   settingsStore.setIsMobile(width.value < 500);
 });
+
+onMounted(() => {
+  if (!localStorage.getItem("theme")) {
+    localStorage.setItem("theme",'auto')
+  }
+})
 </script>
 
 <template>
