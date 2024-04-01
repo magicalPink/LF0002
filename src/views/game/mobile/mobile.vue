@@ -2,7 +2,7 @@
   <div class="pt5">
     <van-grid :gutter="10">
       <van-grid-item class="pointer" :icon="getIcon('五子棋')" text="五子棋" @click="gomokuShow = true"/>
-      <van-grid-item class="pointer" :icon="getIcon('炸金花')" text="炸金花" @click="router.push('DeepFriedGoldenFlower')"/>
+      <van-grid-item class="pointer" :icon="getIcon('炸金花')" text="棋牌" @click="router.push('DeepFriedGoldenFlower')"/>
     </van-grid>
     <van-action-sheet
         v-model:show="gomokuShow"

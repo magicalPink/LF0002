@@ -4,10 +4,10 @@
     <div class="flex w100 justify-between p10">
       <van-button @click="operation('leave')" color="#fff" style="background-color: #ffffff45" size="small">离开</van-button>
       <van-button @click="operation('Emote')" color="#fff" style="background-color: #ffffff45" size="small">表情</van-button>
-      <van-button color="#fff" style="background-color: #ffffff45" size="small">看牌</van-button>
-      <van-button color="#fff" style="background-color: #ffffff45" size="small">跟注</van-button>
-      <van-button color="#fff" style="background-color: #ffffff45" size="small">加注</van-button>
-      <van-button color="#fff" style="background-color: #ffffff45" size="small">弃牌</van-button>
+      <van-button color="#fff" style="background-color: #ffffff45" size="small">看</van-button>
+      <van-button color="#fff" style="background-color: #ffffff45" size="small">跟</van-button>
+      <van-button color="#fff" style="background-color: #ffffff45" size="small">加</van-button>
+      <van-button color="#fff" style="background-color: #ffffff45" size="small">弃</van-button>
     </div>
     <!--  自己   -->
     <div class="flex justify-center pt20">
@@ -55,6 +55,10 @@
 </template>
 
 <script setup>
+// 给元素添加loading
+// 调取接口的时候 createElLoading(el,type)
+// 获取到这个元素 添加loading
+// 接口请求成功 结束loading
 import { onMounted, ref } from "vue";
 import Avatar from "@/components/avatar/index.vue";
 import Card from "@/components/card/index.vue";
