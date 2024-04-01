@@ -46,6 +46,13 @@ watch([width, height], () => {
   height: 1px;
 }
 
+.dark {
+  background-color: #454545;
+}
+.light {
+  background-color: #fff;
+}
+
 ::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
   border-radius: 10px;

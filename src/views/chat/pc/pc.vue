@@ -1,6 +1,6 @@
 <template>
   <div class="p5">
-    CHAT
+    <h2 class="red">样式待优化，请切换移动端样式</h2>
   </div>
 </template>
 
