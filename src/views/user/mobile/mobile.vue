@@ -69,10 +69,10 @@
             </template>
           </van-image>
         </div>
-        <div class="auto">
+        <div class="auto flex flex-wrap justify-center">
           <van-image
-            class="ml5 mb5"
-            width="22%"
+            class="ml5 mb5 flex-none"
+            width="70"
             v-for="item in avatarList"
             :src="item"
             radius="10"

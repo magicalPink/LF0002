@@ -1,5 +1,5 @@
 <template>
-  <div class="h100 cardBoard flex" style="flex-direction: column-reverse;">
+  <div class="h100 cardBoard flex column-reverse">
     <!--  功能  -->
     <div class="flex w100 justify-between p10">
       <van-button @click="operation('leave')" color="#fff" style="background-color: #ffffff45" size="small">离开</van-button>
@@ -21,10 +21,10 @@
       </div>
     </div>
     <!--  对手  -->
-    <div class="flex justify-between" style="flex: auto">
-      <div class="flex justify-between py10 pl5" style="flex-direction: column-reverse;">
+    <div class="flex justify-between flex-auto">
+      <div class="flex justify-between column-reverse py10 pl5">
         <div>
-          <div class="flex items-center" style="justify-content: right">
+          <div class="flex items-center justify-right">
             <Avatar ref="oneSelfAvatar" size="50" :src="'/image/avatar/avatar2.png'" />
             <div class="card_content">
               <Card style="margin-right: -10px" :scale="card.scale" v-for="card in userList[1].cardList" :cardObj="card" />
@@ -36,9 +36,9 @@
           </div>
         </div>
       </div>
-      <div class="flex justify-between py10" style="flex-direction: column-reverse;">
+      <div class="flex justify-between py10 column-reverse">
         <div>
-          <div class="flex items-center" style="justify-content: right">
+          <div class="flex items-center justify-right">
             <div class="card_content mr5">
               <Card style="margin-left: -10px" :scale="card.scale" v-for="card in userList[1].cardList" :cardObj="card" />
             </div>
@@ -66,7 +66,7 @@ const userList = ref([
     nickname: "方亮",
     cardList: [
       {
-        value: 1,
+        value: 13,
         color: 4,
         show: true,
         scale: 1.5
@@ -93,19 +93,19 @@ const userList = ref([
         value: 2,
         color: 4,
         show: true,
-        scale: 0.5
+        scale: 0.7
       },
       {
         value: 2,
         color: 1,
         show: true,
-        scale: 0.5
+        scale: 0.7
       },
       {
         value: 2,
         color: 2,
         show: true,
-        scale: 0.5
+        scale: 0.7
       }
     ]
   },
