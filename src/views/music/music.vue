@@ -1,5 +1,4 @@
 <template>
-  <audio :src="'/music/music' + 1 + '.mp3'" ref="audio" controls></audio>
   <MobileView v-if="isMobile"/>
   <PCView v-else/>
 </template>
@@ -16,7 +15,6 @@ import { useSettingStore } from "@/store/settingStore.js";
 const settingsStore = useSettingStore()
 
 const isMobile = computed(() => settingsStore.isMobile)
-
 </script>
 
 <style scoped>
