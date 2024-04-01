@@ -21,8 +21,6 @@ const userStore = useUserStore();
 
 const router = useRouter();
 
-const param = inject("param");
-
 const gomoku = () => {
   MessageBox(
     "confirm",
