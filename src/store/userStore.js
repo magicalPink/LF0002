@@ -5,13 +5,15 @@ import GoEasy from "goeasy";
 import { wsBaseUrl } from "@/config.js";
 import WebSocketManager from "@/utils/socket.js";
 import { useGomokuStore } from "./gomokuStore.js"
+import { getOnlineList } from "@/api/user.js";
 
 export const useUserStore = defineStore({
   id: "userStore",
   state: () => ({
     userInfo: {},
-    onlineUser:[],
+    onlineList:[],
     basicsSocket:null,
+    timer:null,
   }),
   actions: {
     //获取用户信息
@@ -19,6 +21,19 @@ export const useUserStore = defineStore({
       let { data } = await getBasicInfo();
       this.userInfo = data.data || {};
       sessionStorage.setItem("userInfo", JSON.stringify(data.data));
+      this.getOnlineList()
+    },
+    //获取在线用户
+    getOnlineList() {
+      getOnlineList().then(res => {
+        this.onlineList = res.data.data
+      })
+      clearInterval(this.timer)
+      this.timer = setInterval(() => {
+        getOnlineList().then(res => {
+          this.onlineList = res.data.data
+        })
+      }, 10000)
     },
     messageCallback(message) {
       let data = JSON.parse(message)
@@ -45,6 +60,7 @@ export const useUserStore = defineStore({
       this.userInfo = {};
       localStorage.removeItem("token");
       sessionStorage.removeItem("userInfo");
+      clearInterval(this.timer);
       router.replace("Login");
     },
     //关闭socket连接

@@ -116,7 +116,6 @@ import { computed, onDeactivated, onMounted, ref, watch } from "vue";
 import { useGomokuStore } from "@/store/gomokuStore.js";
 import { useUserStore } from "@/store/userStore.js";
 import { useRouter } from "vue-router";
-import { getOnlineList } from "@/api/user.js";
 const userStore = useUserStore();
 const gomokuStore = useGomokuStore();
 const roomData = computed(() => gomokuStore.roomData);
@@ -138,7 +137,7 @@ const location = ref({
   y:null,
 })
 
-const onlineList = ref([])
+const onlineList = computed(() => userStore.onlineList)
 
 watch(() => roomData.value.currentUser,(val)=>{
   location.value.x = null
@@ -283,9 +282,7 @@ const drop = (x,y,val) => {
 
 const inviteFriend = () => {
   friendShow.value = true
-  getOnlineList().then(res => {
-    onlineList.value = res.data.data
-  })
+  userStore.getOnlineList()
 }
 
 const start = () => {

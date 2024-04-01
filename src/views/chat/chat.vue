@@ -8,23 +8,19 @@ import PCView from "./pc/pc.vue"
 
 import MobileView from "./mobile/mobile.vue"
 
-import { ref, computed, onMounted } from "vue";
-
-import { getOnlineList } from "@/api/user.js";
+import { ref, computed } from "vue";
 
 import { useSettingStore } from "@/store/settingStore.js";
 
+import { useUserStore } from "@/store/userStore.js";
+
 const settingsStore = useSettingStore()
+
+const userStore = useUserStore()
 
 const isMobile = computed(() => settingsStore.isMobile)
 
-let onlineList = ref([])
-
-onMounted(() => {
-  getOnlineList().then(res => {
-    onlineList.value = res.data.data
-  })
-})
+const onlineList = computed(() => userStore.onlineList)
 </script>
 
 <style scoped>
