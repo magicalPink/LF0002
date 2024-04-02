@@ -1,7 +1,7 @@
 const musicList = [
     {
         musicInfo:{
-            "musicrid": "MUSIC_15212054",
+            "musicrid": "123",
             "barrage": "0",
             "ad_type": "",
             "artist": "张碧晨",
@@ -257,7 +257,7 @@ const musicList = [
     },
     {
         musicInfo: {
-            "musicrid": "MUSIC_213671654",
+            "musicrid": "234",
             "barrage": "0",
             "ad_type": "",
             "artist": "程响",
@@ -476,7 +476,7 @@ const musicList = [
     },
     {
         musicInfo: {
-            "musicrid": "MUSIC_52876626",
+            "musicrid": "6626",
             "barrage": "0",
             "ad_type": "",
             "artist": "张紫豪",
@@ -779,6 +779,7 @@ const musicList = [
     },
     {
         musicInfo: {
+            "musicrid": "23644",
             name: "夜曲",
             artist: "周杰伦",
             pic: 'https://img3.kuwo.cn/star/albumcover/500/32/88/1567952196.jpg'
@@ -1073,6 +1074,7 @@ const musicList = [
     },
     {
         musicInfo: {
+            "musicrid": "236244",
             name: "BINGBIAN病变",
             artist: "鞠文娴",
             pic: 'https://img4.kuwo.cn/star/albumcover/500/34/14/1645251387.jpg'
@@ -1082,6 +1084,7 @@ const musicList = [
     },
     {
         musicInfo: {
+            "musicrid": "2s13644",
             name: "夜的第七章",
             artist: "周杰伦",
             pic: 'https://img3.kuwo.cn/star/albumcover/500/45/96/3463817628.jpg'
@@ -1400,7 +1403,7 @@ const musicList = [
     },
     {
         musicInfo:{
-            "musicrid": "MUSIC_260128960",
+            "musicrid": "314241",
             "barrage": "0",
             "ad_type": "",
             "artist": "Lil笑笑",
@@ -1691,7 +1694,7 @@ const musicList = [
     },
     {
         musicInfo:{
-            "musicrid": "MUSIC_263404563",
+            "musicrid": "MU4563",
             "barrage": "0",
             "ad_type": "",
             "artist": "杨友友",
@@ -1967,6 +1970,7 @@ const musicList = [
     },
     {
         musicInfo:{
+            "musicrid": "23adad644",
             name: "晴天",
             artist: "周杰伦",
             pic:"https://img2.kuwo.cn/star/albumcover/500/64/96/2266534336.jpg"
@@ -2229,6 +2233,7 @@ const musicList = [
     },
     {
         musicInfo:{
+            "musicrid": "aaa23644",
             name: "大鱼",
             artist: "周深",
             pic:"https://img2.kuwo.cn/star/albumcover/500/65/1/1261222476.jpg"
@@ -2339,6 +2344,7 @@ const musicList = [
     },
     {
         musicInfo:{
+            "musicrid": "23144544",
             name: "泡沫",
             artist: "G.E.M.邓紫棋",
             pic:"https://img1.kuwo.cn/star/albumcover/500/24/35/4281428590.jpg"
@@ -2505,6 +2511,7 @@ const musicList = [
     },
     {
         musicInfo:{
+            "musicrid": "23644da3",
             name: "一生所爱",
             artist: "卢冠廷&莫文蔚",
             pic:"https://img3.kuwo.cn/star/albumcover/500/90/21/1404447877.jpg"
@@ -2635,6 +2642,7 @@ const musicList = [
     },
     {
         musicInfo:{
+            "musicrid": "21234644",
             name: "月半小夜曲",
             artist: "陈慧娴",
             pic:"https://img2.kuwo.cn/star/albumcover/500/46/79/1639351031.jpg"
@@ -2751,7 +2759,6 @@ const musicList = [
         ],
         url: ""
     },
-
 ]
 
 // {

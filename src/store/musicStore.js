@@ -49,6 +49,8 @@ export const useMusicStore = defineStore({
       if (this.current < 0) {
         this.current = musicList.length - 1;
       }
+      this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
+      this.play(true)
     },
 
     nextSong() {
@@ -56,6 +58,14 @@ export const useMusicStore = defineStore({
       if (this.current > musicList.length - 1) {
         this.current = 0;
       }
+      this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
+      this.play(true)
+    },
+
+    setSong(index) {
+      this.current = index;
+      this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
+      this.play(true)
     }
   },
   getters: {}

@@ -103,7 +103,7 @@ const nickName = ref("");
 
 const theme = computed(() => settingsStore.theme);
 
-const nicknameShow = ref(false);
+let nicknameShow = ref(false);
 
 const avatarShow = ref(false);
 
