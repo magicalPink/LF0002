@@ -114,6 +114,12 @@ watch(() => musicStore.currentTime,(val) => {
   }
 })
 
+watch(() => musicStore.playIndex,(val) => {
+  if (val > 0) {
+    !musicStore.rolling && musicStore.scrollLyric();
+  }
+})
+
 musicStore.createMusicDom();
 
 function getClass(data,index) {

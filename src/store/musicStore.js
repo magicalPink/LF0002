@@ -24,15 +24,10 @@ export const useMusicStore = defineStore({
     play(flag = this.isPlay) {
       clearInterval(this.timer);
       if (flag) {
-        console.log(this.audio);
         this.audio.play();
         this.isPlay = true;
         this.timer = setInterval(() => {
-          console.log("播放中...");
           this.playIndex = document.querySelectorAll(".sign").length;
-          if (this.playIndex > 0) {
-            !this.rolling && this.scrollLyric();
-          }
           if (this.audio.ended || this.audio.paused) { //暂停或者结束清除定时器
             this.isPlay = false;
             clearInterval(this.timer);
@@ -92,9 +87,6 @@ export const useMusicStore = defineStore({
     sliderPlay(value) {
       this.audio.currentTime = value;
       this.play(true);
-      setTimeout(() => {
-        this.scrollLyric('instant');
-      }, 100);
     },
 
     scrollLyric(behavior = 'smooth') {
@@ -113,7 +105,6 @@ export const useMusicStore = defineStore({
       this.rolling = true
       this.timer1 = setTimeout(() => {
         this.rolling = false
-        this.scrollLyric('instant')
         clearTimeout(this.timer1)
       }, 2000);
     }
