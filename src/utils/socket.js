@@ -80,7 +80,6 @@ export default class WebSocketManager {
     this.reconnectAttempts = 0
     clearTimeout(this.pingTimeout)
     this.pingTimeout = setInterval(() => {
-      console.log('心跳');
       //最后操作时间超过20秒
       if(this.lastCommunicationTime + 20000 < new Date().getTime()) {
         useUserStore().getUserInfo()

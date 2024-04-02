@@ -27,7 +27,7 @@ export const useMusicStore = defineStore({
         this.audio.play();
         this.isPlay = true;
         this.timer = setInterval(() => {
-          this.playIndex = document.querySelectorAll(".sign").length;
+          this.playIndex = document.querySelectorAll(".sign").length || 0;
           if (this.audio.ended || this.audio.paused) { //暂停或者结束清除定时器
             this.isPlay = false;
             clearInterval(this.timer);
@@ -37,7 +37,7 @@ export const useMusicStore = defineStore({
             this.nextSong();
           }
           this.currentTime = this.audio.currentTime;
-        }, 50);
+        }, 70);
       } else {
         this.audio.pause();
         this.isPlay = false;
@@ -49,6 +49,10 @@ export const useMusicStore = defineStore({
         this.current = musicList.length - 1;
       }
       this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
+      document.querySelector(".lrcList").scrollTo({
+        top: 0,
+        behavior:'smooth',
+      })
       this.play(true);
     },
 
@@ -59,6 +63,11 @@ export const useMusicStore = defineStore({
       }
       this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
       this.getDuration();
+      this.play(true);
+      document.querySelector(".lrcList").scrollTo({
+        top: 0,
+        behavior:'smooth',
+      })
       this.play(true);
     },
 
@@ -91,7 +100,9 @@ export const useMusicStore = defineStore({
 
     scrollLyric(behavior = 'smooth') {
       let currentLyric = document.querySelector(".currentLyric");
-      if(!currentLyric) return;
+      if(!currentLyric) {
+        return setTimeout(() => this.scrollLyric(),70)
+      }
       document.querySelector(".lrcList").scrollTo({
         top: currentLyric.offsetTop - 350,
         behavior,

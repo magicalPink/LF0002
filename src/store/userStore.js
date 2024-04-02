@@ -41,7 +41,6 @@ export const useUserStore = defineStore({
       if(data.Game === "Gomoku") {
         return useGomokuStore().receiveMessage(data)
       }
-      console.log(data)
     },
     sendMessage(message) {
       if(!this.basicsSocket) {
