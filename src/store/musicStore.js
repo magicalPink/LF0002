@@ -7,14 +7,18 @@ export const useMusicStore = defineStore({
     audio: null,
     isPlay: false,
     timer: null,
+    timer1: null,
     duration: 0,
-    current:3,
+    current: 3,
     currentTime: 0,
+    rolling:false,
+    playIndex:0,
   }),
   actions: {
     createMusicDom() {
       this.audio = document.createElement("audio");
       this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
+      this.getDuration();
     },
     //播放按钮
     play(flag = this.isPlay) {
@@ -25,10 +29,10 @@ export const useMusicStore = defineStore({
         this.isPlay = true;
         this.timer = setInterval(() => {
           console.log("播放中...");
-          // playIndex.value = document.querySelectorAll(".sign").length;
-          // if (playIndex.value > 0) {
-          //   !rolling.value && scrollLyric();
-          // }
+          this.playIndex = document.querySelectorAll(".sign").length;
+          if (this.playIndex > 0) {
+            !this.rolling && this.scrollLyric();
+          }
           if (this.audio.ended || this.audio.paused) { //暂停或者结束清除定时器
             this.isPlay = false;
             clearInterval(this.timer);
@@ -50,7 +54,7 @@ export const useMusicStore = defineStore({
         this.current = musicList.length - 1;
       }
       this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
-      this.play(true)
+      this.play(true);
     },
 
     nextSong() {
@@ -59,13 +63,59 @@ export const useMusicStore = defineStore({
         this.current = 0;
       }
       this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
-      this.play(true)
+      this.getDuration();
+      this.play(true);
     },
 
     setSong(index) {
       this.current = index;
       this.audio.setAttribute("src", `/music/music${this.current}.mp3`);
-      this.play(true)
+      this.getDuration();
+      this.play(true);
+    },
+
+    getDuration(playBack) {
+      this.audio.oncanplay = () => {
+        this.duration = this.audio.duration;
+        this.playIndex = 0;
+        playBack && setTimeout(() => this.play(true), 100);
+      };
+    },
+
+    //正在被拖动时改变当前播放值
+    sliderStop() {
+      clearInterval(this.timer);
+      this.isPlay = false;
+      this.audio.pause();
+    },
+    //继续播放
+    sliderPlay(value) {
+      this.audio.currentTime = value;
+      this.play(true);
+      setTimeout(() => {
+        this.scrollLyric('instant');
+      }, 100);
+    },
+
+    scrollLyric(behavior = 'smooth') {
+      let currentLyric = document.querySelector(".currentLyric");
+      if(!currentLyric) return;
+      document.querySelector(".lrcList").scrollTo({
+        top: currentLyric.offsetTop - 350,
+        behavior,
+      })
+    },
+
+    scrollList() {
+      if(this.timer1) {
+        clearTimeout(this.timer1)
+      }
+      this.rolling = true
+      this.timer1 = setTimeout(() => {
+        this.rolling = false
+        this.scrollLyric('instant')
+        clearTimeout(this.timer1)
+      }, 2000);
     }
   },
   getters: {}

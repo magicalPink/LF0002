@@ -2759,6 +2759,16 @@ const musicList = [
         ],
         url: ""
     },
+    {
+        musicInfo:{
+            "musicrid": "23456788",
+            name: "HVOB - Dogs (Original Version)",
+            artist: "HVOB",
+            pic:"https://img1.kuwo.cn/star/albumcover/300/43/18/919146915.jpg"
+        },
+        lrcList:[],
+        url: ""
+    },
 ]
 
 // {
