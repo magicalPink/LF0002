@@ -1,7 +1,7 @@
 <template>
   <div class="pt10 h100">
     <div class="musicList">
-      <div v-for="(item,index) in musicList" :key="index" class="flex mb10" @click="musicStore.setSong(index)">
+      <div v-for="(item,index) in musicList" :key="index" class="flex mb10" @click="musicStore.setSong(index);show = true">
         <van-image
           class="ml5 mr10"
           width="11vw"
