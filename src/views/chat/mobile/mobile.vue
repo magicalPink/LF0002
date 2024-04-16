@@ -18,16 +18,14 @@
         position="right"
         :style="{ width: '100%', height: '100%' }"
     >
-      <div class="flex flex-column h100 justify-between">
+      <div class="flex flex-column justify-between" style="height: 100vh">
         <van-nav-bar
             :title="friendInfo.nickname || 'MeiHL'"
             left-arrow
             @click-left="chatShow = false"
         />
-        <div class="border flex-auto">
-          <div v-for="item in msgList" class="flex justify-end mb10">
-            {{item}}
-          </div>
+        <div ref="messageContent" class="dynamicBackground border flex-auto auto" style="scroll-behavior: smooth">
+          <MessageList :message-list="msgList"/>
         </div>
         <div>
           <van-field
@@ -35,6 +33,9 @@
               center
               clearable
               placeholder="请输入消息内容"
+              enterkeyhint
+              @focus="scrollToBottom"
+              @keydown.enter.prevent="sendMsg"
           >
             <template #button>
               <van-button size="small" type="primary" @click="sendMsg">发送</van-button>
@@ -47,8 +48,10 @@
 </template>
 
 <script setup>
-import {ref, onMounted, defineProps, reactive} from "vue";
-
+import MessageList from "@/components/message/index.vue"
+import {ref, onMounted, defineProps, reactive,nextTick} from "vue";
+import {useUserStore} from "@/store/userStore.js";
+const userStore = useUserStore()
 const props = defineProps({
   onlineList:{
     type: Object,
@@ -56,13 +59,37 @@ const props = defineProps({
   },
 })
 
+// 创建一个方法来滚动到底部
+function scrollToBottom() {
+  nextTick(() => {
+    if (messageContent.value) {
+      //带过渡滚动效果
+      messageContent.value.scrollTop = messageContent.value.scrollHeight;
+    }
+  });
+}
+
 const chatShow = ref(false)
+
+const messageContent = ref(null)
 
 const msgList = ref([])
 
 const sendMsg = () => {
   console.log(msg.value)
-  msgList.value.push(msg.value)
+  msgList.value.push({
+    type:"text",
+    message:msg.value,
+    avatar:'/image/avatar/avatar10.png',
+    sender:userStore.userInfo.id
+  })
+  msgList.value.push({
+    type:"text",
+    message:'哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+    avatar:'/image/avatar/avatar10.png',
+    sender:6353
+  })
+  scrollToBottom()
 }
 
 let msg = ref("")
