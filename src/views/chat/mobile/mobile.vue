@@ -37,7 +37,7 @@
               @keydown.enter.prevent="sendMsg"
           >
             <template #button>
-              <van-button v-if="judgeDeviceType() === 'PC'" size="small" type="primary" @click="sendMsg">发送</van-button>
+              <van-button size="small" type="primary" @click="sendMsg">发送</van-button>
             </template>
           </van-field>
         </div>
