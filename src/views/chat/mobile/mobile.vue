@@ -16,29 +16,28 @@
     <van-popup
         v-model:show="chatShow"
         position="right"
-        :style="{ width: '100%', height: '100%' }"
+        :style="{ width: '100%', height: '100vh' }"
     >
-      <div class="flex flex-column justify-between" style="height: 100vh">
+      <div class="flex flex-column h100 justify-between">
         <van-nav-bar
             :title="friendInfo.nickname || 'MeiHL'"
             left-arrow
             @click-left="chatShow = false"
         />
-        <div ref="messageContent" class="dynamicBackground border flex-auto auto" style="scroll-behavior: smooth">
+        <div ref="messageContent" class="dynamicBackground border flex-auto auto p10" style="scroll-behavior: smooth">
           <MessageList :message-list="msgList"/>
         </div>
         <div>
           <van-field
               v-model="msg"
               center
-              clearable
               placeholder="请输入消息内容"
-              enterkeyhint
+              enterkeyhint="enter"
               @focus="scrollToBottom"
               @keydown.enter.prevent="sendMsg"
           >
             <template #button>
-              <van-button size="small" type="primary" @click="sendMsg">发送</van-button>
+              <van-button v-if="judgeDeviceType() === 'PC'" size="small" type="primary" @click="sendMsg">发送</van-button>
             </template>
           </van-field>
         </div>
@@ -50,6 +49,7 @@
 <script setup>
 import MessageList from "@/components/message/index.vue"
 import {ref, onMounted, defineProps, reactive,nextTick} from "vue";
+import { judgeDeviceType } from "@/utils/tool.js";
 import {useUserStore} from "@/store/userStore.js";
 const userStore = useUserStore()
 const props = defineProps({
@@ -59,21 +59,15 @@ const props = defineProps({
   },
 })
 
-// 创建一个方法来滚动到底部
-function scrollToBottom() {
-  nextTick(() => {
-    if (messageContent.value) {
-      //带过渡滚动效果
-      messageContent.value.scrollTop = messageContent.value.scrollHeight;
-    }
-  });
-}
-
 const chatShow = ref(false)
 
 const messageContent = ref(null)
 
 const msgList = ref([])
+
+let msg = ref("")
+
+let friendInfo = reactive({})
 
 const sendMsg = () => {
   console.log(msg.value)
@@ -92,13 +86,19 @@ const sendMsg = () => {
   scrollToBottom()
 }
 
-let msg = ref("")
-
-let friendInfo = reactive({})
-
 const goChat = (item) => {
   chatShow.value = true
   friendInfo = item
+}
+
+// 创建一个方法来滚动到底部
+function scrollToBottom() {
+  nextTick(() => {
+    if (messageContent.value) {
+      //带过渡滚动效果
+      messageContent.value.scrollTop = messageContent.value.scrollHeight;
+    }
+  });
 }
 
 onMounted(() => {
