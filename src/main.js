@@ -28,7 +28,9 @@ let urls = [
   "/image/avatar/avatar7.png",
   "/image/avatar/avatar8.png",
   "/image/avatar/avatar9.png",
-  "/image/avatar/avatar10.png"
+  "/image/avatar/avatar10.png",
+  "/image/cardDesk.png",
+  "/image/cards.png",
 ];
 //加载图片资源
 urls.forEach(url => {
