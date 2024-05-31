@@ -3,7 +3,7 @@
     <h2 class="red">样式待优化，请切换移动端样式</h2>
     <div class="flex">
       <el-card style="width: 200px" class="m5" shadow="always" @click="gomoku">五子棋</el-card>
-      <el-card style="width: 200px" class="m5" shadow="always" @click="router.push('DeepFriedGoldenFlower')">炸金花</el-card>
+<!--      <el-card style="width: 200px" class="m5" shadow="always" @click="router.push('DeepFriedGoldenFlower')">棋牌</el-card>-->
     </div>
   </div>
 </template>
