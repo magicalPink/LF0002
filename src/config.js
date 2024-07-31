@@ -2,7 +2,7 @@
 const baseURL = {
   //location
   development: 'http://localhost:4000/api/',
-  production: 'http://www.meihl.online/'
+  production: 'http://www.meihl.online/prod'
 }[import.meta.env.MODE]
 
 //基础通信服务
